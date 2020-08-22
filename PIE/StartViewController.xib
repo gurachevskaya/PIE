@@ -17,9 +17,55 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHp-PG-kdn">
+                    <rect key="frame" x="87" y="328" width="240" height="240"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78i-JF-n2q">
+                            <rect key="frame" x="163" y="74" width="77" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.76078431369999999" alpha="1" colorSpace="deviceRGB"/>
+                            <state key="normal" title="ingredients"/>
+                            <connections>
+                                <action selector="ingredientsSearchButtonPressed:" destination="-1" eventType="touchUpInside" id="f3O-wc-Koa"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tni-gb-dDU">
+                            <rect key="frame" x="8" y="131" width="45" height="30"/>
+                            <color key="backgroundColor" red="0.89092243019999995" green="0.89092243019999995" blue="0.89092243019999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="simple"/>
+                            <connections>
+                                <action selector="simpleSearchButtonPressed:" destination="-1" eventType="touchUpInside" id="yLH-TH-aXf"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhN-zD-Cbd">
+                            <rect key="frame" x="179" y="186" width="30" height="30"/>
+                            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Fav"/>
+                            <connections>
+                                <action selector="favouritesButtonPressed:" destination="-1" eventType="touchUpInside" id="Jgi-5p-vu7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tni-gb-dDU" secondAttribute="bottom" constant="79" id="5PY-ml-ljw"/>
+                        <constraint firstAttribute="height" constant="240" id="CHH-NU-BgY"/>
+                        <constraint firstAttribute="trailing" secondItem="78i-JF-n2q" secondAttribute="trailing" id="JUi-X7-J8f"/>
+                        <constraint firstItem="78i-JF-n2q" firstAttribute="top" secondItem="NHp-PG-kdn" secondAttribute="top" constant="74" id="cb8-2M-7Ro"/>
+                        <constraint firstItem="tni-gb-dDU" firstAttribute="leading" secondItem="NHp-PG-kdn" secondAttribute="leading" constant="8" id="hdD-OF-SaG"/>
+                        <constraint firstAttribute="bottom" secondItem="nhN-zD-Cbd" secondAttribute="bottom" constant="24" id="kze-0F-RWU"/>
+                        <constraint firstAttribute="width" constant="240" id="mrH-MF-O8z"/>
+                        <constraint firstAttribute="trailing" secondItem="nhN-zD-Cbd" secondAttribute="trailing" constant="31" id="pDf-gs-2em"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="NHp-PG-kdn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Z4k-Ui-819"/>
+                <constraint firstItem="NHp-PG-kdn" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-5" id="oUR-kb-Q1v"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="137"/>
+            <point key="canvasLocation" x="137.68115942028987" y="136.60714285714286"/>
         </view>
     </objects>
 </document>

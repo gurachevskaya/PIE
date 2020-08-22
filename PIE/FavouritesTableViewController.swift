@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  FavouritesTableViewController.swift
 //  PIE
 //
 //  Created by Karina on 8/21/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class FavouritesTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()

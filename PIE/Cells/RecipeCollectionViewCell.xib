@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gTV-IL-0wX" customClass="RecipeCollectionViewCell" customModule="PIE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULO-OY-pDv">
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TrX-xG-vtd">
+                                <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_8511" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-KJ-rXr">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="163"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DYZ-KJ-rXr" secondAttribute="height" id="5eY-Fb-LxK"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="super yummyyyy banana pancakes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-8Y-aWT">
+                                        <rect key="frame" x="163" y="0.0" width="160" height="163"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="TrX-xG-vtd" secondAttribute="trailing" id="8zq-9r-QZT"/>
+                            <constraint firstItem="TrX-xG-vtd" firstAttribute="leading" secondItem="ULO-OY-pDv" secondAttribute="leading" id="LpI-R4-lYQ"/>
+                            <constraint firstItem="TrX-xG-vtd" firstAttribute="top" secondItem="ULO-OY-pDv" secondAttribute="top" id="Sxt-4c-50T"/>
+                            <constraint firstAttribute="bottom" secondItem="TrX-xG-vtd" secondAttribute="bottom" id="UC3-kz-2p1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ULO-OY-pDv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Cpb-Jy-kiK"/>
+                <constraint firstAttribute="trailing" secondItem="ULO-OY-pDv" secondAttribute="trailing" id="Ibp-95-2WQ"/>
+                <constraint firstAttribute="bottom" secondItem="ULO-OY-pDv" secondAttribute="bottom" id="eMh-8h-qd9"/>
+                <constraint firstItem="ULO-OY-pDv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="t1l-P3-Jh0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="323" height="163"/>
+            <connections>
+                <outlet property="label" destination="jkF-8Y-aWT" id="s46-Py-KnK"/>
+                <outlet property="recipeImageView" destination="DYZ-KJ-rXr" id="4Vx-3n-Duh"/>
+                <outlet property="recipeStackView" destination="TrX-xG-vtd" id="HSY-Ug-ssJ"/>
+            </connections>
+            <point key="canvasLocation" x="11" y="87"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="IMG_8511" width="1221" height="1628"/>
+    </resources>
+</document>

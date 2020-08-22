@@ -12,19 +12,30 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        RecipeAPI.fetchRecipe(for: "Cookie") { (result) in
+            switch result{
+            case .failure(let appError):
+                print("error \(appError.localizedDescription)")
+              // TODO: alert controller
+            case .success(let recipes): break
+//              self?.recipes = recipes
+            }
+        }
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func favouritesButtonPressed(_ sender: Any) {
+        navigationController?.pushViewController(FavouritesTableViewController(nibName: "FavouritesTableViewController", bundle: nil), animated: true)
     }
-    */
-
+    
+    @IBAction func ingredientsSearchButtonPressed(_ sender: Any) {
+        navigationController?.pushViewController(IngredientsSearchViewController(nibName: "IngredientsSearchViewController", bundle: nil), animated: true)
+    }
+    
+    @IBAction func simpleSearchButtonPressed(_ sender: Any) {
+        navigationController?.pushViewController(RecipesCollectionViewController(nibName: "RecipesCollectionViewController", bundle: nil), animated: true)
+//        navigationController?.pushViewController(RecipesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
+    }
+    
 }
