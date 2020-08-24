@@ -110,16 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				9A71D55D24EFFC0C007E8BE5 /* AppDelegate.swift */,
-				9A71D5B324F00C9C007E8BE5 /* StartViewController.swift */,
-				9A71D5B424F00C9C007E8BE5 /* StartViewController.xib */,
-				9A71D5D224F066FE007E8BE5 /* SimpleSearchViewController.swift */,
-				9A71D5D324F066FE007E8BE5 /* SimpleSearchViewController.xib */,
-				9A71D5D624F06737007E8BE5 /* IngredientsSearchViewController.swift */,
-				9A71D5D724F06737007E8BE5 /* IngredientsSearchViewController.xib */,
-				9A71D5E224F1909A007E8BE5 /* RecipesCollectionViewController.swift */,
-				9A71D5E324F1909A007E8BE5 /* RecipesCollectionViewController.xib */,
-				9A71D5CE24F066C9007E8BE5 /* FavouritesTableViewController.swift */,
-				9A71D5CF24F066C9007E8BE5 /* FavouritesTableViewController.xib */,
+				9AC7BBB224F3A95E00A3C248 /* Controllers */,
 				9A71D5C024F033FF007E8BE5 /* SecretKey.swift */,
 				9A71D5E124F18DA6007E8BE5 /* Cells */,
 				9A71D5C624F05303007E8BE5 /* Services */,
@@ -158,6 +149,23 @@
 				9A71D5E724F1AA2B007E8BE5 /* RecipeCollectionViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		9AC7BBB224F3A95E00A3C248 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A71D5B324F00C9C007E8BE5 /* StartViewController.swift */,
+				9A71D5B424F00C9C007E8BE5 /* StartViewController.xib */,
+				9A71D5D224F066FE007E8BE5 /* SimpleSearchViewController.swift */,
+				9A71D5D324F066FE007E8BE5 /* SimpleSearchViewController.xib */,
+				9A71D5D624F06737007E8BE5 /* IngredientsSearchViewController.swift */,
+				9A71D5D724F06737007E8BE5 /* IngredientsSearchViewController.xib */,
+				9A71D5E224F1909A007E8BE5 /* RecipesCollectionViewController.swift */,
+				9A71D5E324F1909A007E8BE5 /* RecipesCollectionViewController.xib */,
+				9A71D5CE24F066C9007E8BE5 /* FavouritesTableViewController.swift */,
+				9A71D5CF24F066C9007E8BE5 /* FavouritesTableViewController.xib */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

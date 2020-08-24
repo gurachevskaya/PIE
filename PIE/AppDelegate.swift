@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         let startViewController = StartViewController(nibName: "StartViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: startViewController)
-        navigationController.navigationBar.barTintColor = .gray
+//        navigationController.navigationBar.barTintColor = .gray
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
