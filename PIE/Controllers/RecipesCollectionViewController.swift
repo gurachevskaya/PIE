@@ -39,6 +39,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         
         self.collectionView.register(RecipeCollectionViewCell.nib,
                                      forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(SearchResultHeaderCollectionReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader")
     }
     
     private func updatePresentationStyle() {
@@ -66,6 +67,16 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         // Configure the cell
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath)
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
     // MARK: UICollectionViewFlowLayout
