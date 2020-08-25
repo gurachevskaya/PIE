@@ -33,14 +33,14 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         guard oldAxis != newAxis else { return }
         
         recipeStackView.axis = newAxis
-        recipeStackView.spacing = isHorizontalStyle ? 16 : 4
+        recipeStackView.spacing = isHorizontalStyle ? 10 : 0
         label.textAlignment = isHorizontalStyle ? .left : .center
-        let fontTransform: CGAffineTransform = isHorizontalStyle ? .identity : CGAffineTransform(scaleX: 0.8, y: 0.8)
+//        let fontTransform: CGAffineTransform = isHorizontalStyle ? .identity : CGAffineTransform(scaleX: 0.8, y: 0.8)
         
-        UIView.animate(withDuration: 0.3) {
-            self.label.transform = fontTransform
-            self.layoutIfNeeded()
-        }
+//        UIView.animate(withDuration: 0.3) {
+//            self.label.transform = fontTransform
+//            self.layoutIfNeeded()
+//        }
     }
     
 }

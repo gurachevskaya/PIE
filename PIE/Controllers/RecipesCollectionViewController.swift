@@ -72,11 +72,13 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize : CGSize
+        
         switch selectedStyle {
         case .table :
             let paddingSpace = sectionInsets.left + sectionInsets.right
             let widthPerItem = collectionView.bounds.width - paddingSpace
-            itemSize = CGSize(width: widthPerItem, height: 112)
+            
+            itemSize = CGSize(width: widthPerItem, height: 150)
             
         case .grid :
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)

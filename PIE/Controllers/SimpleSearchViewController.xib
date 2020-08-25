@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleSearchViewController" customModule="PIE" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="Lvt-AH-67A" id="F68-lh-GKO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,20 +19,56 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2D-ep-tlF">
-                    <rect key="frame" x="167" y="436.5" width="80" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search recipe" translatesAutoresizingMaskIntoConstraints="NO" id="Oo4-Bk-Ub2">
+                    <rect key="frame" x="0.0" y="54" width="414" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL9-dQ-P3I">
+                    <rect key="frame" x="132" y="802" width="150" height="40"/>
+                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="TIH-QX-25A"/>
+                        <constraint firstAttribute="height" constant="40" id="nCs-CI-QvR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="25"/>
+                    <state key="normal" title="Find recipes!">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Lvt-AH-67A">
+                    <rect key="frame" x="0.0" y="110" width="414" height="667"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="tcP-rp-9NR">
+                        <size key="itemSize" width="150" height="80"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Bjb-Nd-z65"/>
+                        <outlet property="delegate" destination="-1" id="lbl-6o-JgF"/>
+                    </connections>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="U2D-ep-tlF" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="fMn-r5-F59"/>
-                <constraint firstItem="U2D-ep-tlF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qzb-pl-qDi"/>
+                <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="1Ss-7h-qqK"/>
+                <constraint firstItem="SL9-dQ-P3I" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3hr-c6-MkU"/>
+                <constraint firstItem="Lvt-AH-67A" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4Nc-C8-ip2"/>
+                <constraint firstItem="Lvt-AH-67A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CZ3-4v-HZV"/>
+                <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RNY-Ch-5eW"/>
+                <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m7p-RV-AZH"/>
+                <constraint firstItem="SL9-dQ-P3I" firstAttribute="top" secondItem="Lvt-AH-67A" secondAttribute="bottom" constant="25" id="uyl-Rp-dRK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SL9-dQ-P3I" secondAttribute="bottom" constant="20" id="yCX-GE-ttV"/>
+                <constraint firstItem="Lvt-AH-67A" firstAttribute="top" secondItem="Oo4-Bk-Ub2" secondAttribute="bottom" id="yRn-xf-IVw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="118"/>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
         </view>
     </objects>
 </document>

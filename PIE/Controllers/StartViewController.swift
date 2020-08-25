@@ -26,7 +26,7 @@ class StartViewController: UIViewController {
 
 
     @IBAction func favouritesButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(FavouritesTableViewController(nibName: "FavouritesTableViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(RecipesCollectionViewController(nibName: "RecipesCollectionViewController", bundle: nil), animated: true)
     }
     
     @IBAction func ingredientsSearchButtonPressed(_ sender: Any) {
@@ -34,7 +34,7 @@ class StartViewController: UIViewController {
     }
     
     @IBAction func simpleSearchButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(RecipesCollectionViewController(nibName: "RecipesCollectionViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(SimpleSearchViewController(nibName: "SimpleSearchViewController", bundle: nil), animated: true)
 //        navigationController?.pushViewController(RecipesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
     }
     
