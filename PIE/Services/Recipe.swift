@@ -31,4 +31,19 @@ struct Recipe: Decodable {
     let totalTime: Int
 }
 
+//struct Ingredient: Decodable {
+//    let foodId: String
+//    let quantity: Float
+//    let measure: Measure
+//    let weight: Float
+//    let food: Food
+//    let foodCategory: String
+//}
+//
+//struct Measure:Decodable {
+//    let label: String
+//}
+//struct Food: Decodable {
+//    let label: String
+//}
 

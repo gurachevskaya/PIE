@@ -16,9 +16,11 @@ struct RecipeAPI {
     static func fetchRecipe(for searchQuery: String,
                             completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         
-        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+//        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         
-        let recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&from=0&to=50"
+//        let recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&from=0&to=50"
+        let recipeURL =  "https://api.edamam.com/search?q=&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&from=0&to=50&diet=low-fat"
+//        https://api.edamam.com/search?q=cookie&app_id=ad437c15&app_key=b272d442e2c75e71bd46e0b1093484df&from=0&to=50
         
         guard let url = URL(string: recipeURL) else {
             completion(.failure(.badURL(recipeURL)))

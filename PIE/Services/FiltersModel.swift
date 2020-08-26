@@ -8,18 +8,25 @@
 
 import Foundation
 
-let filtersModel =   [Filter(name: "vegan", isSelected: false),
-                Filter(name: "vegetarian", isSelected: false),
-                Filter(name: "peanut-free", isSelected: false),
-                //Filter(name: "tree-nut-free", isSelected: false),
-                //Filter(name: "alcohol-free", isSelected: false),
-                Filter(name: "low-fat", isSelected: false),
-                Filter(name: "low-carb", isSelected: false),
-                Filter(name: "high-protein", isSelected: false)
+let filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
+                    Filter(name: "vegetarian", isSelected: false, label: .health),
+                    Filter(name: "peanut-free", isSelected: false, label: .health),
+                    Filter(name: "low-fat", isSelected: false, label: .diet),
+                    Filter(name: "low-carb", isSelected: false, label: .diet),
+                    Filter(name: "high-protein", isSelected: false, label: .diet)
 ]
+
+//Filter(name: "tree-nut-free", isSelected: false),
+//Filter(name: "alcohol-free", isSelected: false),
 
 struct Filter {
     let name: String
     var isSelected: Bool
+    let label: Label
+    
+    enum Label: String {
+        case diet = "diet"
+        case health = "health"
+    }
 }
 

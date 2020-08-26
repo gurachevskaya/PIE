@@ -23,7 +23,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TrX-xG-vtd">
                                 <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_8511" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-KJ-rXr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-KJ-rXr">
                                         <rect key="frame" x="0.0" y="0.0" width="163" height="163"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="DYZ-KJ-rXr" secondAttribute="height" id="5eY-Fb-LxK"/>
@@ -34,21 +34,18 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="super yummyyyy banana pancakes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-8Y-aWT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="super yummyyyy banana pancakes (29min)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-8Y-aWT">
                                         <rect key="frame" x="173" y="0.0" width="150" height="163"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="jkF-8Y-aWT" firstAttribute="width" secondItem="DYZ-KJ-rXr" secondAttribute="width" priority="750" id="8CN-w3-e8Q"/>
-                                </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TrX-xG-vtd" secondAttribute="trailing" id="8zq-9r-QZT"/>
                             <constraint firstItem="TrX-xG-vtd" firstAttribute="leading" secondItem="ULO-OY-pDv" secondAttribute="leading" id="LpI-R4-lYQ"/>
@@ -76,6 +73,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="IMG_8511" width="1221" height="1628"/>
+        <image name="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" width="593" height="426"/>
     </resources>
 </document>
