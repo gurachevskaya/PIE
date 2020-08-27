@@ -15,8 +15,8 @@ class DetailedRecipeViewController: UIViewController {
     
     var recipe: Recipe!
     @IBOutlet weak var recipeImage: UIImageView!
-    @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
+    @IBOutlet weak var ingredients: UILabel!
     
     
     override func viewDidLoad() {
@@ -30,9 +30,8 @@ class DetailedRecipeViewController: UIViewController {
         }
         recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
         
-        ingredientsLabel.text = "first one\nsecond one\nthird one"
+        ingredients.text = "first one\nsecond one\nthird one"
         
-        cosmosView.settings.totalStars = 10
         cosmosView.settings.updateOnTouch = false
         cosmosView.rating = 6.0
     }

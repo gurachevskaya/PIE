@@ -22,27 +22,6 @@ class CoreDataManager: NSObject {
         return persistentContainer.newBackgroundContext()
     }
     
-     
-        
-//    - (void)configureUserWithAge:(NSInteger)age sex:(NSString *)sex weight:(NSInteger)weight {
-//     NSManagedObjectContext *context = [self.persistentContainer newBackgroundContext];
-    //       NSFetchRequest *request = [User fetchRequest];
-    //       NSArray *array = [context executeFetchRequest:request error:nil];
-    //       __block User *user;
-    //       if (array.count != 0) {
-    //           user = [array firstObject];
-    //       } else {
-    //           user = [[User alloc] initWithContext:context];
-    //       }
-    //       [context performBlockAndWait:^{
-    //           user.age = age;
-    //           user.sex = sex;
-    //           user.weight = weight;
-    //       }];
-    //       [context save: nil];
-    
-    
-    
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -78,7 +57,4 @@ class CoreDataManager: NSObject {
             }
         }
     }
-    
-    
-    
 }

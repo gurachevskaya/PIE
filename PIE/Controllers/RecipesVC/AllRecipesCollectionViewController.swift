@@ -10,5 +10,8 @@ import Foundation
 
 class AllRecipesCollectionViewController: RecipesCollectionViewController {
     
+    override func startLoading() {
+        
+    }
     
 }

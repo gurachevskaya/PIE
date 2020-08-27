@@ -31,10 +31,20 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FilterCollectionViewCell
-        cell.filterLabel.text = filtersModel[indexPath.item].name
+        let filter = filtersModel[indexPath.item]
+        cell.filterLabel.text = filter.name
+        cell.switch.isOn = filter.isSelected
         
         return cell
     }
+    
+    // MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        filtersModel[indexPath.item].toggleSelected()
+        collectionView.reloadData()
+       }
+   
     
     // MARK: UICollectionViewFlowLayout
      
@@ -44,7 +54,6 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         let widthPerItem = availableWidth / 2
         let itemSize = CGSize(width: widthPerItem, height: 80)
         return itemSize
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -74,6 +83,11 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
             //self?.recipes = recipes
             let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
             vc.recipes = recipes
+            
+//            RecipeEntity.addRecipe(recipe: recipes[0])
+//            RecipeEntity.addRecipe(recipe: recipes[1])
+
+            
             DispatchQueue.main.async {
                self?.navigationController?.pushViewController(vc, animated: true)
             }

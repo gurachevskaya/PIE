@@ -22,7 +22,8 @@ public class RecipeEntity: NSManagedObject {
     }
     
     static func deleteAllRecipes() {
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: RecipeEntity.fetchRequest())
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         do {
             try manager.viewContext.execute(deleteRequest)
             try manager.viewContext.save()
@@ -62,8 +63,11 @@ public class RecipeEntity: NSManagedObject {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "uri = %@", recipe.uri)
         guard let alreadyExists = try? manager.viewContext.fetch(request) else { return false }
-        if alreadyExists.isEmpty { return false }
+        if alreadyExists.isEmpty {
+            return false
+        } else {
         return true
+        }
     }
     
     static func deleteRecipe(recipe: Recipe) {

@@ -14,7 +14,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var recipeStackView: UIStackView!
     @IBOutlet private weak var recipeImageView: UIImageView!
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

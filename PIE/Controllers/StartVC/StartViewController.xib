@@ -45,7 +45,7 @@
                                 <action selector="favouritesButtonPressed:" destination="-1" eventType="touchUpInside" id="Jgi-5p-vu7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM8-4s-a8U">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aM8-4s-a8U">
                             <rect key="frame" x="46" y="202" width="30" height="30"/>
                             <color key="backgroundColor" red="1" green="0.77647058820000003" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="All"/>
@@ -53,7 +53,7 @@
                                 <action selector="allRecipesButtonPressed:" destination="-1" eventType="touchUpInside" id="3D5-MN-7KC"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orQ-sS-Hmg">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orQ-sS-Hmg">
                             <rect key="frame" x="107" y="210" width="57" height="30"/>
                             <color key="backgroundColor" red="0.62058413960000003" green="0.92584073600000005" blue="0.55395712850000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <state key="normal" title="Detailed"/>

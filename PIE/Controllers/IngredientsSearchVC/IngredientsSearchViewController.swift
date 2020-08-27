@@ -19,6 +19,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
         super.viewDidLoad()
         
         self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
+        
 
     }
     

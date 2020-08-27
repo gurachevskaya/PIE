@@ -30,9 +30,9 @@ class StartViewController: UIViewController {
 
     }
     
-    @IBAction func allRecipesButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(RecipesViewControllerFactory().makeAllRecipesViewController(), animated: true)
-    }
+//    @IBAction func allRecipesButtonPressed(_ sender: Any) {
+//        navigationController?.pushViewController(RecipesViewControllerFactory().makeAllRecipesViewController(), animated: true)
+//    }
     
     @IBAction func detailedButtonPressed(_ sender: Any) {
         navigationController?.pushViewController(DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil), animated: true)

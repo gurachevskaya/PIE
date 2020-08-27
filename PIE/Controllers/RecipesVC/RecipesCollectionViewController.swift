@@ -10,9 +10,18 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+protocol LoadRecipesProtocol {
+    func startLoading()
+}
+
 class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var recipes: [Recipe]!
+    func startLoading() {
+        print("implement this method!")
+    }
+    
+    
+    var recipes: [Recipe] = []
     
     let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 10.0, right: 8.0)
     private let itemsPerRow: CGFloat = 2
@@ -37,6 +46,10 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         super.viewDidLoad()
         updatePresentationStyle()
         
+        RecipeEntity.deleteAllRecipes()
+        
+        startLoading()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))
         
         self.collectionView.register(RecipeCollectionViewCell.nib,
@@ -60,13 +73,13 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recipes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
-        // Configure the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RecipeCollectionViewCell
+        let recipe = recipes[indexPath.item]
+        cell.label.text = recipe.label
         
         return cell
     }
@@ -80,6 +93,15 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
             assert(false, "Unexpected element kind")
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailedVC = DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil)
+        detailedVC.recipe = recipes[indexPath.item]
+        navigationController?.pushViewController(detailedVC, animated: true)
+    }
+
+    
+    
     
     // MARK: UICollectionViewFlowLayout
     

@@ -21,16 +21,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="149" height="123"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-zx-Rnl">
-                                <rect key="frame" x="8" y="51.5" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="8" y="51.5" width="42" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-wI-MbK">
+                            <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-wI-MbK">
                                 <rect key="frame" x="90" y="46" width="51" height="31"/>
+                                <color key="onTintColor" red="0.27450980390000002" green="0.50980392159999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.69411764705882351" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8nc-wI-MbK" firstAttribute="centerY" secondItem="mW3-3C-FZz" secondAttribute="centerY" id="6Wd-Xp-v0W"/>
                             <constraint firstItem="8nc-wI-MbK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qVA-zx-Rnl" secondAttribute="trailing" constant="5" id="C6w-te-dBp"/>
@@ -38,10 +39,14 @@
                             <constraint firstItem="qVA-zx-Rnl" firstAttribute="centerY" secondItem="mW3-3C-FZz" secondAttribute="centerY" id="V9p-8f-YeD"/>
                             <constraint firstAttribute="trailing" secondItem="8nc-wI-MbK" secondAttribute="trailing" constant="10" id="aZk-SJ-OpP"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="mW3-3C-FZz" secondAttribute="bottom" id="5nb-DU-DwP"/>
                 <constraint firstAttribute="trailing" secondItem="mW3-3C-FZz" secondAttribute="trailing" id="8XV-CP-h9p"/>
@@ -51,8 +56,10 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="196" height="158"/>
             <connections>
+                <outlet property="dietLabel" destination="qVA-zx-Rnl" id="nS5-H6-dya"/>
                 <outlet property="filterLabel" destination="qVA-zx-Rnl" id="wOA-Ko-7ST"/>
                 <outlet property="filterStateSwitch" destination="8nc-wI-MbK" id="tQB-HF-6dr"/>
+                <outlet property="switch" destination="8nc-wI-MbK" id="2v9-CL-1Lp"/>
             </connections>
             <point key="canvasLocation" x="-48.550724637681164" y="52.566964285714285"/>
         </collectionViewCell>

@@ -10,6 +10,9 @@ import UIKit
 
 class FilterCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var `switch`: UISwitch!
+    @IBOutlet weak var dietLabel: UILabel!
+    
     static let nib = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
 
     @IBOutlet weak var filterLabel: UILabel!
