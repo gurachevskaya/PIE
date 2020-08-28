@@ -31,7 +31,7 @@
                                 <color key="onTintColor" red="0.27450980390000002" green="0.50980392159999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                         </subviews>
-                        <color key="backgroundColor" red="0.49019607843137253" green="0.69411764705882351" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8nc-wI-MbK" firstAttribute="centerY" secondItem="mW3-3C-FZz" secondAttribute="centerY" id="6Wd-Xp-v0W"/>
                             <constraint firstItem="8nc-wI-MbK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qVA-zx-Rnl" secondAttribute="trailing" constant="5" id="C6w-te-dBp"/>

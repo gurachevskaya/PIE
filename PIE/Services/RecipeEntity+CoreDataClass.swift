@@ -34,7 +34,7 @@ public class RecipeEntity: NSManagedObject {
     
     static func addRecipe(recipe: Recipe) {
         
-        guard !isAlreadyInFavourite(recipe: recipe) else {return}
+//        guard !isAlreadyInFavourite(recipe: recipe) else {return}
         
         let favRecipe = RecipeEntity(context: manager.viewContext)
         

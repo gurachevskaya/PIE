@@ -15,12 +15,24 @@ class DetailedRecipeViewController: UIViewController {
     
     var recipe: Recipe!
     @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeLabel: UILabel!
+    
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var servingsLabel: UILabel!
+    
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var ingredients: UILabel!
     
+    @IBOutlet weak var sourceLabel: UILabel!
+    
+    private var alertController: UIAlertController?
+    private var alertTimer: Timer?
+    private var remainingTime = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureWithRecipe()
         
         let ratio: CGFloat
         if let image = recipeImage.image {
@@ -29,28 +41,66 @@ class DetailedRecipeViewController: UIViewController {
             ratio = 1
         }
         recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
-        
-        ingredients.text = "first one\nsecond one\nthird one"
-        
+                
         cosmosView.settings.updateOnTouch = false
         cosmosView.rating = 6.0
     }
     
-
-
-//        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            return 10
-//        }
-//
-//        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//            var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "reuseID")
-//            if (cell == nil) {
-//                cell = UITableViewCell(style:UITableViewCell.CellStyle.default, reuseIdentifier:"reuseID")
-//            }
-//            cell!.textLabel!.text = "\(indexPath.row)"
-//            return cell!
-//
-//        }
-
+    private func configureWithRecipe() {
+        
+        recipeLabel.text = recipe.label
+        caloriesLabel.text = "\(Int(recipe.calories))"
+        servingsLabel.text = "\(recipe.yield)"
+        sourceLabel.text = "on " + recipe.source
+        var ingredientsText = ""
+        for row in recipe.ingredientLines {
+            ingredientsText += "🥣 " + row + "\n"
+        }
+        ingredients.text = ingredientsText
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        let message: String
+        if RecipeEntity.isAlreadyInFavourite(recipe: self.recipe) {
+            message = "Already saved"
+        } else {
+            RecipeEntity.addRecipe(recipe: recipe)
+            message = "Successfully saved"
+        }
+        alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        self.present(alertController!, animated: true, completion: nil)
+    }
+    
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        guard let url = URL(string: recipe.url) else { return }
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
+        
+        // This lines is for the popover you need to show in iPad
+        activityViewController.popoverPresentationController?.sourceView = (sender as! UIButton)
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func instructionsButtonPressed(_ sender: Any) {
+        guard let url = URL(string: recipe.url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    
+    //MARK: - Helpers
+    
+    @objc func countDown() {
+        remainingTime -= 1
+        if (remainingTime < 0) {
+            alertTimer?.invalidate()
+            alertTimer = nil
+            alertController!.dismiss(animated: true, completion: {
+            self.alertController = nil
+            })
+        }
+    }
 }

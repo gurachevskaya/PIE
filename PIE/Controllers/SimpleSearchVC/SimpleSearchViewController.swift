@@ -74,7 +74,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
-        RecipeAPI.fetchRecipe(for: "all") { [weak self] (result) in
+        RecipeAPI.fetchRecipe(for: "cookie") { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 print("error \(appError.localizedDescription)")

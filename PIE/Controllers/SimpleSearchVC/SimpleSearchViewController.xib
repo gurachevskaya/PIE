@@ -24,11 +24,11 @@
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL9-dQ-P3I">
-                    <rect key="frame" x="132" y="802" width="150" height="40"/>
+                    <rect key="frame" x="132" y="786" width="150" height="56"/>
                     <color key="backgroundColor" red="0.79607843137254897" green="0.87450980392156863" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="TIH-QX-25A"/>
-                        <constraint firstAttribute="height" constant="40" id="nCs-CI-QvR"/>
+                        <constraint firstAttribute="height" constant="56" id="nCs-CI-QvR"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="25"/>
                     <state key="normal" title="Find recipes!">
@@ -36,7 +36,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
+                            <integer key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -44,7 +44,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Lvt-AH-67A">
-                    <rect key="frame" x="0.0" y="110" width="414" height="667"/>
+                    <rect key="frame" x="0.0" y="110" width="414" height="651"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="tcP-rp-9NR">
                         <size key="itemSize" width="150" height="80"/>

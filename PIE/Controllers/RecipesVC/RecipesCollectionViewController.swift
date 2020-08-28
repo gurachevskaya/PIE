@@ -45,9 +45,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         updatePresentationStyle()
-        
-        RecipeEntity.deleteAllRecipes()
-        
+                
         startLoading()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))
@@ -97,7 +95,9 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailedVC = DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil)
         detailedVC.recipe = recipes[indexPath.item]
-        navigationController?.pushViewController(detailedVC, animated: true)
+         DispatchQueue.main.async {
+            self.navigationController?.pushViewController(detailedVC, animated: true)
+        }
     }
 
     

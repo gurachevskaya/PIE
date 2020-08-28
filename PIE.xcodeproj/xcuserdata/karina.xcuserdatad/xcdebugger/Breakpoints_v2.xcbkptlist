@@ -23,54 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BF72A981-8D79-4AD5-852B-7559B319087C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Services/RecipeAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "fetchRecipe(for:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BF72A981-8D79-4AD5-852B-7559B319087C - c70a96e8da1f3ec0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, PIE.AppError&gt;) -&gt; () in static PIE.RecipeAPI.fetchRecipe(for: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;PIE.Recipe&gt;, PIE.AppError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Services/RecipeAPI.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "1018">
-               </Location>
-               <Location
-                  uuid = "BF72A981-8D79-4AD5-852B-7559B319087C - c86d9eaf67ffa103"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (PIE.Hit) -&gt; PIE.Recipe in closure #1 (Swift.Result&lt;Foundation.Data, PIE.AppError&gt;) -&gt; () in static PIE.RecipeAPI.fetchRecipe(for: Swift.String, completion: (Swift.Result&lt;Swift.Array&lt;PIE.Recipe&gt;, PIE.AppError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Services/RecipeAPI.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2CBBCB03-BB4D-4728-9AAF-7DDDF400C4F7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -104,7 +56,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "CE76BBCB-18E7-412F-9BB1-8CF87EC34D1E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PIE/Cells/RecipeCollectionViewCell.swift"
@@ -289,22 +241,6 @@
             startingLineNumber = "82"
             endingLineNumber = "82"
             landmarkName = "findRecipesButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0683157F-B460-4642-8A89-1AFEC6F13441"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Services/RecipeAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "fetchRecipe(for:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
