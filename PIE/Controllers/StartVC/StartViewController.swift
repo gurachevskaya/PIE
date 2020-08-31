@@ -26,7 +26,8 @@ class StartViewController: UIViewController {
     }
     
     @IBAction func simpleSearchButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(SimpleSearchViewController(nibName: "SimpleSearchViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(SimpleSearchViewController(simpleSearchPresenter: SimpleSearchPresenter()), animated: true)
+//        navigationController?.pushViewController(SimpleSearchViewController(nibName: "SimpleSearchViewController", bundle: nil), animated: true)
 
     }
     

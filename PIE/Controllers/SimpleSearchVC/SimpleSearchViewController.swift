@@ -8,30 +8,66 @@
 
 import UIKit
 
+
+protocol SimpleSearchView: class {
+    func reloadData()
+    func invalidateLayout()
+    func showAlert()
+
+//    func showUserRepository(with user: User)
+//    func updateTotalCountLabel(_ countText: String)
+//    func updateLoadingView(with view: UIView, isLoading: Bool)
+//    func showEmptyTokenError(errorMessage: ErrorMessage)
+}
+
+
 class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     
     let cellIdentifier = "cellIdentifier"
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var recipeSearchBar: UISearchBar!
+    @IBOutlet weak var findRecipesButtonBottomConstraint: NSLayoutConstraint!
+    //    @IBOutlet private(set) weak var tableViewBottomConstraint: NSLayoutConstraint!
+    
+    //+activityIndicatorView??????
+    
+     let simpleSearchPresenter: SimpleSearchPresenter
+//     let dataSource: SearchViewDataSource
+    
+    init(simpleSearchPresenter: SimpleSearchPresenter) {
+           self.simpleSearchPresenter = simpleSearchPresenter
+//           self.dataSource = SearchViewDataSource(presenter: searchPresenter)
+           super.init(nibName: "SimpleSearchViewController", bundle: nil)
+       }
+    
+    required init?(coder aDecoder: NSCoder) {
+           fatalError("init(coder:) has not been implemented")
+       }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
- 
+        
+        recipeSearchBar.delegate = self
+//        dataSource.configure(with: tableView)
+        
+         simpleSearchPresenter.view = self
 
     }
-    
+
     // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filtersModel.count
+        return simpleSearchPresenter.numberOfFilters
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FilterCollectionViewCell
-        let filter = filtersModel[indexPath.item]
+        
+        let filter = simpleSearchPresenter[indexPath.item]
         cell.filterLabel.text = filter.name
         cell.switch.isOn = filter.isSelected
         
@@ -41,15 +77,14 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        filtersModel[indexPath.item].toggleSelected()
-        collectionView.reloadData()
+        simpleSearchPresenter.toggleSelectedFor(item: indexPath.item)
+        reloadData()
        }
    
     
-    // MARK: UICollectionViewFlowLayout
+    // MARK: UICollectionViewDelegateFlowLayout
      
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
-//        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width - 30
         let widthPerItem = availableWidth / 2
         let itemSize = CGSize(width: widthPerItem, height: 80)
@@ -58,45 +93,89 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+        invalidateLayout()
     }
-     
-//     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//         return sectionInsets
-//     }
-//
-//     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//         return minimumItemSpacing
-//     }
-    
     
     // MARK: Actions
     
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
-        RecipeAPI.fetchRecipe(for: "cookie") { [weak self] (result) in
+        let searchQuery = recipeSearchBar.text ?? ""
+        
+        simpleSearchPresenter.getRecipes(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print("error \(appError.localizedDescription)")
-            // TODO: alert controller
+                print("\(appError.localizedDescription)")
+                self?.showAlert()
             case .success(let recipes):
-            //self?.recipes = recipes
-            let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
-            vc.recipes = recipes
-            
-//            RecipeEntity.addRecipe(recipe: recipes[0])
-//            RecipeEntity.addRecipe(recipe: recipes[1])
-
-            
-            DispatchQueue.main.async {
-               self?.navigationController?.pushViewController(vc, animated: true)
-            }
+                let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
+                vc.recipes = recipes
+                DispatchQueue.main.async {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             }
         }
     }
 }
 
+extension SimpleSearchViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+}
 
+
+extension SimpleSearchViewController: SimpleSearchView {
+    
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
+    func invalidateLayout() {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    func showAlert() {
+        let alertController = UIAlertController(title: title, message: "Enter recipe name or choose at least 1 filter", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //    func keyboardWillShow(with keyboardInfo: UIKeyboardInfo) {
+    ////        view.layoutIfNeeded()
+    ////        let extra = tabBarController?.tabBar.bounds.height ?? 0
+    ////        tableViewBottomConstraint.constant = keyboardInfo.frame.size.height - extra
+    ////        UIView.animate(withDuration: keyboardInfo.animationDuration,
+    ////                       delay: 0,
+    ////                       options: keyboardInfo.animationCurve,
+    ////                       animations: { self.view.layoutIfNeeded() },
+    ////                       completion: nil)
+    //    }
+    
+    //    func keyboardWillHide(with keyboardInfo: UIKeyboardInfo) {
+    ////        view.layoutIfNeeded()
+    ////        tableViewBottomConstraint.constant = 0
+    ////        UIView.animate(withDuration: keyboardInfo.animationDuration,
+    ////                       delay: 0,
+    ////                       options: keyboardInfo.animationCurve,
+    ////                       animations: { self.view.layoutIfNeeded() },
+    ////                       completion: nil)
+    //    }
+    
+    
+    
+}
 
 
 

@@ -16,18 +16,17 @@ class DetailedRecipeViewController: UIViewController {
     var recipe: Recipe!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
-    
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
-    
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var ingredients: UILabel!
-    
     @IBOutlet weak var sourceLabel: UILabel!
     
     private var alertController: UIAlertController?
     private var alertTimer: Timer?
     private var remainingTime = 1
+    
+    //MARK: - App LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +40,17 @@ class DetailedRecipeViewController: UIViewController {
             ratio = 1
         }
         recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
+        
+        
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
+        
+        navigationItem.rightBarButtonItem = deleteButton
                 
         cosmosView.settings.updateOnTouch = false
         cosmosView.rating = 6.0
     }
+    
+    //MARK: - UI Setup
     
     private func configureWithRecipe() {
         
@@ -90,6 +96,10 @@ class DetailedRecipeViewController: UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
+    
+    @objc func deleteButtonPressed() {
+        RecipeEntity.deleteRecipe(recipe: recipe)
+    }
     
     //MARK: - Helpers
     

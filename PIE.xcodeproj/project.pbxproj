@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A4F0BC024F9570800BD6ACC /* SimpleSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F0BBF24F9570800BD6ACC /* SimpleSearchPresenter.swift */; };
+		9A4F0BC224F95E8200BD6ACC /* IngredientsSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F0BC124F95E8200BD6ACC /* IngredientsSearchPresenter.swift */; };
+		9A4F0BC424F95EAE00BD6ACC /* DetailedRecipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F0BC324F95EAE00BD6ACC /* DetailedRecipePresenter.swift */; };
 		9A71D55E24EFFC0C007E8BE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D55D24EFFC0C007E8BE5 /* AppDelegate.swift */; };
 		9A71D56824EFFC0C007E8BE5 /* PIE.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D56624EFFC0C007E8BE5 /* PIE.xcdatamodeld */; };
 		9A71D56A24EFFC11007E8BE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A71D56924EFFC11007E8BE5 /* Assets.xcassets */; };
@@ -60,6 +63,9 @@
 		2C4111C6CFD495BF379F7F3E /* Pods-PIETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIETests.release.xcconfig"; path = "Target Support Files/Pods-PIETests/Pods-PIETests.release.xcconfig"; sourceTree = "<group>"; };
 		4D044CBE5F8DBF06990887C5 /* Pods-PIE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PIE.release.xcconfig"; path = "Target Support Files/Pods-PIE/Pods-PIE.release.xcconfig"; sourceTree = "<group>"; };
 		7B86E617EDB09D100576180F /* Pods_PIE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PIE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4F0BBF24F9570800BD6ACC /* SimpleSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSearchPresenter.swift; sourceTree = "<group>"; };
+		9A4F0BC124F95E8200BD6ACC /* IngredientsSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsSearchPresenter.swift; sourceTree = "<group>"; };
+		9A4F0BC324F95EAE00BD6ACC /* DetailedRecipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRecipePresenter.swift; sourceTree = "<group>"; };
 		9A71D55A24EFFC0C007E8BE5 /* PIE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D55D24EFFC0C007E8BE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A71D56724EFFC0C007E8BE5 /* PIE.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PIE.xcdatamodel; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 			children = (
 				9A71D5D224F066FE007E8BE5 /* SimpleSearchViewController.swift */,
 				9A71D5D324F066FE007E8BE5 /* SimpleSearchViewController.xib */,
+				9A4F0BBF24F9570800BD6ACC /* SimpleSearchPresenter.swift */,
 			);
 			path = SimpleSearchVC;
 			sourceTree = "<group>";
@@ -266,6 +273,7 @@
 			children = (
 				9A71D5D624F06737007E8BE5 /* IngredientsSearchViewController.swift */,
 				9A71D5D724F06737007E8BE5 /* IngredientsSearchViewController.xib */,
+				9A4F0BC124F95E8200BD6ACC /* IngredientsSearchPresenter.swift */,
 			);
 			path = IngredientsSearchVC;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 			children = (
 				9AF46F2F24F57C79006F7F65 /* DetailedRecipeViewController.swift */,
 				9AF46F3424F57F45006F7F65 /* DetailedRecipeViewController.xib */,
+				9A4F0BC324F95EAE00BD6ACC /* DetailedRecipePresenter.swift */,
 			);
 			path = DetailedRecipeVC;
 			sourceTree = "<group>";
@@ -484,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4F0BC224F95E8200BD6ACC /* IngredientsSearchPresenter.swift in Sources */,
 				9A71D5E424F1909A007E8BE5 /* RecipesCollectionViewController.swift in Sources */,
 				9A71D5DC24F184FC007E8BE5 /* AppError.swift in Sources */,
 				9AF46F3724F58B8F006F7F65 /* Time.swift in Sources */,
@@ -498,6 +508,8 @@
 				9AC7BBB824F4139000A3C248 /* FiltersModel.swift in Sources */,
 				9AC7BBB524F40A1C00A3C248 /* FilterCollectionViewCell.swift in Sources */,
 				9AF46F2A24F55AE2006F7F65 /* CoreDataManager.swift in Sources */,
+				9A4F0BC024F9570800BD6ACC /* SimpleSearchPresenter.swift in Sources */,
+				9A4F0BC424F95EAE00BD6ACC /* DetailedRecipePresenter.swift in Sources */,
 				9ABEB72224F6A3EE0084ADDA /* RecipeEntity+CoreDataClass.swift in Sources */,
 				9A71D5B524F00C9C007E8BE5 /* StartViewController.swift in Sources */,
 				9AF46F2624F52E51006F7F65 /* AllRecipesCollectionViewController.swift in Sources */,

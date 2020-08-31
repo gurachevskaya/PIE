@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleSearchViewController" customModule="PIE" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Lvt-AH-67A" id="F68-lh-GKO"/>
+                <outlet property="findRecipesButtonBottomConstraint" destination="yCX-GE-ttV" id="XLT-l1-aKr"/>
+                <outlet property="recipeSearchBar" destination="Oo4-Bk-Ub2" id="T7k-Am-1Tu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
