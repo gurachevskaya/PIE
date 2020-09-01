@@ -46,7 +46,7 @@ class DetailedRecipeViewController: UIViewController {
     
     private func configureWithRecipe() {
         recipeLabel.text = recipe.label
-        caloriesLabel.text = "\(Int(recipe.calories))"
+        caloriesLabel.text = "\(Int(recipe.calories / recipe.yield))"
         servingsLabel.text = recipe.yield.removeZerosFromEnd()
         sourceLabel.text = "on " + recipe.source
         var ingredientsText = ""
@@ -91,6 +91,7 @@ class DetailedRecipeViewController: UIViewController {
     
     
     @objc func deleteButtonPressed() {
+//        presenter.delete()
         RecipeEntity.deleteRecipe(recipe: recipe)
     }
     
