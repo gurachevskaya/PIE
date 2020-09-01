@@ -6,4 +6,17 @@
 //  Copyright © 2020 Karina. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIViewController {
+    
+    func showAlertWithMessage(message: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
+

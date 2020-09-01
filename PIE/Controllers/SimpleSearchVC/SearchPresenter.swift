@@ -20,12 +20,15 @@ final class SearchPresenter {
     
     weak var view: SimpleSearchView?
     
-      var numberOfFilters: Int {
-          return filtersModel.count
-      }
+    var dietsString = ""
+    var healthString = ""
+    
+    var numberOfFilters: Int {
+        return filtersModel.count
+    }
     
     subscript(index: Int) -> Filter {
-       // ???nil
+        // ???nil
         let filter = filtersModel[index]
         return filter
     }
@@ -38,19 +41,8 @@ final class SearchPresenter {
     
     func getRecipes(for searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         
-        var dietsString = ""
-        var healthString = ""
-             
-        for filter in filtersModel {
-            if filter.isSelected {
-                if filter.label == .diet {
-                    dietsString += ("&diet=" + filter.name)
-                } else {
-                    healthString += ("&health=" + filter.name)
-                }
-            }
-        }
-    
+        fillDietsAndHealth()
+        
         if searchQuery.count == 0 && dietsString.count == 0 && healthString.count == 0 {
             completion(.failure(.noSearchParameters))
             return
@@ -65,5 +57,39 @@ final class SearchPresenter {
             }
         }
     }
+    
+    func getRecipes(for ingredients: [String], completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         
+        let searchQuery = ingredients.joined(separator: "+")
+        
+        fillDietsAndHealth()
+        
+        if searchQuery.isEmpty == true {
+            completion(.failure(.noSearchParameters))
+            return
+        }
+        
+        RecipeAPI.fetchRecipe(for: searchQuery, dietLabels: dietsString, healthLabels: healthString) { result in
+            switch result {
+            case .failure(let appError):
+                completion(.failure(appError))
+            case .success(let recipes):
+                completion(.success(recipes))
+            }
+        }
+    }
+    
+    private func fillDietsAndHealth() {
+        for filter in filtersModel {
+            if filter.isSelected {
+                if filter.label == .diet {
+                    dietsString += ("&diet=" + filter.name)
+                } else {
+                    healthString += ("&health=" + filter.name)
+                }
+            }
+        }
+    }
+    
+    
 }

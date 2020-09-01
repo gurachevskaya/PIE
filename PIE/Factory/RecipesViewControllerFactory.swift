@@ -11,10 +11,12 @@ import Foundation
 struct RecipesViewControllerFactory {
     
     func makeAllRecipesViewController() -> RecipesCollectionViewController {
-        return (AllRecipesCollectionViewController(nibName: "RecipesCollectionViewController", bundle: nil))
+        let presenter = RecipesPresenter()
+        return (RecipesCollectionViewController(recipesPresenter: presenter))
     }
     
     func makeFavouriteRecipesViewController() -> RecipesCollectionViewController {
-        return (FavouriteRecipesCollectionViewController(nibName: "RecipesCollectionViewController", bundle: nil))
+        let presenter = RecipesPresenter()
+        return (FavouriteRecipesCollectionViewController(recipesPresenter: presenter))
     }
 }

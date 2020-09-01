@@ -25,8 +25,8 @@ struct Filter {
     let label: Label
     
     enum Label: String {
-        case diet = "diet"
-        case health = "health"
+        case diet
+        case health 
     }
     
     mutating func toggleSelected() {

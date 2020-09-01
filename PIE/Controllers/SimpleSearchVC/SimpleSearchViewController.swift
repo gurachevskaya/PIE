@@ -12,7 +12,6 @@ import UIKit
 protocol SimpleSearchView: class {
     func reloadData()
     func invalidateLayout()
-    func showAlert()
 
 //    func showUserRepository(with user: User)
 //    func updateTotalCountLabel(_ countText: String)
@@ -32,12 +31,10 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     
     //+activityIndicatorView??????
     
-     let simpleSearchPresenter: SimpleSearchPresenter
-//     let dataSource: SearchViewDataSource
+     let simpleSearchPresenter: SearchPresenter
     
-    init(simpleSearchPresenter: SimpleSearchPresenter) {
-           self.simpleSearchPresenter = simpleSearchPresenter
-//           self.dataSource = SearchViewDataSource(presenter: searchPresenter)
+    init(searchPresenter: SearchPresenter) {
+           self.simpleSearchPresenter = searchPresenter
            super.init(nibName: "SimpleSearchViewController", bundle: nil)
        }
     
@@ -50,15 +47,11 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLoad()
         
         self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
-        
-        recipeSearchBar.delegate = self
-//        dataSource.configure(with: tableView)
-        
+                
          simpleSearchPresenter.view = self
-
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return simpleSearchPresenter.numberOfFilters
@@ -74,7 +67,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         simpleSearchPresenter.toggleSelectedFor(item: indexPath.item)
@@ -82,7 +75,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
        }
    
     
-    // MARK: UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
      
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width - 30
@@ -96,7 +89,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         invalidateLayout()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
@@ -105,12 +98,18 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         simpleSearchPresenter.getRecipes(for: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print("\(appError.localizedDescription)")
-                self?.showAlert()
+                if case .noSearchParameters = (appError as AppError) {
+                self?.showAlertWithMessage(message: "Enter recipe name or choose at least 1 filter")
+                } else if case .noRecipes = (appError as AppError) {
+                self?.showAlertWithMessage(message: "We haven't found recipes with your search parameters 😢")
+                } else {
+                    self?.showAlertWithMessage(message: "\(appError)")
+                }
+
             case .success(let recipes):
+                 DispatchQueue.main.async {
                 let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
-                vc.recipes = recipes
-                DispatchQueue.main.async {
+                vc.recipesPresenter.recipes = recipes
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -145,12 +144,7 @@ extension SimpleSearchViewController: SimpleSearchView {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    func showAlert() {
-        let alertController = UIAlertController(title: title, message: "Enter recipe name or choose at least 1 filter", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
+   
     
     //    func keyboardWillShow(with keyboardInfo: UIKeyboardInfo) {
     ////        view.layoutIfNeeded()

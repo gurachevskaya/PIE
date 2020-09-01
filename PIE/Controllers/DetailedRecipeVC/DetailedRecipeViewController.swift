@@ -32,31 +32,22 @@ class DetailedRecipeViewController: UIViewController {
         super.viewDidLoad()
         
         configureWithRecipe()
-        
-        let ratio: CGFloat
-        if let image = recipeImage.image {
-            ratio = image.size.height / image.size.width
-        } else {
-            ratio = 1
-        }
-        recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
-        
+        configureImageConstraints()
         
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
-        
         navigationItem.rightBarButtonItem = deleteButton
-                
-        cosmosView.settings.updateOnTouch = false
-        cosmosView.rating = 6.0
+        
+        if RecipeEntity.isInFavourites(recipe: recipe) {
+            cosmosView.isHidden = false
+        }
     }
     
     //MARK: - UI Setup
     
     private func configureWithRecipe() {
-        
         recipeLabel.text = recipe.label
         caloriesLabel.text = "\(Int(recipe.calories))"
-        servingsLabel.text = "\(recipe.yield)"
+        servingsLabel.text = recipe.yield.removeZerosFromEnd()
         sourceLabel.text = "on " + recipe.source
         var ingredientsText = ""
         for row in recipe.ingredientLines {
@@ -65,19 +56,21 @@ class DetailedRecipeViewController: UIViewController {
         ingredients.text = ingredientsText
     }
     
+    private func configureImageConstraints() {
+        let ratio: CGFloat
+        if let image = recipeImage.image {
+            ratio = image.size.height / image.size.width
+        } else {
+            ratio = 1
+        }
+        recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
+    }
+    
     //MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        let message: String
-        if RecipeEntity.isAlreadyInFavourite(recipe: self.recipe) {
-            message = "Already saved"
-        } else {
-            RecipeEntity.addRecipe(recipe: recipe)
-            message = "Successfully saved"
-        }
-        alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
-        self.present(alertController!, animated: true, completion: nil)
+        showAlertWithTimer()
+        RecipeEntity.addRecipe(recipe: recipe)
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
@@ -102,6 +95,19 @@ class DetailedRecipeViewController: UIViewController {
     }
     
     //MARK: - Helpers
+    
+    private func showAlertWithTimer() {
+        let message: String
+        if RecipeEntity.isInFavourites(recipe: self.recipe) {
+            message = "Already saved"
+        } else {
+            
+            message = "Successfully saved"
+        }
+        alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        self.present(alertController!, animated: true, completion: nil)
+    }
     
     @objc func countDown() {
         remainingTime -= 1

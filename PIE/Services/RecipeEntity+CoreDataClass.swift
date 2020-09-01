@@ -34,7 +34,7 @@ public class RecipeEntity: NSManagedObject {
     
     static func addRecipe(recipe: Recipe) {
         
-//        guard !isAlreadyInFavourite(recipe: recipe) else {return}
+        guard !isInFavourites(recipe: recipe) else {return}
         
         let favRecipe = RecipeEntity(context: manager.viewContext)
         
@@ -46,11 +46,11 @@ public class RecipeEntity: NSManagedObject {
         favRecipe.ingredientLines = recipe.ingredientLines
         favRecipe.label = recipe.label
         favRecipe.sourse = recipe.source
-        favRecipe.totalTime = Int64(recipe.totalTime)
+        favRecipe.totalTime = recipe.totalTime
         favRecipe.totalWeight = recipe.totalWeight
         favRecipe.uri = recipe.uri
         favRecipe.url = recipe.url
-        favRecipe.yield = Int64(recipe.yield)
+        favRecipe.yield = recipe.yield
         
         do {
             try manager.viewContext.save()
@@ -59,7 +59,7 @@ public class RecipeEntity: NSManagedObject {
         }
     }
     
-    static func isAlreadyInFavourite(recipe: Recipe) -> Bool {
+    static func isInFavourites(recipe: Recipe) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "uri = %@", recipe.uri)
         guard let alreadyExists = try? manager.viewContext.fetch(request) else { return false }

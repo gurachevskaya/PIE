@@ -22,13 +22,13 @@ struct Recipe: Decodable {
     let image : String
     let source: String
     let url: String
-    let yield: Int
+    let yield: Double
     let dietLabels: [String]
     let healthLabels: [String]
     let ingredientLines: [String]
     let calories: Double
     let totalWeight: Double
-    let totalTime: Int
+    let totalTime: Double
 }
 
 //struct Ingredient: Decodable {

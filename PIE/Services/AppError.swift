@@ -17,5 +17,6 @@ enum AppError: Error {
     case badStatusCode(Int) // 401, 404, 500
     case badMimeType(String) // image/jpg
     case noSearchParameters
+    case noRecipes
 }
 

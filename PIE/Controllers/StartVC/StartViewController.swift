@@ -51,7 +51,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if indexPath.section == 1 {
-            navigationController?.pushViewController(IngredientsSearchViewController(nibName: "IngredientsSearchViewController", bundle: nil), animated: true)
+             navigationController?.pushViewController(IngredientsSearchViewController(searchPresenter: SearchPresenter()), animated: true)
         }
     }
 }

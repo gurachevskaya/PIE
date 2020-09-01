@@ -8,20 +8,24 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-protocol LoadRecipesProtocol {
-    func startLoading()
+protocol RecipeView: class {
+    func reloadData()
 }
 
 class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    func startLoading() {
-        print("implement this method!")
+    private let reuseIdentifier = "Cell"
+    
+    var recipesPresenter: RecipesPresenter
+    
+    init(recipesPresenter: RecipesPresenter) {
+        self.recipesPresenter = recipesPresenter
+        super.init(nibName: "RecipesCollectionViewController", bundle: nil)
     }
     
-    
-    var recipes: [Recipe] = []
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 10.0, right: 8.0)
     private let itemsPerRow: CGFloat = 2
@@ -45,19 +49,18 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         updatePresentationStyle()
-                
-        startLoading()
+        
+        recipesPresenter.view = self
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))
         
         self.collectionView.register(RecipeCollectionViewCell.nib,
                                      forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(SearchResultHeaderCollectionReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader")
     }
     
     private func updatePresentationStyle() {
         navigationItem.rightBarButtonItem?.image = selectedStyle.buttonImage
-        collectionView.reloadData()
+        reloadData()
     }
     
     @objc private func changeContentLayout() {
@@ -68,42 +71,32 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         }
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipes.count
+        return recipesPresenter.numberOfRecipes
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RecipeCollectionViewCell
-        let recipe = recipes[indexPath.item]
+        let recipe = recipesPresenter.recipes[indexPath.item]
         cell.label.text = recipe.label
         
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath)
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
-        }
-    }
+    // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailedVC = DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil)
-        detailedVC.recipe = recipes[indexPath.item]
-         DispatchQueue.main.async {
+        detailedVC.recipe = recipesPresenter.recipes[indexPath.item]
+        DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }
     }
-
     
     
-    
-    // MARK: UICollectionViewFlowLayout
+    // MARK: - UICollectionViewFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize : CGSize
@@ -132,4 +125,12 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return minimumItemSpacing
     }
+}
+
+extension RecipesCollectionViewController: RecipeView {
+    
+    func reloadData() {
+        collectionView.reloadData()
+    }
+  
 }

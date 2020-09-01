@@ -24,6 +24,9 @@
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search recipe" translatesAutoresizingMaskIntoConstraints="NO" id="Oo4-Bk-Ub2">
                     <rect key="frame" x="0.0" y="54" width="414" height="56"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Hws-q1-b74"/>
+                    </connections>
                 </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SL9-dQ-P3I">
                     <rect key="frame" x="132" y="786" width="150" height="56"/>
@@ -32,8 +35,8 @@
                         <constraint firstAttribute="width" constant="150" id="TIH-QX-25A"/>
                         <constraint firstAttribute="height" constant="56" id="nCs-CI-QvR"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="25"/>
-                    <state key="normal" title="Find recipes!">
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="FIND RECIPES">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
