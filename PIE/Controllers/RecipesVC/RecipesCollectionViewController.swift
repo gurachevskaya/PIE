@@ -14,7 +14,7 @@ protocol RecipeView: class {
 
 class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private let reuseIdentifier = "Cell"
+    private let reuseIdentifier = "RecipeCollectionViewCell"
     
     var recipesPresenter: RecipesPresenter
     
@@ -52,7 +52,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         
         recipesPresenter.view = self
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))]
         
         self.collectionView.register(RecipeCollectionViewCell.nib,
                                      forCellWithReuseIdentifier: reuseIdentifier)

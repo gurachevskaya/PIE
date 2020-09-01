@@ -22,7 +22,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     
     let searchPresenter: SearchPresenter
     
-    let cellIdentifier = "cellIdentifier"
+    let cellIdentifier = "FilterCollectionViewCell"
     
     init(searchPresenter: SearchPresenter) {
         self.searchPresenter = searchPresenter
@@ -48,7 +48,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        invalidateLayout()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     // MARK: UICollectionViewDataSource
@@ -71,7 +71,6 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
       
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         searchPresenter.toggleSelectedFor(item: indexPath.item)
-        reloadData()
     }
     
     // MARK: UICollectionViewFlowLayout
@@ -141,10 +140,6 @@ extension IngredientsSearchViewController: SimpleSearchView {
         collectionView.reloadData()
     }
     
-    func invalidateLayout() {
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-  
 }
 
 extension IngredientsSearchViewController: UITextFieldDelegate {

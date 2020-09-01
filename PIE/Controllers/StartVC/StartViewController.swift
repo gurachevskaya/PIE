@@ -10,11 +10,13 @@ import UIKit
 
 class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let cellIdentifier = "SearchTableViewCell"
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(SearchTableViewCell.nib, forCellReuseIdentifier: "TableViewCell")
+        tableView.register(SearchTableViewCell.nib, forCellReuseIdentifier: cellIdentifier)
     }
     
     // MARK: - UITableViewDataSource
@@ -28,17 +30,15 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! SearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchTableViewCell
         
         if indexPath.section == 0 {
-            cell.searchTextLabel.text = "Simple search by name"
-            cell.searchImageView.image = UIImage(named: "dish")
+            cell.configureWith(type: .simpleSearch)
         }
         
         if indexPath.section == 1 {
-            cell.searchTextLabel.text = "Find recipes based on what you already have at home!"
-        }
-        
+            cell.configureWith(type: .ingredientsSearch)
+        } 
         return cell
     }
     
@@ -51,7 +51,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if indexPath.section == 1 {
-             navigationController?.pushViewController(IngredientsSearchViewController(searchPresenter: SearchPresenter()), animated: true)
+            navigationController?.pushViewController(IngredientsSearchViewController(searchPresenter: SearchPresenter()), animated: true)
         }
     }
 }

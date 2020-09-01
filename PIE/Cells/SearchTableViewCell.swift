@@ -11,12 +11,18 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
     
     static let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
+    var type: SearchType!
     @IBOutlet weak var searchImageView: UIImageView!
     @IBOutlet weak var searchTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    func configureWith(type: SearchType) {
+        searchImageView.image = type.image
+        searchTextLabel.text = type.text
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
