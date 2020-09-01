@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleSearchViewController" customModule="PIE" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Oqy-dY-jhp" id="MGh-zW-yFR"/>
                 <outlet property="collectionView" destination="Lvt-AH-67A" id="F68-lh-GKO"/>
                 <outlet property="findRecipesButtonBottomConstraint" destination="yCX-GE-ttV" id="XLT-l1-aKr"/>
                 <outlet property="recipeSearchBar" destination="Oo4-Bk-Ub2" id="T7k-Am-1Tu"/>
@@ -62,6 +63,14 @@
                         <outlet property="delegate" destination="-1" id="lbl-6o-JgF"/>
                     </connections>
                 </collectionView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Oqy-dY-jhp">
+                    <rect key="frame" x="182" y="428" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="Jqu-uq-5BX"/>
+                        <constraint firstAttribute="height" constant="50" id="zmr-77-7lC"/>
+                    </constraints>
+                    <color key="color" red="0.27450980390000002" green="0.50980392159999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -69,7 +78,9 @@
                 <constraint firstItem="SL9-dQ-P3I" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3hr-c6-MkU"/>
                 <constraint firstItem="Lvt-AH-67A" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4Nc-C8-ip2"/>
                 <constraint firstItem="Lvt-AH-67A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CZ3-4v-HZV"/>
+                <constraint firstItem="Oqy-dY-jhp" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="MTc-aF-g5Y"/>
                 <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RNY-Ch-5eW"/>
+                <constraint firstItem="Oqy-dY-jhp" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="fYj-Nn-nWF"/>
                 <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m7p-RV-AZH"/>
                 <constraint firstItem="SL9-dQ-P3I" firstAttribute="top" secondItem="Lvt-AH-67A" secondAttribute="bottom" constant="25" id="uyl-Rp-dRK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SL9-dQ-P3I" secondAttribute="bottom" constant="20" id="yCX-GE-ttV"/>

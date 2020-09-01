@@ -30,36 +30,6 @@
                         <outlet property="delegate" destination="-1" id="GVb-Se-iCu"/>
                     </connections>
                 </tableView>
-                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHp-PG-kdn">
-                    <rect key="frame" x="87" y="622" width="240" height="240"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78i-JF-n2q">
-                            <rect key="frame" x="163" y="131" width="77" height="30"/>
-                            <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.76078431369999999" alpha="1" colorSpace="deviceRGB"/>
-                            <state key="normal" title="ingredients"/>
-                            <connections>
-                                <action selector="ingredientsSearchButtonPressed:" destination="-1" eventType="touchUpInside" id="f3O-wc-Koa"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tni-gb-dDU">
-                            <rect key="frame" x="8" y="131" width="45" height="30"/>
-                            <color key="backgroundColor" red="0.89092243019999995" green="0.89092243019999995" blue="0.89092243019999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <state key="normal" title="simple"/>
-                            <connections>
-                                <action selector="simpleSearchButtonPressed:" destination="-1" eventType="touchUpInside" id="yLH-TH-aXf"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="tni-gb-dDU" secondAttribute="bottom" constant="79" id="5PY-ml-ljw"/>
-                        <constraint firstAttribute="height" constant="240" id="CHH-NU-BgY"/>
-                        <constraint firstAttribute="trailing" secondItem="78i-JF-n2q" secondAttribute="trailing" id="JUi-X7-J8f"/>
-                        <constraint firstItem="tni-gb-dDU" firstAttribute="leading" secondItem="NHp-PG-kdn" secondAttribute="leading" constant="8" id="hdD-OF-SaG"/>
-                        <constraint firstAttribute="width" constant="240" id="mrH-MF-O8z"/>
-                        <constraint firstItem="78i-JF-n2q" firstAttribute="centerY" secondItem="tni-gb-dDU" secondAttribute="centerY" id="rfm-bi-8UB"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>

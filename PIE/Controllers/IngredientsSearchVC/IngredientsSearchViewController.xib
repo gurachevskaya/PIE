@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IngredientsSearchViewController" customModule="PIE" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="XTm-p6-7Ra" id="Pdh-9O-4yi"/>
                 <outlet property="collectionView" destination="wz2-Je-nmq" id="bsO-1g-imp"/>
                 <outlet property="firstTextField" destination="QXP-Sn-P6F" id="AWB-1q-mhd"/>
                 <outlet property="secondTextField" destination="1bi-l5-Vn3" id="s7M-WM-b7l"/>
@@ -116,6 +117,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XTm-p6-7Ra">
+                    <rect key="frame" x="182" y="428" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="EoP-53-lP1"/>
+                        <constraint firstAttribute="height" constant="50" id="PIJ-U1-l1T"/>
+                    </constraints>
+                    <color key="color" red="0.27450980390000002" green="0.50980392159999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -131,6 +140,7 @@
                 <constraint firstAttribute="trailing" secondItem="wz2-Je-nmq" secondAttribute="trailing" id="Q85-zm-5Sx"/>
                 <constraint firstItem="2GH-hz-jFS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="YYc-qd-ULG"/>
                 <constraint firstItem="wz2-Je-nmq" firstAttribute="top" secondItem="MLw-gA-8Gg" secondAttribute="bottom" constant="15" id="ciP-yW-M62"/>
+                <constraint firstItem="XTm-p6-7Ra" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ctS-Sd-zlZ"/>
                 <constraint firstItem="wt3-GV-1kh" firstAttribute="top" secondItem="YEm-Rj-7I0" secondAttribute="bottom" constant="15" id="elD-oU-Rjl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wt3-GV-1kh" secondAttribute="trailing" constant="10" id="fAH-Xr-CAr"/>
                 <constraint firstItem="w8N-Ea-yt8" firstAttribute="centerY" secondItem="MLw-gA-8Gg" secondAttribute="centerY" id="gu2-mW-rI6"/>
@@ -139,6 +149,7 @@
                 <constraint firstItem="Hyd-Nf-Um7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="igF-w4-6jq"/>
                 <constraint firstItem="YEm-Rj-7I0" firstAttribute="leading" secondItem="Hyd-Nf-Um7" secondAttribute="leading" id="kum-Vf-epR"/>
                 <constraint firstItem="wz2-Je-nmq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="plx-Fs-OPD"/>
+                <constraint firstItem="XTm-p6-7Ra" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="v38-9P-c9r"/>
                 <constraint firstItem="wt3-GV-1kh" firstAttribute="leading" secondItem="2GH-hz-jFS" secondAttribute="trailing" constant="5" id="wTf-Ik-hCr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

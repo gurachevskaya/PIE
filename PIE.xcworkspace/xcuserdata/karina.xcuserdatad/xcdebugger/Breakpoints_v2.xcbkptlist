@@ -55,54 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2EED4AAC-C910-4184-92FC-9AB0BC80815A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "findRecipesButtonPressed(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2EED4AAC-C910-4184-92FC-9AB0BC80815A - 1d6940612255ee0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;PIE.Recipe&gt;, PIE.AppError&gt;) -&gt; () in PIE.SimpleSearchViewController.findRecipesButtonPressed(Any) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "393">
-               </Location>
-               <Location
-                  uuid = "2EED4AAC-C910-4184-92FC-9AB0BC80815A - 1d6940612255ee0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;PIE.Recipe&gt;, PIE.AppError&gt;) -&gt; () in PIE.SimpleSearchViewController.findRecipesButtonPressed(Any) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "100"
-                  endingLineNumber = "100"
-                  offsetFromSymbolStart = "434">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "055E7183-FDFA-4B4D-86D2-5780D75500D2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -110,8 +62,8 @@
             filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "SimpleSearchViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -120,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "82CFCFF1-F2E3-40E0-9E95-57D0A841FB91"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PIE/Services/RecipeAPI.swift"
@@ -160,70 +112,6 @@
                   startingLineNumber = "40"
                   endingLineNumber = "40"
                   offsetFromSymbolStart = "413">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EF8CEB24-3EBC-45AB-8C5C-DA218157EFF7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "findRecipesButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "263C1803-5ABE-495D-8DE1-5094897A0930"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "findRecipesButtonPressed(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "263C1803-5ABE-495D-8DE1-5094897A0930 - bdc7fbe6fed12168"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PIE.SimpleSearchViewController.findRecipesButtonPressed(Any) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "598">
-               </Location>
-               <Location
-                  uuid = "263C1803-5ABE-495D-8DE1-5094897A0930 - 1d6940612255ee0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;PIE.Recipe&gt;, PIE.AppError&gt;) -&gt; () in PIE.SimpleSearchViewController.findRecipesButtonPressed(Any) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "306">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -295,38 +183,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B9B786BD-082B-413F-B9EA-ECEB5E6A73C4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Services/RecipeAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "fetchRecipe(for:dietLabels:healthLabels:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "95C3CC6F-E56A-40CD-9660-6210FE693696"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Services/RecipeAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "fetchRecipe(for:dietLabels:healthLabels:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5DC02C0F-D735-4EC3-B445-4730B85756FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -360,7 +216,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7A40A9CE-EA61-4C41-9D7C-250870AC00FC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PIE/Services/RecipeAPI.swift"
@@ -391,22 +247,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "77908F97-FAD7-4C0C-B1B9-371A39E4DF29"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "11320156-7577-4A50-AFBA-0AD5A8E03981"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -414,8 +254,8 @@
             filePath = "PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "getRecipes(for:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +270,8 @@
             filePath = "PIE/Controllers/IngredientsSearchVC/IngredientsSearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "findRecipesButtonPressed(_:)"
             landmarkType = "7">
             <Locations>
@@ -446,8 +286,8 @@
                   urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/IngredientsSearchVC/IngredientsSearchViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
                   offsetFromSymbolStart = "1271">
                </Location>
                <Location
@@ -461,8 +301,8 @@
                   urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/IngredientsSearchVC/IngredientsSearchViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
                   offsetFromSymbolStart = "299">
                </Location>
             </Locations>
@@ -478,8 +318,8 @@
             filePath = "PIE/Controllers/IngredientsSearchVC/IngredientsSearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "findRecipesButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +334,8 @@
             filePath = "PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "getRecipes(for:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,8 +350,8 @@
             filePath = "PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "getRecipes(for:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,9 +366,25 @@
             filePath = "PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "getRecipes(for:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C2455C4-5C55-461D-BC66-A3C3A85F5444"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PIE/Controllers/SimpleSearchVC/SimpleSearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "findRecipesButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

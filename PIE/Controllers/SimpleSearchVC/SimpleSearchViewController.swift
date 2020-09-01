@@ -12,6 +12,9 @@ import UIKit
 protocol SimpleSearchView: class {
     func reloadData()
     func invalidateLayout()
+    
+    func startLoading()
+    func finishLoading()
 
 //    func showUserRepository(with user: User)
 //    func updateTotalCountLabel(_ countText: String)
@@ -29,6 +32,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var findRecipesButtonBottomConstraint: NSLayoutConstraint!
     //    @IBOutlet private(set) weak var tableViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     //+activityIndicatorView??????
     
      let simpleSearchPresenter: SearchPresenter
@@ -135,6 +139,15 @@ extension SimpleSearchViewController: UISearchBarDelegate {
 
 
 extension SimpleSearchViewController: SimpleSearchView {
+    func startLoading() {
+        activityIndicator?.startAnimating()
+    }
+    
+    func finishLoading() {
+        DispatchQueue.main.async {
+            self.activityIndicator?.stopAnimating()
+        }
+    }
     
     func reloadData() {
         collectionView.reloadData()

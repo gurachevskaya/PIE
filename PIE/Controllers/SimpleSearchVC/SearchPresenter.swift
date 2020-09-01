@@ -47,8 +47,9 @@ final class SearchPresenter {
             completion(.failure(.noSearchParameters))
             return
         }
-        
+        self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: searchQuery, dietLabels: dietsString, healthLabels: healthString) { result in
+            self.view?.finishLoading()
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))
@@ -68,8 +69,9 @@ final class SearchPresenter {
             completion(.failure(.noSearchParameters))
             return
         }
-        
+         self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: searchQuery, dietLabels: dietsString, healthLabels: healthString) { result in
+            self.view?.finishLoading()
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))

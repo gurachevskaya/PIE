@@ -14,6 +14,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet weak var firstTextField: UITextField!
     @IBOutlet weak var secondTextField: UITextField!
     @IBOutlet weak var thirdTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var textFields: [UITextField] {
         return [firstTextField, secondTextField, thirdTextField]
@@ -125,6 +126,16 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
 }
 
 extension IngredientsSearchViewController: SimpleSearchView {
+    func startLoading() {
+        activityIndicator?.startAnimating()
+    }
+    
+    func finishLoading() {
+        DispatchQueue.main.async {
+            self.activityIndicator?.stopAnimating()
+        }
+    }
+    
     
     func reloadData() {
         collectionView.reloadData()
