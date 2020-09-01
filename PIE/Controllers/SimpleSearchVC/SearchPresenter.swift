@@ -16,13 +16,10 @@ import Foundation
 //}
 
 
-final class SimpleSearchPresenter {
+final class SearchPresenter {
     
     weak var view: SimpleSearchView?
     
-//    private var model = filtersModel
-    
-   
       var numberOfFilters: Int {
           return filtersModel.count
       }

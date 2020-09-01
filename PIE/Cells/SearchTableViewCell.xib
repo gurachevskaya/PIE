@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell alpha="0.59999999999999998" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCell" id="KGk-i7-Jjw" customClass="SearchTableViewCell" customModule="PIE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="293" height="84"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0dm-5j-4uF">
+                        <rect key="frame" x="89" y="31.5" width="44.5" height="21"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-Sl-gbB">
+                        <rect key="frame" x="10" y="10" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="aXm-Sl-gbB" secondAttribute="height" id="1CU-q0-DbD"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aXm-Sl-gbB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0OO-Pd-s2S"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0dm-5j-4uF" secondAttribute="trailing" constant="5" id="Csa-ua-DHE"/>
+                    <constraint firstItem="aXm-Sl-gbB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Hvi-Fs-Agf"/>
+                    <constraint firstItem="0dm-5j-4uF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pca-NI-MDP"/>
+                    <constraint firstAttribute="bottom" secondItem="aXm-Sl-gbB" secondAttribute="bottom" constant="10" id="wpS-pM-850"/>
+                    <constraint firstItem="0dm-5j-4uF" firstAttribute="leading" secondItem="aXm-Sl-gbB" secondAttribute="trailing" constant="15" id="wt7-86-VXu"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                        <integer key="value" value="5"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.79607843140000001" green="0.87450980389999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="searchImageView" destination="aXm-Sl-gbB" id="5Pf-cc-OCV"/>
+                <outlet property="searchTextLabel" destination="0dm-5j-4uF" id="8hA-fB-s3h"/>
+            </connections>
+            <point key="canvasLocation" x="57.971014492753625" y="12.723214285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="list" width="128" height="128"/>
+    </resources>
+</document>

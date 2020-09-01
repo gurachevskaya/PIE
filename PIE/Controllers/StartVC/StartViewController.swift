@@ -8,35 +8,50 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
-
+class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(SearchTableViewCell.nib, forCellReuseIdentifier: "TableViewCell")
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! SearchTableViewCell
         
-       
-    }
-
-
-    @IBAction func favouritesButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(RecipesViewControllerFactory().makeFavouriteRecipesViewController(), animated: true)
-    }
-    
-    @IBAction func ingredientsSearchButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(IngredientsSearchViewController(nibName: "IngredientsSearchViewController", bundle: nil), animated: true)
-    }
-    
-    @IBAction func simpleSearchButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(SimpleSearchViewController(simpleSearchPresenter: SimpleSearchPresenter()), animated: true)
-//        navigationController?.pushViewController(SimpleSearchViewController(nibName: "SimpleSearchViewController", bundle: nil), animated: true)
-
+        if indexPath.section == 0 {
+            cell.searchTextLabel.text = "Simple search by name"
+            cell.searchImageView.image = UIImage(named: "dish")
+        }
+        
+        if indexPath.section == 1 {
+            cell.searchTextLabel.text = "Find recipes based on what you already have at home!"
+        }
+        
+        return cell
     }
     
-//    @IBAction func allRecipesButtonPressed(_ sender: Any) {
-//        navigationController?.pushViewController(RecipesViewControllerFactory().makeAllRecipesViewController(), animated: true)
-//    }
+    // MARK: - UITableViewDelegate
     
-    @IBAction func detailedButtonPressed(_ sender: Any) {
-        navigationController?.pushViewController(DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil), animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 {
+            navigationController?.pushViewController(SimpleSearchViewController(searchPresenter: SearchPresenter()), animated: true)
+        }
+        
+        if indexPath.section == 1 {
+            navigationController?.pushViewController(IngredientsSearchViewController(nibName: "IngredientsSearchViewController", bundle: nil), animated: true)
+        }
     }
-    
 }
