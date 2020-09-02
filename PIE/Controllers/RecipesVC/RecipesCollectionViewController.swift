@@ -27,7 +27,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         fatalError("init(coder:) has not been implemented")
     }
     
-    let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 10.0, right: 8.0)
+    let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     private let itemsPerRow: CGFloat = 2
     private let minimumItemSpacing: CGFloat = 8
     
@@ -82,13 +82,27 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         let recipe = recipesPresenter.recipes[indexPath.item]
         cell.label.text = recipe.label
         
+        cell.recipeImageView.image = UIImage(named: "lazy-load-placeholder")
+
+        recipesPresenter.loadImageForUrl(urlString: recipe.image) { (result) in
+            switch result {
+            case .failure(let appError):
+                 DispatchQueue.main.async {
+                self.showAlertWithMessage(message: "\(appError)")
+                }
+            case .success(let image):
+                 DispatchQueue.main.async {
+                cell.recipeImageView.image = image
+                }
+            }
+        }
         return cell
     }
     
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailedVC = DetailedRecipeViewController(nibName: "DetailedRecipeViewController", bundle: nil)
+        let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter())
         detailedVC.recipe = recipesPresenter.recipes[indexPath.item]
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailedVC, animated: true)
@@ -105,17 +119,38 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         case .table :
             let paddingSpace = sectionInsets.left + sectionInsets.right
             let widthPerItem = collectionView.bounds.width - paddingSpace
-            
             itemSize = CGSize(width: widthPerItem, height: 150)
             
+            //            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            //                layout.scrollDirection = .horizontal
+            //            }
+            
         case .grid :
+            
+            //            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            //                layout.scrollDirection = .vertical
+            //            }
+            
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
             let availableWidth = collectionView.bounds.width - paddingSpace
             let widthPerItem = availableWidth / itemsPerRow
-            itemSize = CGSize(width: widthPerItem, height: widthPerItem + 50)
+            
+            //            let recipe = recipesPresenter.recipes[indexPath.item]
+            //            let size = CGSize(width: widthPerItem, height: widthPerItem)
+            
+            //            let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!]
+            //            let estimatedFrame = NSString(string: recipe.label).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+            
+            //            let heightPerItem = widthPerItem + estimatedFrame.height
+            let paddingSpace2 = sectionInsets.top + sectionInsets.bottom + minimumItemSpacing
+            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 49.0
+            let nbHeight = navigationController?.navigationBar.frame.height ?? 44.0
+            let availableHeight = collectionView.bounds.height - paddingSpace2 - tabBarHeight - nbHeight
+            let heightPerItem = availableHeight / 2
+            
+            itemSize = CGSize(width: widthPerItem, height: heightPerItem - 10)
         }
         return itemSize
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -132,5 +167,5 @@ extension RecipesCollectionViewController: RecipeView {
     func reloadData() {
         collectionView.reloadData()
     }
-  
+    
 }

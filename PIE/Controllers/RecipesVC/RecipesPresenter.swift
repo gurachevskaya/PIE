@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+let imageCache = NSCache<NSString, UIImage>()
 
 final class RecipesPresenter {
 
-     var recipes: [Recipe] = []
+    var recipes: [Recipe] = []
     weak var view: RecipeView?
     
     var numberOfRecipes: Int {
@@ -35,7 +38,30 @@ final class RecipesPresenter {
             
             recipes.append(recipe)
         }
+        view?.reloadData()
     }
-        
-        
+    
+    func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
+           if let image = imageCache.object(forKey: urlString as NSString) {
+               completion(.success(image))
+           } else {
+               let url = URL(string: urlString)!
+               let request = URLRequest(url: url)
+               
+               NetworkManager.sharedManager.performDataTask(with: request) { (result) in
+                   switch result {
+                   case .failure(let appError):
+                       completion(.failure(appError))
+                       
+                   case .success(let data):
+                       let image = UIImage(data: data)
+                       imageCache.setObject(image!, forKey: urlString as NSString)
+                       completion(.success(image!))
+                   }
+               }
+           }
+       }
+    
 }
+
+

@@ -26,6 +26,17 @@ class DetailedRecipeViewController: UIViewController {
     private var alertTimer: Timer?
     private var remainingTime = 1
     
+    var recipePresenter: RecipesPresenter
+    
+    init(recipePresenter: RecipesPresenter) {
+        self.recipePresenter = recipePresenter
+        super.init(nibName: "DetailedRecipeViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - App LifeCycle
     
     override func viewDidLoad() {
@@ -54,16 +65,30 @@ class DetailedRecipeViewController: UIViewController {
             ingredientsText += "🥣 " + row + "\n"
         }
         ingredients.text = ingredientsText
+        
+        recipePresenter.loadImageForUrl(urlString: recipe.image) { (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self.showAlertWithMessage(message: "\(appError)")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.recipeImage.image = image
+                }
+            }
+        }
+        
     }
     
     private func configureImageConstraints() {
-        let ratio: CGFloat
-        if let image = recipeImage.image {
-            ratio = image.size.height / image.size.width
-        } else {
-            ratio = 1
-        }
-        recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
+//        let ratio: CGFloat
+//        if let image = recipeImage.image {
+//            ratio = image.size.height / image.size.width
+//        } else {
+//            ratio = 1
+//        }
+//        recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
     }
     
     //MARK: - Actions
@@ -91,7 +116,7 @@ class DetailedRecipeViewController: UIViewController {
     
     
     @objc func deleteButtonPressed() {
-//        presenter.delete()
+        //        presenter.delete()
         RecipeEntity.deleteRecipe(recipe: recipe)
     }
     
@@ -116,7 +141,7 @@ class DetailedRecipeViewController: UIViewController {
             alertTimer?.invalidate()
             alertTimer = nil
             alertController!.dismiss(animated: true, completion: {
-            self.alertController = nil
+                self.alertController = nil
             })
         }
     }

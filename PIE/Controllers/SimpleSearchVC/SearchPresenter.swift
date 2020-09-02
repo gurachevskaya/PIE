@@ -36,6 +36,7 @@ final class SearchPresenter {
     
     func toggleSelectedFor(item: Int) {
         filtersModel[item].toggleSelected()
+        view?.reloadData()
     }
     
     
@@ -92,6 +93,8 @@ final class SearchPresenter {
             }
         }
     }
+    
+   
     
     
 }

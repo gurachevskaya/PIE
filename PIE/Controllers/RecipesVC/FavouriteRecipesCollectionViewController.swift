@@ -6,19 +6,32 @@
 //  Copyright © 2020 Karina. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 class FavouriteRecipesCollectionViewController: RecipesCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
+        navigationItem.rightBarButtonItems?.append(deleteButton)
         startLoading()
     }
     
     func startLoading() {
           recipesPresenter.loadFavouriteRecipes()
-          collectionView.reloadData()
       }
+    
+    @objc func deleteButtonPressed() {
+//        RecipeEntity.deleteAllRecipes()
+    }
 }
 
+
+extension FavouriteRecipesCollectionViewController: NSFetchedResultsControllerDelegate {
+    
+    
+    
+    
+}

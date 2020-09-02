@@ -43,9 +43,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" image="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpq-tj-rvf">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" image="lazy-load-placeholder" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpq-tj-rvf">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
-                                    <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHz-e2-gcR">
                                     <rect key="frame" x="10" y="536" width="92" height="2"/>
@@ -322,7 +321,7 @@
     </objects>
     <resources>
         <image name="bookmark" width="24" height="24"/>
-        <image name="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" width="593" height="426"/>
+        <image name="lazy-load-placeholder" width="593" height="426"/>
         <image name="share" width="24" height="24"/>
     </resources>
 </document>

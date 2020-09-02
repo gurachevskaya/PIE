@@ -16,9 +16,6 @@ var filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
                     Filter(name: "high-protein", isSelected: false, label: .diet)
 ]
 
-//Filter(name: "tree-nut-free", isSelected: false),
-//Filter(name: "alcohol-free", isSelected: false),
-
 struct Filter {
     let name: String
     var isSelected: Bool

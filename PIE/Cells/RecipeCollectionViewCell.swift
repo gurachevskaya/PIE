@@ -13,7 +13,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     static let nib = UINib(nibName: "RecipeCollectionViewCell", bundle: nil)
     
     @IBOutlet private weak var recipeStackView: UIStackView!
-    @IBOutlet private weak var recipeImageView: UIImageView!
+    @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
