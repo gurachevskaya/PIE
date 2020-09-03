@@ -8,11 +8,17 @@
 
 import UIKit
 
-protocol RecipeView: class {
-    func reloadData()
+
+protocol RecipeLoading {
+    func startLoading()
 }
 
-class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, RecipeLoading {
+    
+    
+    func startLoading() {
+        print("You haven't implemented this method!")
+    }
     
     private let reuseIdentifier = "RecipeCollectionViewCell"
     
@@ -27,9 +33,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         fatalError("init(coder:) has not been implemented")
     }
     
-    let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
-    private let itemsPerRow: CGFloat = 2
-    private let minimumItemSpacing: CGFloat = 8
     
     private enum PresentationStyle: String, CaseIterable {
         case table
@@ -49,6 +52,9 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         updatePresentationStyle()
+        
+        startLoading()
+        
         
         recipesPresenter.view = self
         
@@ -102,8 +108,8 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter())
-        detailedVC.recipe = recipesPresenter.recipes[indexPath.item]
+        let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
+//        detailedVC.recipePresenter.recipe = recipesPresenter.recipes[indexPath.item]
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }
@@ -113,7 +119,13 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     // MARK: - UICollectionViewFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let itemSize : CGSize
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let minimumItemSpacing = layout.minimumInteritemSpacing
+        let sectionInsets = layout.sectionInset
+        let itemsPerRow: CGFloat = 2
         
         switch selectedStyle {
         case .table :
@@ -121,16 +133,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
             let widthPerItem = collectionView.bounds.width - paddingSpace
             itemSize = CGSize(width: widthPerItem, height: 150)
             
-            //            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            //                layout.scrollDirection = .horizontal
-            //            }
-            
         case .grid :
-            
-            //            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            //                layout.scrollDirection = .vertical
-            //            }
-            
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
             let availableWidth = collectionView.bounds.width - paddingSpace
             let widthPerItem = availableWidth / itemsPerRow
@@ -151,14 +154,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
             itemSize = CGSize(width: widthPerItem, height: heightPerItem - 10)
         }
         return itemSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return minimumItemSpacing
     }
 }
 

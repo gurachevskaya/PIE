@@ -8,14 +8,6 @@
 
 import UIKit
 
-
-protocol SimpleSearchView: class {
-    func reloadData()
-    func startLoading()
-    func finishLoading()
-}
-
-
 class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let cellIdentifier = "FilterCollectionViewCell"
@@ -102,7 +94,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
             case .success(let recipes):
                 DispatchQueue.main.async {
                     let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
-                    vc.recipesPresenter.recipes = recipes
+                    vc.recipesPresenter.recipes.append(contentsOf: recipes)
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }

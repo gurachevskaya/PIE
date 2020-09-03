@@ -13,7 +13,6 @@ import TinyConstraints
 
 class DetailedRecipeViewController: UIViewController {
     
-    var recipe: Recipe!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
@@ -27,9 +26,11 @@ class DetailedRecipeViewController: UIViewController {
     private var remainingTime = 1
     
     var recipePresenter: RecipesPresenter
+    var detailedPresenter: DetailedRecipePresenter
     
-    init(recipePresenter: RecipesPresenter) {
+    init(recipePresenter: RecipesPresenter, detailedPresenter: DetailedRecipePresenter) {
         self.recipePresenter = recipePresenter
+        self.detailedPresenter = detailedPresenter
         super.init(nibName: "DetailedRecipeViewController", bundle: nil)
     }
     
@@ -42,13 +43,14 @@ class DetailedRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        detailedPresenter.view = self
+        
         configureWithRecipe()
         configureImageConstraints()
         
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
-        navigationItem.rightBarButtonItem = deleteButton
-        
-        if RecipeEntity.isInFavourites(recipe: recipe) {
+        if detailedPresenter.isInFavourites {
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
+                   navigationItem.rightBarButtonItem = deleteButton
             cosmosView.isHidden = false
         }
     }
@@ -56,17 +58,13 @@ class DetailedRecipeViewController: UIViewController {
     //MARK: - UI Setup
     
     private func configureWithRecipe() {
-        recipeLabel.text = recipe.label
-        caloriesLabel.text = "\(Int(recipe.calories / recipe.yield))"
-        servingsLabel.text = recipe.yield.removeZerosFromEnd()
-        sourceLabel.text = "on " + recipe.source
-        var ingredientsText = ""
-        for row in recipe.ingredientLines {
-            ingredientsText += "🥣 " + row + "\n"
-        }
-        ingredients.text = ingredientsText
+        recipeLabel.text = detailedPresenter.label
+        caloriesLabel.text = detailedPresenter.calories
+        servingsLabel.text = detailedPresenter.servings
+        sourceLabel.text = detailedPresenter.source
+        ingredients.text = detailedPresenter.ingredients
         
-        recipePresenter.loadImageForUrl(urlString: recipe.image) { (result) in
+        recipePresenter.loadImageForUrl(urlString: detailedPresenter.recipe.image) { (result) in
             switch result {
             case .failure(let appError):
                 DispatchQueue.main.async {
@@ -95,42 +93,32 @@ class DetailedRecipeViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         showAlertWithTimer()
-        RecipeEntity.addRecipe(recipe: recipe)
+        detailedPresenter.addInFavourites()
+//        recipePresenter.recipes.append(recipe)
+//        recipePresenter.view?.reloadData()
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-        guard let url = URL(string: recipe.url) else { return }
+        guard let url = URL(string: detailedPresenter.recipe.url) else { return }
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
-        
-        // This lines is for the popover you need to show in iPad
         activityViewController.popoverPresentationController?.sourceView = (sender as! UIButton)
         activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-        
         self.present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func instructionsButtonPressed(_ sender: Any) {
-        guard let url = URL(string: recipe.url) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        detailedPresenter.openUrl()
     }
     
     
     @objc func deleteButtonPressed() {
-        //        presenter.delete()
-        RecipeEntity.deleteRecipe(recipe: recipe)
+        detailedPresenter.deleteFromFavourites()
     }
     
     //MARK: - Helpers
     
     private func showAlertWithTimer() {
-        let message: String
-        if RecipeEntity.isInFavourites(recipe: self.recipe) {
-            message = "Already saved"
-        } else {
-            
-            message = "Successfully saved"
-        }
-        alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController = UIAlertController(title: title, message: detailedPresenter.saveMessage, preferredStyle: .alert)
         alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
         self.present(alertController!, animated: true, completion: nil)
     }
@@ -145,4 +133,7 @@ class DetailedRecipeViewController: UIViewController {
             })
         }
     }
+    
+    
 }
+

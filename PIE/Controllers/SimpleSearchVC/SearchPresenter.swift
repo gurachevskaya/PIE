@@ -8,12 +8,11 @@
 
 import Foundation
 
-//protocol SimpleSearchPresenter: class {
-//    var view: SimpleSearchView? { get set }
-//    var numberOfFilters: Int { get }
-//
-//
-//}
+protocol SimpleSearchView: class {
+    func reloadData()
+    func startLoading()
+    func finishLoading()
+}
 
 
 final class SearchPresenter {
@@ -28,7 +27,6 @@ final class SearchPresenter {
     }
     
     subscript(index: Int) -> Filter {
-        // ???nil
         let filter = filtersModel[index]
         return filter
     }
@@ -44,12 +42,12 @@ final class SearchPresenter {
         
         fillDietsAndHealth()
         
-        if searchQuery.count == 0 && dietsString.count == 0 && healthString.count == 0 {
+        if searchQuery.isEmpty && dietsString.isEmpty && healthString.isEmpty {
             completion(.failure(.noSearchParameters))
             return
         }
         self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, dietLabels: dietsString, healthLabels: healthString) { result in
+        RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):
@@ -59,6 +57,7 @@ final class SearchPresenter {
             }
         }
     }
+
     
     func getRecipes(for ingredients: [String], completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         
@@ -66,12 +65,12 @@ final class SearchPresenter {
         
         fillDietsAndHealth()
         
-        if searchQuery.isEmpty == true {
+        if searchQuery.isEmpty {
             completion(.failure(.noSearchParameters))
             return
         }
          self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, dietLabels: dietsString, healthLabels: healthString) { result in
+        RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):

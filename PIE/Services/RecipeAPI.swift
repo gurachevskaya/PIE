@@ -13,11 +13,13 @@ struct RecipeAPI {
     
     private init() {}
    
-    static func fetchRecipe(for searchQuery: String, dietLabels: String, healthLabels: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+    static func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+                
+        let fromTo = "from=\(page * 100)&to=\(page * 100 + 100)"
         
-        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&from=0&to=50"
+        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&\(fromTo)"
         
         if dietLabels.count != 0 {
             recipeURL = recipeURL + dietLabels

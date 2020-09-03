@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         favouritesNC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         tabBarController.viewControllers = [searchNC, favouritesNC]
-//        navigationController.navigationBar.barTintColor = .gray
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
