@@ -29,19 +29,22 @@ class FavouriteRecipesCollectionViewController: RecipesCollectionViewController 
       //MARK: - Actions
     
     @objc func deleteButtonPressed() {
+        
         showDeleteAlert()
     }
     
     func showDeleteAlert() {
-        let alertVC = UIAlertController(title: nil, message: "Are you sure to delete all favourite recipes?", preferredStyle: .alert)
-        
-        alertVC.addAction(UIAlertAction(title: "Yes", style: .default,
-                                        handler: {(_) in
-                                            self.recipesPresenter.removeAllRecipes()
-        }))
-        alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
+        if recipesPresenter.isEmpty == false {
+            let alertVC = UIAlertController(title: nil, message: "Are you sure to delete all favourite recipes?", preferredStyle: .alert)
+            
+            alertVC.addAction(UIAlertAction(title: "Yes", style: .default,
+                                            handler: {(_) in
+                                                self.recipesPresenter.removeAllRecipes()
+            }))
+            alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
 }
 
