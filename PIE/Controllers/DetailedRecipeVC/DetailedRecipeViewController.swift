@@ -38,7 +38,7 @@ class DetailedRecipeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - App LifeCycle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,6 @@ class DetailedRecipeViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     //MARK: - Actions
@@ -83,6 +82,7 @@ class DetailedRecipeViewController: UIViewController {
         detailedPresenter.addInFavourites()
     }
     
+    
     @IBAction func shareButtonPressed(_ sender: Any) {
         guard let url = URL(string: detailedPresenter.recipe.url) else { return }
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
@@ -91,15 +91,16 @@ class DetailedRecipeViewController: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+    
     @IBAction func instructionsButtonPressed(_ sender: Any) {
         detailedPresenter.openUrl()
     }
     
     
     @objc func deleteButtonPressed() {
-        detailedPresenter.deleteFromFavourites()
+        showDeleteAlert()
     }
-    
+            
     //MARK: - Helpers
     
     private func showAlertWithTimer() {
@@ -107,6 +108,7 @@ class DetailedRecipeViewController: UIViewController {
         alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
         self.present(alertController!, animated: true, completion: nil)
     }
+    
     
     @objc func countDown() {
         remainingTime -= 1
@@ -117,6 +119,17 @@ class DetailedRecipeViewController: UIViewController {
                 self.alertController = nil
             })
         }
+    }
+    
+    func showDeleteAlert() {
+        let alertVC = UIAlertController(title: nil, message: "Are you sure to delete recipe?", preferredStyle: .alert)
+        
+        alertVC.addAction(UIAlertAction(title: "Yes", style: .default,
+                                        handler: {(_) in
+                                            self.detailedPresenter.deleteFromFavourites()
+        }))
+        alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
     }
    
 }

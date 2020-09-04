@@ -13,12 +13,12 @@ import UIKit
 class NetworkManager {
     
     static let sharedManager = NetworkManager()
+    private init() {}
     
     lazy private var session: URLSession = {
         return URLSession(configuration: .default)
     }()
-    
-    private init() {}
+
     
     func performDataTask(with request: URLRequest,
                          completion: @escaping (Result<Data, AppError>) -> ()) {
@@ -53,7 +53,5 @@ class NetworkManager {
             completion(.success(data))
         }
         dataTask.resume()
-    }
-
-    
+    } 
 }

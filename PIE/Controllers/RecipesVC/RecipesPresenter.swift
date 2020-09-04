@@ -6,7 +6,6 @@
 //  Copyright © 2020 Karina. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
@@ -41,7 +40,6 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         return string
     }
     
-    
     var healthString: String {
            var string = ""
            for filter in filtersModel {
@@ -59,14 +57,13 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     var more: Bool!
     var currentPage = 1
-    
     var searchQuery = ""
-//    var dietLabels = ""
-//    var healthLabels = ""
     
     var numberOfRecipes: Int {
         return recipes.count
     }
+    
+    //MARK: - Core Data
     
     var isEmpty: Bool {
         return RecipeEntity.fetchRecipes().count == 0 ? true : false
@@ -87,28 +84,6 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     }
     
     
-    func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
-        if let image = imageCache.object(forKey: urlString as NSString) {
-            completion(.success(image))
-        } else {
-            let url = URL(string: urlString)!
-            let request = URLRequest(url: url)
-            
-            NetworkManager.sharedManager.performDataTask(with: request) { (result) in
-                switch result {
-                case .failure(let appError):
-                    completion(.failure(appError))
-                    
-                case .success(let data):
-                    let image = UIImage(data: data)
-                    imageCache.setObject(image!, forKey: urlString as NSString)
-                    completion(.success(image!))
-                }
-            }
-        }
-    }
-    
-    
     func removeAllRecipes() {
         RecipeEntity.deleteAllRecipes()
         do {
@@ -120,23 +95,44 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         view?.reloadData()
     }
     
-    func getRecipes(completion: @escaping (Result<[Recipe], AppError>) -> ()) {
-
-//           self.view?.startLoading()
-           RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
-//               self.view?.finishLoading()
-               switch result {
-               case .failure(let appError):
-                   completion(.failure(appError))
-               case .success(let result):
-                self.more = result.1
-                self.currentPage += 1
-                completion(.success(result.0))
-                
+     //MARK: - Networking
+    
+    func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
+           if let image = imageCache.object(forKey: urlString as NSString) {
+               completion(.success(image))
+           } else {
+               let url = URL(string: urlString)!
+               let request = URLRequest(url: url)
+               
+               NetworkManager.sharedManager.performDataTask(with: request) { (result) in
+                   switch result {
+                   case .failure(let appError):
+                       completion(.failure(appError))
+                       
+                   case .success(let data):
+                       let image = UIImage(data: data)
+                       imageCache.setObject(image!, forKey: urlString as NSString)
+                       completion(.success(image!))
+                   }
                }
            }
        }
+       
     
+    func getMoreRecipes(completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+        //           self.view?.startLoading()
+        RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
+            //               self.view?.finishLoading()
+            switch result {
+            case .failure(let appError):
+                completion(.failure(appError))
+            case .success(let result):
+                self.more = result.1
+                self.currentPage += 1
+                completion(.success(result.0))
+            }
+        }
+    }
     
     //MARK: - NSFetchedResultsControllerDelegate
     
@@ -172,7 +168,6 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
                             totalTime: recipeEntity.totalTime)
         return recipe
     }
-    
 }
 
 

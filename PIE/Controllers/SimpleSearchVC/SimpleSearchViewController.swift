@@ -10,13 +10,12 @@ import UIKit
 
 class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let cellIdentifier = "FilterCollectionViewCell"
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var recipeSearchBar: UISearchBar!
     @IBOutlet weak var findRecipesButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let cellIdentifier = "FilterCollectionViewCell"
     let simpleSearchPresenter: SearchPresenter
     
     init(searchPresenter: SearchPresenter) {
@@ -28,13 +27,12 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
-        
         simpleSearchPresenter.view = self
+        self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     // MARK: - UICollectionViewDataSource

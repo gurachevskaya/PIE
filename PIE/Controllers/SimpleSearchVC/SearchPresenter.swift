@@ -68,6 +68,7 @@ final class SearchPresenter {
             completion(.failure(.noSearchParameters))
             return
         }
+        
         self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
@@ -82,13 +83,12 @@ final class SearchPresenter {
 
     
     func getRecipes(ingredients: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
-        
-//        let searchQuery = ingredients.joined(separator: "+")
-                
+                        
         if ingredients.isEmpty {
             completion(.failure(.noSearchParameters))
             return
         }
+        
          self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: ingredients, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()

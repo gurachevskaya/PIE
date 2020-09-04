@@ -21,7 +21,6 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     }
     
     let searchPresenter: SearchPresenter
-    
     let cellIdentifier = "FilterCollectionViewCell"
     
     init(searchPresenter: SearchPresenter) {
@@ -33,6 +32,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

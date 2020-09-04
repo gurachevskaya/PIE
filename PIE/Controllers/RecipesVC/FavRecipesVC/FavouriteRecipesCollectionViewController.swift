@@ -7,29 +7,27 @@
 //
 
 import UIKit
-import CoreData
 
 class FavouriteRecipesCollectionViewController: RecipesCollectionViewController {
     
+    //MARK: - App LifeCycle
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
+        loadFavourites()
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
         navigationItem.rightBarButtonItems?.append(deleteButton)
     }
-
+    
     //MARK: - RecipeLoading
     
-    override func startLoading() {
-          recipesPresenter.loadFavouriteRecipes()
-      }
+    func loadFavourites() {
+        recipesPresenter.loadFavouriteRecipes()
+    }
     
-      //MARK: - Actions
+    //MARK: - Actions
     
     @objc func deleteButtonPressed() {
-        
         showDeleteAlert()
     }
     
@@ -42,7 +40,6 @@ class FavouriteRecipesCollectionViewController: RecipesCollectionViewController 
                                                 self.recipesPresenter.removeAllRecipes()
             }))
             alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            
             self.present(alertVC, animated: true, completion: nil)
         }
     }

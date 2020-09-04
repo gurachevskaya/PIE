@@ -9,20 +9,9 @@
 import UIKit
 
 
-protocol RecipeLoading {
-    func startLoading()
-}
-
-class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, RecipeLoading {
-    
-    var searchQuery: String?
-    
-    func startLoading() {
-        print("You haven't implemented this method!")
-    }
+class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout/*, RecipeLoading*/ {
     
     private let reuseIdentifier = "RecipeCollectionViewCell"
-    
     var recipesPresenter: RecipesPresenter
     
     init(recipesPresenter: RecipesPresenter) {
@@ -33,7 +22,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private enum PresentationStyle: String, CaseIterable {
         case table
@@ -50,12 +38,12 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         didSet { updatePresentationStyle() }
     }
     
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updatePresentationStyle()
-        
-        startLoading()
-        
         recipesPresenter.view = self
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))]
@@ -64,10 +52,13 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
                                      forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+     //MARK: - UI Setup
+    
     private func updatePresentationStyle() {
         navigationItem.rightBarButtonItem?.image = selectedStyle.buttonImage
         reloadData()
     }
+    
     
     @objc private func changeContentLayout() {
         if selectedStyle == .table {
@@ -82,6 +73,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipesPresenter.numberOfRecipes
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! RecipeCollectionViewCell
@@ -105,14 +97,21 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
           return cell
     }
     
+    // MARK: - UICollectionViewDelegate
+       
+       override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
+           DispatchQueue.main.async {
+               self.navigationController?.pushViewController(detailedVC, animated: true)
+           }
+       }
     
      // MARK: - UIScrollViewDelegate
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
         if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             if recipesPresenter.more {
-                recipesPresenter.getRecipes {(result) in
+                recipesPresenter.getMoreRecipes {(result) in
                     switch result {
                     case .failure(let appError):
                         if case .noRecipes = (appError as AppError) {
@@ -122,7 +121,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
                         } else {
                             self.showAlertWithMessage(message: "\(appError)")
                         }
-                        
+
                     case .success(let recipes):
                         DispatchQueue.main.async {
                             self.recipesPresenter.recipes.append(contentsOf: recipes)
@@ -135,17 +134,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
             }
         }
     }
-    
-    // MARK: - UICollectionViewDelegate
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(detailedVC, animated: true)
-        }
-    }
-    
-    
+ 
     // MARK: - UICollectionViewFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -186,11 +175,11 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         return itemSize
     }
 }
+    
 
 extension RecipesCollectionViewController: RecipeView {
-    
     func reloadData() {
         collectionView.reloadData()
     }
-    
 }
+

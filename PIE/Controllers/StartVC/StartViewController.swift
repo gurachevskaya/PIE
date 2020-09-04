@@ -14,6 +14,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(SearchTableViewCell.nib, forCellReuseIdentifier: cellIdentifier)
@@ -25,9 +27,11 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 2
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchTableViewCell
