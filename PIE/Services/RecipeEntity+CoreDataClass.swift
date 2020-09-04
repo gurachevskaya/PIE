@@ -17,6 +17,7 @@ public class RecipeEntity: NSManagedObject {
     static func fetchRecipes() -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        request.includesPropertyValues = false
         guard let favoritesRecipes = try? manager.viewContext.fetch(request) else { return [] }
         return favoritesRecipes
     }
@@ -28,7 +29,7 @@ public class RecipeEntity: NSManagedObject {
             try manager.viewContext.execute(deleteRequest)
             try manager.viewContext.save()
         } catch {
-            print ("\(error.localizedDescription)")
+            print ("\(error)")
         }
     }
     
@@ -55,7 +56,7 @@ public class RecipeEntity: NSManagedObject {
         do {
             try manager.viewContext.save()
         } catch {
-            print("\(error.localizedDescription)")
+            print("\(error)")
         }
     }
     

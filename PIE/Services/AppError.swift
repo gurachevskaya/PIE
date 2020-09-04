@@ -15,8 +15,8 @@ enum AppError: Error {
     case noData
     case decodingError(Error)
     case badStatusCode(Int) // 401, 404, 500
-    case badMimeType(String) // image/jpg
     case noSearchParameters
     case noRecipes
+    case tooManyRequests // 429
 }
 

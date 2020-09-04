@@ -9,6 +9,7 @@
 import Foundation
 
 struct Recipes: Decodable {
+    let more: Bool
     let hits: [Hit]
 }
 

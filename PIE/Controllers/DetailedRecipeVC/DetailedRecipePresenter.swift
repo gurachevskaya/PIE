@@ -9,16 +9,9 @@
 import Foundation
 import UIKit
 
-//protocol DetailedView: class {
-//  func showActivityController()
-//    
-//}
-
 final class DetailedRecipePresenter {
     
     var recipe: Recipe
-    
-//    weak var view: DetailedView?
     
     init(recipe: Recipe) {
         self.recipe = recipe
@@ -57,7 +50,7 @@ final class DetailedRecipePresenter {
     }
     
     func deleteFromFavourites() {
-     RecipeEntity.deleteRecipe(recipe: recipe)
+        RecipeEntity.deleteRecipe(recipe: recipe)
     }
     
     func openUrl() {
@@ -72,8 +65,5 @@ final class DetailedRecipePresenter {
             return "Successfully saved"
         }
     }
-    
-    
-    
 }
 

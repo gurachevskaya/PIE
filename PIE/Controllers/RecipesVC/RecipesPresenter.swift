@@ -29,15 +29,47 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         return fetchedResultsController
     }()
     
+    var dietsString: String {
+        var string = ""
+        for filter in filtersModel {
+            if filter.isSelected {
+                if filter.label == .diet {
+                    string += ("&diet=" + filter.name)
+                }
+            }
+        }
+        return string
+    }
+    
+    
+    var healthString: String {
+           var string = ""
+           for filter in filtersModel {
+               if filter.isSelected {
+                   if filter.label == .health {
+                       string += ("&health=" + filter.name)
+                   }
+               }
+           }
+           return string
+       }
+    
     var recipes: [Recipe] = []
     weak var view: RecipeView?
     
+    var more: Bool!
+    var currentPage = 1
+    
     var searchQuery = ""
-    var dietLabels = ""
-    var healthLabels = ""
+//    var dietLabels = ""
+//    var healthLabels = ""
     
     var numberOfRecipes: Int {
         return recipes.count
+    }
+    
+    var isEmpty: Bool {
+        return RecipeEntity.fetchRecipes().count == 0 ? true : false
     }
     
     func loadFavouriteRecipes() {
@@ -53,6 +85,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         }
         view?.reloadData()
     }
+    
     
     func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
         if let image = imageCache.object(forKey: urlString as NSString) {
@@ -87,6 +120,25 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         view?.reloadData()
     }
     
+    func getRecipes(completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+
+//           self.view?.startLoading()
+           RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
+//               self.view?.finishLoading()
+               switch result {
+               case .failure(let appError):
+                   completion(.failure(appError))
+               case .success(let result):
+                self.more = result.1
+                self.currentPage += 1
+                completion(.success(result.0))
+                
+               }
+           }
+       }
+    
+    
+    //MARK: - NSFetchedResultsControllerDelegate
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
@@ -102,6 +154,8 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
             return
         }
     }
+    
+     //MARK: - Helpers
     
     func createRecipeWith(recipeEntity: RecipeEntity) -> Recipe {
         let recipe = Recipe(uri: recipeEntity.uri!,

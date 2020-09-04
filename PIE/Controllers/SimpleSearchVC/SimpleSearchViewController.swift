@@ -49,7 +49,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         let filter = simpleSearchPresenter[indexPath.item]
         cell.filterLabel.text = filter.name
         cell.switch.isOn = filter.isSelected
-        
+                
         return cell
     }
     
@@ -80,7 +80,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         
         let searchQuery = recipeSearchBar.text ?? ""
         
-        simpleSearchPresenter.getRecipes(for: searchQuery) { [weak self] (result) in
+        simpleSearchPresenter.getRecipes(searchQuery: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 if case .noSearchParameters = (appError as AppError) {
@@ -91,10 +91,13 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
                     self?.showAlertWithMessage(message: "\(appError)")
                 }
                 
-            case .success(let recipes):
+            case .success(let (recipes, more)):
                 DispatchQueue.main.async {
                     let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
                     vc.recipesPresenter.recipes.append(contentsOf: recipes)
+                    vc.recipesPresenter.more = more
+                    vc.recipesPresenter.searchQuery = searchQuery
+                    
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }

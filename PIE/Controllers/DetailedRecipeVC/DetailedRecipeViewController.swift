@@ -43,21 +43,18 @@ class DetailedRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        detailedPresenter.view = self
-        
-        configureWithRecipe()
-        configureImageConstraints()
+        updateElements()
         
         if detailedPresenter.isInFavourites {
             let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
-                   navigationItem.rightBarButtonItem = deleteButton
+            navigationItem.rightBarButtonItem = deleteButton
             cosmosView.isHidden = false
         }
     }
     
     //MARK: - UI Setup
     
-    private func configureWithRecipe() {
+    private func updateElements() {
         recipeLabel.text = detailedPresenter.label
         caloriesLabel.text = detailedPresenter.calories
         servingsLabel.text = detailedPresenter.servings
@@ -79,23 +76,11 @@ class DetailedRecipeViewController: UIViewController {
         
     }
     
-    private func configureImageConstraints() {
-//        let ratio: CGFloat
-//        if let image = recipeImage.image {
-//            ratio = image.size.height / image.size.width
-//        } else {
-//            ratio = 1
-//        }
-//        recipeImage.heightAnchor .constraint(equalTo: recipeImage.widthAnchor, multiplier: ratio).isActive = true
-    }
-    
     //MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         showAlertWithTimer()
         detailedPresenter.addInFavourites()
-//        recipePresenter.recipes.append(recipe)
-//        recipePresenter.view?.reloadData()
     }
     
     @IBAction func shareButtonPressed(_ sender: Any) {
@@ -133,7 +118,6 @@ class DetailedRecipeViewController: UIViewController {
             })
         }
     }
-    
-    
+   
 }
 

@@ -16,15 +16,39 @@ protocol SimpleSearchView: class {
 
 
 final class SearchPresenter {
-    
+        
     weak var view: SimpleSearchView?
+        
+    var dietsString: String {
+        var string = ""
+        for filter in filtersModel {
+            if filter.isSelected {
+                if filter.label == .diet {
+                    string += ("&diet=" + filter.name)
+                }
+            }
+        }
+        return string
+    }
     
-    var dietsString = ""
-    var healthString = ""
+    
+    var healthString: String {
+           var string = ""
+           for filter in filtersModel {
+               if filter.isSelected {
+                   if filter.label == .health {
+                       string += ("&health=" + filter.name)
+                   }
+               }
+           }
+           return string
+       }
+       
     
     var numberOfFilters: Int {
         return filtersModel.count
     }
+    
     
     subscript(index: Int) -> Filter {
         let filter = filtersModel[index]
@@ -38,10 +62,8 @@ final class SearchPresenter {
     }
     
     
-    func getRecipes(for searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
-        
-        fillDietsAndHealth()
-        
+    func getRecipes(searchQuery: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
+                
         if searchQuery.isEmpty && dietsString.isEmpty && healthString.isEmpty {
             completion(.failure(.noSearchParameters))
             return
@@ -52,48 +74,33 @@ final class SearchPresenter {
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))
-            case .success(let recipes):
-                completion(.success(recipes))
+            case .success(let (recipes, more)):
+                completion(.success((recipes, more)))
             }
         }
     }
 
     
-    func getRecipes(for ingredients: [String], completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+    func getRecipes(ingredients: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
         
-        let searchQuery = ingredients.joined(separator: "+")
-        
-        fillDietsAndHealth()
-        
-        if searchQuery.isEmpty {
+//        let searchQuery = ingredients.joined(separator: "+")
+                
+        if ingredients.isEmpty {
             completion(.failure(.noSearchParameters))
             return
         }
          self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
+        RecipeAPI.fetchRecipe(for: ingredients, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))
-            case .success(let recipes):
-                completion(.success(recipes))
+            case .success(let (recipes, more)):
+                completion(.success((recipes, more)))
             }
         }
     }
-    
-    private func fillDietsAndHealth() {
-        for filter in filtersModel {
-            if filter.isSelected {
-                if filter.label == .diet {
-                    dietsString += ("&diet=" + filter.name)
-                } else {
-                    healthString += ("&health=" + filter.name)
-                }
-            }
-        }
-    }
-    
-   
+
     
     
 }

@@ -15,6 +15,7 @@ protocol RecipeLoading {
 
 class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, RecipeLoading {
     
+    var searchQuery: String?
     
     func startLoading() {
         print("You haven't implemented this method!")
@@ -55,7 +56,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         
         startLoading()
         
-        
         recipesPresenter.view = self
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))]
@@ -89,27 +89,57 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         cell.label.text = recipe.label
         
         cell.recipeImageView.image = UIImage(named: "lazy-load-placeholder")
-
+        
         recipesPresenter.loadImageForUrl(urlString: recipe.image) { (result) in
             switch result {
             case .failure(let appError):
-                 DispatchQueue.main.async {
-                self.showAlertWithMessage(message: "\(appError)")
+                DispatchQueue.main.async {
+                    self.showAlertWithMessage(message: "\(appError)")
                 }
             case .success(let image):
-                 DispatchQueue.main.async {
-                cell.recipeImageView.image = image
+                DispatchQueue.main.async {
+                    cell.recipeImageView.image = image
                 }
             }
         }
-        return cell
+          return cell
+    }
+    
+    
+     // MARK: - UIScrollViewDelegate
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            if recipesPresenter.more {
+                recipesPresenter.getRecipes {(result) in
+                    switch result {
+                    case .failure(let appError):
+                        if case .noRecipes = (appError as AppError) {
+                            self.showAlertWithMessage(message: "You have seen all recipes with this search parameters\n p.s.this API plan allows only 100 recipes in one search")
+                        } else if case .tooManyRequests = (appError as AppError) {
+                             self.showAlertWithMessage(message: "Your API plan allows 5 requests/min. Wait a little")
+                        } else {
+                            self.showAlertWithMessage(message: "\(appError)")
+                        }
+                        
+                    case .success(let recipes):
+                        DispatchQueue.main.async {
+                            self.recipesPresenter.recipes.append(contentsOf: recipes)
+                            self.reloadData()
+                        }
+                    }
+                }
+            } else {
+                showAlertWithMessage(message: "That's all recipes with this search parameters we have found for you")
+            }
+        }
     }
     
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
-//        detailedVC.recipePresenter.recipe = recipesPresenter.recipes[indexPath.item]
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }

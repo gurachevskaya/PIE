@@ -68,7 +68,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     }
     
     // MARK: - UICollectionViewDelegate
-      
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         searchPresenter.toggleSelectedFor(item: indexPath.item)
     }
@@ -90,7 +90,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
         self.view.endEditing(true)
     }
     
-     // MARK: - Actions
+    // MARK: - Actions
     
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
@@ -101,8 +101,10 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                 ingredients.append(field.text!)
             }
         }
-                
-        searchPresenter.getRecipes(for: ingredients) { [weak self] (result) in
+        
+        let searchQuery = ingredients.joined(separator: "+")
+        
+        searchPresenter.getRecipes(ingredients: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 if case .noSearchParameters = (appError as AppError) {
@@ -113,10 +115,12 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                     self?.showAlertWithMessage(message: "\(appError)")
                 }
                 
-            case .success(let recipes):
+            case .success(let (recipes, more)):
                 DispatchQueue.main.async {
                     let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
                     vc.recipesPresenter.recipes = recipes
+                    vc.recipesPresenter.more = more
+                    vc.recipesPresenter.searchQuery = searchQuery
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }

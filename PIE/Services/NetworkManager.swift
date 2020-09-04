@@ -34,6 +34,12 @@ class NetworkManager {
                 completion(.failure(.noResponse))
                 return
             }
+            
+            if urlResponse.statusCode == 429 {
+                completion(.failure(.tooManyRequests))
+                return
+            }
+            
             guard  200...299 ~= urlResponse.statusCode else {
                 completion(.failure(.badStatusCode(urlResponse.statusCode)))
                 return
@@ -48,30 +54,6 @@ class NetworkManager {
         }
         dataTask.resume()
     }
-    
-//    func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
-//        if let image = imageCache.object(forKey: urlString as NSString) {
-//            completion(.success(image))
-//        } else {
-//            let url = URL(string: urlString)!
-//
-//            let dataTask = session.dataTask(with: url) { data, response, error in
-//
-//                if let error = error {
-//                    completion(.failure(.networkError(error)))
-//                    return
-//                }
-//
-//                let image = UIImage(data: data!)
-//                imageCache.setObject(image!, forKey: urlString as NSString)
-//
-//                completion(.success(image!))
-//            }
-//            dataTask.resume()
-//        }
-//    }
-    
 
-    
     
 }
