@@ -128,23 +128,19 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
             let availableWidth = collectionView.bounds.width - paddingSpace
             let widthPerItem = availableWidth / itemsPerRow
             
-            //            let recipe = recipesPresenter.recipes[indexPath.item]
-            //            let size = CGSize(width: widthPerItem, height: widthPerItem)
+            let heightPerItem = widthPerItem + 17 * 3
             
-            //            let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!]
-            //            let estimatedFrame = NSString(string: recipe.label).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-            
-            //            let heightPerItem = widthPerItem + estimatedFrame.height
-            let paddingSpace2 = sectionInsets.top + sectionInsets.bottom + minimumItemSpacing
-            let tabBarHeight = tabBarController?.tabBar.frame.height ?? 49.0
-            let nbHeight = navigationController?.navigationBar.frame.height ?? 44.0
-            let availableHeight = collectionView.bounds.height - paddingSpace2 - tabBarHeight - nbHeight
-            let heightPerItem = availableHeight / 2
-            
-            itemSize = CGSize(width: widthPerItem, height: heightPerItem - 10)
+            itemSize = CGSize(width: widthPerItem, height: heightPerItem + 10)
         }
         return itemSize
     }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
 }
     
 
@@ -154,3 +150,10 @@ extension RecipesCollectionViewController: RecipeView {
     }
 }
 
+        
+//            let recipe = recipesPresenter.recipes[indexPath.item]
+//            let size = CGSize(width: widthPerItem, height: widthPerItem)
+//
+//            let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!]
+            
+//            let estimatedFrame = NSString(string: recipe.label).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)

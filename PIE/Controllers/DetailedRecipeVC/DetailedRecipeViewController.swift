@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Cosmos
-import TinyConstraints
 
 
 class DetailedRecipeViewController: UIViewController {
@@ -17,7 +15,6 @@ class DetailedRecipeViewController: UIViewController {
     @IBOutlet weak var recipeLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
-    @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var dietsLabel: UILabel!
@@ -49,7 +46,6 @@ class DetailedRecipeViewController: UIViewController {
         if detailedPresenter.isInFavourites {
             let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
             navigationItem.rightBarButtonItem = deleteButton
-            cosmosView.isHidden = false
         }
     }
     

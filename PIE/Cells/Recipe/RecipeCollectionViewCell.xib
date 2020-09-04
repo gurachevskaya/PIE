@@ -11,22 +11,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipeCollectionViewCell" id="gTV-IL-0wX" customClass="RecipeCollectionViewCell" customModule="PIE" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+            <rect key="frame" x="0.0" y="0.0" width="323" height="160"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                <rect key="frame" x="0.0" y="0.0" width="323" height="160"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULO-OY-pDv">
-                        <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="160"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TrX-xG-vtd">
-                                <rect key="frame" x="0.0" y="0.0" width="323" height="163"/>
+                                <rect key="frame" x="0.0" y="0.0" width="323" height="160"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-KJ-rXr">
-                                        <rect key="frame" x="0.0" y="0.0" width="163" height="163"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lazy-load-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-KJ-rXr">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="DYZ-KJ-rXr" secondAttribute="height" id="5eY-Fb-LxK"/>
+                                            <constraint firstAttribute="width" constant="163" id="Rdx-kH-Et7"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -34,8 +35,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="super yummyyyy banana pancakes " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-8Y-aWT">
-                                        <rect key="frame" x="173" y="0.0" width="150" height="163"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="super yummyyyy banana pancakes " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jkF-8Y-aWT">
+                                        <rect key="frame" x="170" y="0.0" width="153" height="160"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -68,10 +69,10 @@
                 <outlet property="recipeImageView" destination="DYZ-KJ-rXr" id="4Vx-3n-Duh"/>
                 <outlet property="recipeStackView" destination="TrX-xG-vtd" id="HSY-Ug-ssJ"/>
             </connections>
-            <point key="canvasLocation" x="11" y="87"/>
+            <point key="canvasLocation" x="10.869565217391305" y="86.71875"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="lazy-load-placeholder-e2089ac2957349687fcdad918b88fae8ce4d5c94be8023969bb6fb910212ba91" width="593" height="426"/>
+        <image name="lazy-load-placeholder" width="593" height="426"/>
     </resources>
 </document>

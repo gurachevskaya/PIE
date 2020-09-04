@@ -30,8 +30,8 @@
             filePath = "PIE/Controllers/DetailedRecipeVC/DetailedRecipeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "updateElements()"
             landmarkType = "7">
          </BreakpointContent>
@@ -274,38 +274,6 @@
             endingLineNumber = "93"
             landmarkName = "getRecipes(ingredients:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "52690C7F-7269-4CC1-A59F-0AE615994B99 - 3c4ac3e771ef22b5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PIE.SearchPresenter.getRecipes(ingredients: Swift.String, completion: (Swift.Result&lt;(Swift.Array&lt;PIE.Recipe&gt;, Swift.Bool), PIE.AppError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "517">
-               </Location>
-               <Location
-                  uuid = "52690C7F-7269-4CC1-A59F-0AE615994B99 - 16bff1da737560dc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;(Swift.Array&lt;PIE.Recipe&gt;, Swift.Bool), PIE.AppError&gt;) -&gt; () in PIE.SearchPresenter.getRecipes(ingredients: Swift.String, completion: (Swift.Result&lt;(Swift.Array&lt;PIE.Recipe&gt;, Swift.Bool), PIE.AppError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "PIE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/karina/developer/rs-school/PIE/PIE/Controllers/SimpleSearchVC/SearchPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "346">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -487,38 +455,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C424AB7-0E07-43D0-8E70-40A6945F8B35"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/RecipesVC/RecipesCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "scrollViewDidEndDecelerating(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "69CE29E4-4866-4CCB-A0F2-15F26627EC1F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PIE/Controllers/RecipesVC/RecipesCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "scrollViewDidEndDecelerating(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BB74E4E1-995D-4E16-9D00-778C19C4C7F5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -542,9 +478,41 @@
             filePath = "PIE/Services/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "performDataTask(with:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED08EE1F-4000-4F16-A826-89CA287ABF22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PIE/Controllers/RecipesVC/AllRecipesVC/RecipesCollectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "scrollViewDidEndDecelerating(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32D5D3D8-2761-4544-A103-58011B701DDC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PIE/Controllers/RecipesVC/AllRecipesVC/AllRecipesCollectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "scrollViewDidEndDecelerating(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

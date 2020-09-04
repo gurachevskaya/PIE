@@ -1,6 +1,0 @@
-framework module Pods_PIETests {
-  umbrella header "Pods-PIETests-umbrella.h"
-
-  export *
-  module * { export * }
-}
