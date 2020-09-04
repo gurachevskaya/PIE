@@ -20,6 +20,7 @@ class DetailedRecipeViewController: UIViewController {
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var dietsLabel: UILabel!
     
     private var alertController: UIAlertController?
     private var alertTimer: Timer?
@@ -60,6 +61,7 @@ class DetailedRecipeViewController: UIViewController {
         servingsLabel.text = detailedPresenter.servings
         sourceLabel.text = detailedPresenter.source
         ingredients.text = detailedPresenter.ingredients
+        dietsLabel.text = detailedPresenter.dietsAndHealth
         
         recipePresenter.loadImageForUrl(urlString: detailedPresenter.recipe.image) { (result) in
             switch result {

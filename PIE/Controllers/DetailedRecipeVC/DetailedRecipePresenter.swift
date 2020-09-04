@@ -6,7 +6,6 @@
 //  Copyright © 2020 Karina. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 final class DetailedRecipePresenter {
@@ -39,6 +38,17 @@ final class DetailedRecipePresenter {
             ingredientsText += "🥣 " + row + "\n"
         }
         return ingredientsText
+    }
+    
+    var dietsAndHealth: String {
+        var text = ""
+        for diet in recipe.dietLabels {
+            text += "◦" + diet + " "
+        }
+        for health in recipe.healthLabels {
+            text += "◦" + health + " "
+        }
+        return text
     }
     
     var isInFavourites: Bool {

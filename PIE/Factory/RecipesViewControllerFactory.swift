@@ -12,7 +12,7 @@ struct RecipesViewControllerFactory {
     
     func makeAllRecipesViewController() -> RecipesCollectionViewController {
         let presenter = RecipesPresenter()
-        return (RecipesCollectionViewController(recipesPresenter: presenter))
+        return (AllRecipesCollectionViewController(recipesPresenter: presenter))
     }
     
     func makeFavouriteRecipesViewController() -> RecipesCollectionViewController {

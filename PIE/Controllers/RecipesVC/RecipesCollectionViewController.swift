@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout/*, RecipeLoading*/ {
+class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let reuseIdentifier = "RecipeCollectionViewCell"
     var recipesPresenter: RecipesPresenter
@@ -105,35 +105,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
                self.navigationController?.pushViewController(detailedVC, animated: true)
            }
        }
-    
-     // MARK: - UIScrollViewDelegate
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
-            if recipesPresenter.more {
-                recipesPresenter.getMoreRecipes {(result) in
-                    switch result {
-                    case .failure(let appError):
-                        if case .noRecipes = (appError as AppError) {
-                            self.showAlertWithMessage(message: "You have seen all recipes with this search parameters\n p.s.this API plan allows only 100 recipes in one search")
-                        } else if case .tooManyRequests = (appError as AppError) {
-                             self.showAlertWithMessage(message: "Your API plan allows 5 requests/min. Wait a little")
-                        } else {
-                            self.showAlertWithMessage(message: "\(appError)")
-                        }
-
-                    case .success(let recipes):
-                        DispatchQueue.main.async {
-                            self.recipesPresenter.recipes.append(contentsOf: recipes)
-                            self.reloadData()
-                        }
-                    }
-                }
-            } else {
-                showAlertWithMessage(message: "That's all recipes with this search parameters we have found for you")
-            }
-        }
-    }
  
     // MARK: - UICollectionViewFlowLayout
     
