@@ -17,7 +17,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     
     init(recipesPresenter: RecipesPresenter) {
         self.recipesPresenter = recipesPresenter
-//        self.searchPresenter = searchPresenter
         super.init(nibName: "RecipesCollectionViewController", bundle: nil)
     }
     

@@ -15,14 +15,15 @@ class SearchPresenterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = SearchPresenter()
-        filtersModel = [Filter(name: "vegan", isSelected: true, label: .health),
-                                   Filter(name: "vegetarian", isSelected: true, label: .health),
-                                   Filter(name: "peanut-free", isSelected: true, label: .health),
-                                   Filter(name: "low-fat", isSelected: true, label: .diet),
-                                   Filter(name: "low-carb", isSelected: true, label: .diet),
-                                   Filter(name: "high-protein", isSelected: true, label: .diet)
-               ]
+        
+        let model = [Filter(name: "vegan", isSelected: true, label: .health),
+                                          Filter(name: "vegetarian", isSelected: true, label: .health),
+                                          Filter(name: "peanut-free", isSelected: true, label: .health),
+                                          Filter(name: "low-fat", isSelected: true, label: .diet),
+                                          Filter(name: "low-carb", isSelected: true, label: .diet),
+                                          Filter(name: "high-protein", isSelected: true, label: .diet)
+                      ]
+        sut = SearchPresenter(model: model)
     }
 
     override func tearDown() {

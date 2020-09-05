@@ -12,13 +12,11 @@ struct RecipesViewControllerFactory {
     
     func makeAllRecipesViewController() -> RecipesCollectionViewController {
         let presenter = RecipesPresenter()
-//        let searchPresenter = SearchPresenter(model: filtersModel)
         return (AllRecipesCollectionViewController(recipesPresenter: presenter))
     }
     
     func makeFavouriteRecipesViewController() -> RecipesCollectionViewController {
         let presenter = RecipesPresenter()
-//        let searchPresenter = SearchPresenter(model: filtersModel)
         return (FavouriteRecipesCollectionViewController(recipesPresenter: presenter))
     }
 }

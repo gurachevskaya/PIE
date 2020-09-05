@@ -70,6 +70,12 @@ final class SearchPresenter {
     }
     
     
+    func  resetPaginationParameters() {
+        currentPage = 0
+        more = nil
+    }
+    
+    
     func getRecipes(searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
