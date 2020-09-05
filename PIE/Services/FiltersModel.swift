@@ -8,7 +8,7 @@
 
 import Foundation
 
-var filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
+let filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
                     Filter(name: "vegetarian", isSelected: false, label: .health),
                     Filter(name: "peanut-free", isSelected: false, label: .health),
                     Filter(name: "low-fat", isSelected: false, label: .diet),

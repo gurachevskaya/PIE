@@ -14,8 +14,8 @@ class AllRecipesCollectionViewController: RecipesCollectionViewController {
       
       override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
           if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
-              if recipesPresenter.more {
-                  recipesPresenter.getMoreRecipes {(result) in
+              if searchPresenter.more {
+                searchPresenter.getRecipes(searchQuery: recipesPresenter.searchQuery) {(result) in
                       switch result {
                       case .failure(let appError):
                           if case .noRecipes = (appError as AppError) {

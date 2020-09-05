@@ -95,6 +95,8 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
         var ingredients: [String] = []
+        searchPresenter.currentPage = 0
+        searchPresenter.more = nil
         
         for field in textFields {
             if field.text?.isEmpty == false {
@@ -114,12 +116,14 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                         self?.showAlertWithMessage(message: "\(appError)")
                     }
                     
-                case .success(let (recipes, more)):
+                case .success(let recipes):
                     DispatchQueue.main.async {
                         let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
                         vc.recipesPresenter.recipes = recipes
-                        vc.recipesPresenter.more = more
+                        vc.searchPresenter = self?.searchPresenter
+//                        vc.recipesPresenter.more = more
                         vc.recipesPresenter.searchQuery = searchQuery
+                        
                         self?.navigationController?.pushViewController(vc, animated: true)
                     }
                 }

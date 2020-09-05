@@ -16,10 +16,10 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

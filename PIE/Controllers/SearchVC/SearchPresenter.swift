@@ -18,10 +18,18 @@ protocol SimpleSearchView: class {
 final class SearchPresenter {
         
     weak var view: SimpleSearchView?
+    private var model: [Filter]
+    
+    var more: Bool!
+    var currentPage = 0
+    
+    init(model: [Filter]) {
+        self.model = model
+    }
         
     var dietsString: String {
         var string = ""
-        for filter in filtersModel {
+        for filter in model {
             if filter.isSelected {
                 if filter.label == .diet {
                     string += ("&diet=" + filter.name)
@@ -34,7 +42,7 @@ final class SearchPresenter {
     
     var healthString: String {
            var string = ""
-           for filter in filtersModel {
+           for filter in model {
                if filter.isSelected {
                    if filter.label == .health {
                        string += ("&health=" + filter.name)
@@ -46,31 +54,33 @@ final class SearchPresenter {
        
     
     var numberOfFilters: Int {
-        return filtersModel.count
+        return model.count
     }
     
     
     subscript(index: Int) -> Filter {
-        let filter = filtersModel[index]
+        let filter = model[index]
         return filter
     }
     
     
     func toggleSelectedFor(item: Int) {
-        filtersModel[item].toggleSelected()
+        model[item].toggleSelected()
         view?.reloadData()
     }
     
     
-    func getRecipes(searchQuery: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
+    func getRecipes(searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
+        RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))
             case .success(let (recipes, more)):
-                completion(.success((recipes, more)))
+                self.more = more
+                self.currentPage += 1
+                completion(.success(recipes))
             }
         }
     }
@@ -87,7 +97,7 @@ final class SearchPresenter {
     
     func validateIngredientsSearchInput(input: [String]) throws -> String {
         guard !input.isEmpty else { throw AppError.noSearchParameters}
-         let searchQuery = input.joined(separator: "+")
+        let searchQuery = input.joined(separator: "+")
         return searchQuery
     }
 

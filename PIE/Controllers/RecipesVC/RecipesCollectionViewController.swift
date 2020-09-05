@@ -12,10 +12,12 @@ import UIKit
 class RecipesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let reuseIdentifier = "RecipeCollectionViewCell"
-    var recipesPresenter: RecipesPresenter
+    let recipesPresenter: RecipesPresenter
+    var searchPresenter: SearchPresenter!
     
     init(recipesPresenter: RecipesPresenter) {
         self.recipesPresenter = recipesPresenter
+//        self.searchPresenter = searchPresenter
         super.init(nibName: "RecipesCollectionViewController", bundle: nil)
     }
     

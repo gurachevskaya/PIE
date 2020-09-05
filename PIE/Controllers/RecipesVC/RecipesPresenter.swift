@@ -28,41 +28,47 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         return fetchedResultsController
     }()
     
-    var dietsString: String {
-        var string = ""
-        for filter in filtersModel {
-            if filter.isSelected {
-                if filter.label == .diet {
-                    string += ("&diet=" + filter.name)
-                }
-            }
-        }
-        return string
-    }
-    
-    var healthString: String {
-           var string = ""
-           for filter in filtersModel {
-               if filter.isSelected {
-                   if filter.label == .health {
-                       string += ("&health=" + filter.name)
-                   }
-               }
-           }
-           return string
-       }
+//    var dietsString: String {
+//        var string = ""
+//        for filter in model {
+//            if filter.isSelected {
+//                if filter.label == .diet {
+//                    string += ("&diet=" + filter.name)
+//                }
+//            }
+//        }
+//        return string
+//    }
+//
+//    var healthString: String {
+//           var string = ""
+//           for filter in model {
+//               if filter.isSelected {
+//                   if filter.label == .health {
+//                       string += ("&health=" + filter.name)
+//                   }
+//               }
+//           }
+//           return string
+//       }
     
     var recipes: [Recipe] = []
     weak var view: RecipeView?
+//    let model: [Filter]
     
-    var more: Bool!
-    var currentPage = 1
+//    var more: Bool!
+//    var currentPage = 1
     var searchQuery = ""
     
     var numberOfRecipes: Int {
         return recipes.count
     }
     
+//    init(model: [Filter]) {
+//        self.model = model
+//        super.init()
+//    }
+//    
     //MARK: - Core Data
     
     var isEmpty: Bool {
@@ -119,20 +125,20 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
        }
        
     
-    func getMoreRecipes(completion: @escaping (Result<[Recipe], AppError>) -> ()) {
-        //           self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
-            //               self.view?.finishLoading()
-            switch result {
-            case .failure(let appError):
-                completion(.failure(appError))
-            case .success(let result):
-                self.more = result.1
-                self.currentPage += 1
-                completion(.success(result.0))
-            }
-        }
-    }
+//    func getMoreRecipes(completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+//        //           self.view?.startLoading()
+//        RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
+//            //               self.view?.finishLoading()
+//            switch result {
+//            case .failure(let appError):
+//                completion(.failure(appError))
+//            case .success(let result):
+//                self.more = result.1
+//                self.currentPage += 1
+//                completion(.success(result.0))
+//            }
+//        }
+//    }
     
     //MARK: - NSFetchedResultsControllerDelegate
     

@@ -9,6 +9,7 @@
 import Foundation
 
 enum AppError: Error {
+   
     case badURL(String) // associated value
     case noResponse
     case networkError(Error) // no internet connection
@@ -20,3 +21,30 @@ enum AppError: Error {
     case tooManyRequests // 429
 }
 
+extension AppError: Equatable {
+    static func == (lhs: AppError, rhs: AppError) -> Bool {
+        switch (lhs, rhs) {
+        case (.badURL, .badURL):
+            return true
+        case (.noResponse, .noResponse):
+            return true
+        case (.networkError, .networkError):
+            return true
+        case (.noData, .noData):
+            return true
+        case (.decodingError, .decodingError):
+            return true
+        case (.badStatusCode, .badStatusCode):
+            return true
+        case (.noSearchParameters, .noSearchParameters):
+            return true
+        case (.noRecipes, .noRecipes):
+            return true
+         case (.tooManyRequests, .tooManyRequests):
+            return true
+
+        case (.badURL, _), (.noResponse, _), (.networkError, _), (.noData, _), (.decodingError, _), (.badStatusCode, _), (.noSearchParameters, _), (.noRecipes, _), (.tooManyRequests, _):
+            return false
+        }
+    }
+}

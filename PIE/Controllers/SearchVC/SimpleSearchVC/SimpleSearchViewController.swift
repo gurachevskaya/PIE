@@ -77,6 +77,8 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     @IBAction func findRecipesButtonPressed(_ sender: Any) {
         
         let searchQuery = recipeSearchBar.text ?? ""
+        simpleSearchPresenter.currentPage = 0
+        simpleSearchPresenter.more = nil
         
         do {
             let searchQuery = try simpleSearchPresenter.validateSimpleSearchInput(input: searchQuery)
@@ -90,11 +92,12 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
                         self?.showAlertWithMessage(message: "\(appError)")
                     }
                     
-                case .success(let (recipes, more)):
+                case .success(let recipes):
                     DispatchQueue.main.async {
                         let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
                         vc.recipesPresenter.recipes.append(contentsOf: recipes)
-                        vc.recipesPresenter.more = more
+                        vc.searchPresenter = self?.simpleSearchPresenter
+//                        vc.recipesPresenter.more = more
                         vc.recipesPresenter.searchQuery = searchQuery
                         
                         self?.navigationController?.pushViewController(vc, animated: true)
