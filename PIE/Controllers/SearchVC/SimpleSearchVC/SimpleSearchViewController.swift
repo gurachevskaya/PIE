@@ -78,27 +78,31 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         
         let searchQuery = recipeSearchBar.text ?? ""
         
-        simpleSearchPresenter.getRecipes(searchQuery: searchQuery) { [weak self] (result) in
-            switch result {
-            case .failure(let appError):
-                if case .noSearchParameters = (appError as AppError) {
-                    self?.showAlertWithMessage(message: "Enter recipe name or choose at least 1 filter")
-                } else if case .noRecipes = (appError as AppError) {
-                    self?.showAlertWithMessage(message: "We haven't found recipes with your search parameters 😢")
-                } else {
-                    self?.showAlertWithMessage(message: "\(appError)")
-                }
-                
-            case .success(let (recipes, more)):
-                DispatchQueue.main.async {
-                    let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
-                    vc.recipesPresenter.recipes.append(contentsOf: recipes)
-                    vc.recipesPresenter.more = more
-                    vc.recipesPresenter.searchQuery = searchQuery
+        do {
+            let searchQuery = try simpleSearchPresenter.validateSimpleSearchInput(input: searchQuery)
+            
+            simpleSearchPresenter.getRecipes(searchQuery: searchQuery) { [weak self] (result) in
+                switch result {
+                case .failure(let appError):
+                    if case .noRecipes = (appError as AppError) {
+                        self?.showAlertWithMessage(message: "We haven't found recipes with your search parameters 😢")
+                    } else {
+                        self?.showAlertWithMessage(message: "\(appError)")
+                    }
                     
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                case .success(let (recipes, more)):
+                    DispatchQueue.main.async {
+                        let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
+                        vc.recipesPresenter.recipes.append(contentsOf: recipes)
+                        vc.recipesPresenter.more = more
+                        vc.recipesPresenter.searchQuery = searchQuery
+                        
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
+        } catch {
+            showAlertWithMessage(message: "Enter recipe name or choose at least 1 filter")
         }
     }
 }

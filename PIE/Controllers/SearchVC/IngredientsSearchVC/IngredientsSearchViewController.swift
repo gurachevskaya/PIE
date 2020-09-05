@@ -101,29 +101,32 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                 ingredients.append(field.text!)
             }
         }
-        
-        let searchQuery = ingredients.joined(separator: "+")
-        
-        searchPresenter.getRecipes(ingredients: searchQuery) { [weak self] (result) in
-            switch result {
-            case .failure(let appError):
-                if case .noSearchParameters = (appError as AppError) {
-                    self?.showAlertWithMessage(message: "Enter at least 1 ingredient")
-                } else if case .noRecipes = (appError as AppError) {
-                    self?.showAlertWithMessage(message: "We haven't found recipes with your search parameters 😢")
-                } else {
-                    self?.showAlertWithMessage(message: "\(appError)")
-                }
                 
-            case .success(let (recipes, more)):
-                DispatchQueue.main.async {
-                    let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
-                    vc.recipesPresenter.recipes = recipes
-                    vc.recipesPresenter.more = more
-                    vc.recipesPresenter.searchQuery = searchQuery
-                    self?.navigationController?.pushViewController(vc, animated: true)
+        do {
+            let searchQuery = try searchPresenter.validateIngredientsSearchInput(input: ingredients)
+            
+            searchPresenter.getRecipes(searchQuery: searchQuery) { [weak self] (result) in
+                switch result {
+                case .failure(let appError):
+                    if case .noRecipes = (appError as AppError) {
+                        self?.showAlertWithMessage(message: "We haven't found recipes with your search parameters 😢")
+                    } else {
+                        self?.showAlertWithMessage(message: "\(appError)")
+                    }
+                    
+                case .success(let (recipes, more)):
+                    DispatchQueue.main.async {
+                        let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
+                        vc.recipesPresenter.recipes = recipes
+                        vc.recipesPresenter.more = more
+                        vc.recipesPresenter.searchQuery = searchQuery
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
+            
+        } catch {
+            showAlertWithMessage(message: "Enter at least 1 ingredient")
         }
     }
 }

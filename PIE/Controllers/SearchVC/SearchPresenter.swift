@@ -63,12 +63,6 @@ final class SearchPresenter {
     
     
     func getRecipes(searchQuery: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
-                
-        if searchQuery.isEmpty && dietsString.isEmpty && healthString.isEmpty {
-            completion(.failure(.noSearchParameters))
-            return
-        }
-        
         self.view?.startLoading()
         RecipeAPI.fetchRecipe(for: searchQuery, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
@@ -82,25 +76,19 @@ final class SearchPresenter {
     }
 
     
-    func getRecipes(ingredients: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
-                        
-        if ingredients.isEmpty {
-            completion(.failure(.noSearchParameters))
-            return
-        }
-        
-         self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: ingredients, page: 0, dietLabels: dietsString, healthLabels: healthString) { result in
-            self.view?.finishLoading()
-            switch result {
-            case .failure(let appError):
-                completion(.failure(appError))
-            case .success(let (recipes, more)):
-                completion(.success((recipes, more)))
-            }
+    func validateSimpleSearchInput(input: String) throws -> String {
+        if input.isEmpty && dietsString.isEmpty && healthString.isEmpty {
+            throw AppError.noSearchParameters
+        } else {
+            return input
         }
     }
+    
+    
+    func validateIngredientsSearchInput(input: [String]) throws -> String {
+        guard !input.isEmpty else { throw AppError.noSearchParameters}
+         let searchQuery = input.joined(separator: "+")
+        return searchQuery
+    }
 
-    
-    
 }
