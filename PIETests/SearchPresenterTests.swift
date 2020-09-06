@@ -26,16 +26,7 @@ class SearchViewMock : NSObject, SimpleSearchView {
         reloadDataCalled = true
     }
 }
-//    
-//class recipeApiMock: RecipeAPI {
-//    fileprivate let recipes: [Recipe]
-//    init(recipes: [Recipe]) {
-//        self.recipes = recipes
-//    }
-//    override func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
-//        <#code#>
-//    }
-//}
+
 
 class SearchPresenterTests: XCTestCase {
     
@@ -151,30 +142,15 @@ class SearchPresenterTests: XCTestCase {
        }
     
     func test_should_reload_view () {
-        //given
         let searchViewMock = SearchViewMock()
         sut.view = searchViewMock
-        //when
         sut.toggleSelectedFor(item: 0)
-        //verify
         XCTAssertTrue(searchViewMock.reloadDataCalled)
     }
     
     func test_toggle() {
-        //when
         sut.toggleSelectedFor(item: 0)
-        //verify
         XCTAssertEqual(sut.model[0].isSelected, false)
         
     }
-    
-    
-    
-    
-    
-
-    
-    
- 
-
 }
