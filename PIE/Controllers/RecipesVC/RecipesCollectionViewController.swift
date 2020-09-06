@@ -91,11 +91,13 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
                 }
             case .success(let image):
                 DispatchQueue.main.async {
-                    cell.recipeImageView.image = image
+                    if cell.label.text == recipe.label {
+                        cell.recipeImageView.image = image
+                    } 
                 }
             }
         }
-          return cell
+        return cell
     }
     
     // MARK: - UICollectionViewDelegate
@@ -122,7 +124,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         case .table :
             let paddingSpace = sectionInsets.left + sectionInsets.right
             let widthPerItem = collectionView.bounds.width - paddingSpace
-            itemSize = CGSize(width: widthPerItem, height: 150)
+            itemSize = CGSize(width: widthPerItem, height: 130)
             
         case .grid :
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)

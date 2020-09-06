@@ -9,11 +9,11 @@
 import Foundation
 
 
-struct RecipeAPI {
+class RecipeAPI {
     
     private var networkManager: NetworkManager
     
-    init(networkManager: NetworkManager = NetworkManager()) {
+    init(networkManager: NetworkManager = NetworkManager(session: URLSession.init(configuration: .default))) {
         self.networkManager = networkManager
     }
 

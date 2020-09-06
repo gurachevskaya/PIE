@@ -36,7 +36,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     var searchQuery = ""
     
-    init(networkManager: NetworkManager = NetworkManager(), coreDataManager: CoreDataManager = CoreDataManager()) {
+    init(networkManager: NetworkManager = NetworkManager(session: URLSession.init(configuration: .default)), coreDataManager: CoreDataManager = CoreDataManager()) {
         self.networkManager = networkManager
         self.coreDataManager = coreDataManager
     }
@@ -123,7 +123,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         let recipe = Recipe(uri: recipeEntity.uri!,
                             label: recipeEntity.label!,
                             image: recipeEntity.image!,
-                            source: recipeEntity.sourse!,
+                            source: recipeEntity.source!,
                             url: recipeEntity.url!,
                             yield: recipeEntity.yield,
                             dietLabels: recipeEntity.dietLabels!,

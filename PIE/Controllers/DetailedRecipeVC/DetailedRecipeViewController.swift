@@ -18,6 +18,7 @@ class DetailedRecipeViewController: UIViewController {
     @IBOutlet weak var ingredients: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var dietsLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     private var alertController: UIAlertController?
     private var alertTimer: Timer?
@@ -44,6 +45,7 @@ class DetailedRecipeViewController: UIViewController {
         updateElements()
         
         if detailedPresenter.isInFavourites {
+            saveButton.setImage(UIImage(named: "bookmark-filled"), for: UIControl.State.normal)
             let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
             navigationItem.rightBarButtonItem = deleteButton
         }
@@ -76,8 +78,13 @@ class DetailedRecipeViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        showAlertWithTimer()
-        detailedPresenter.addInFavourites()
+        if !detailedPresenter.isInFavourites {
+            saveButton.setImage(UIImage(named: "bookmark-filled"), for: UIControl.State.normal)
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash , target: self, action: #selector(deleteButtonPressed))
+             navigationItem.rightBarButtonItem = deleteButton
+            showAlertWithTimer()
+            detailedPresenter.addInFavourites()
+        }
     }
     
     
@@ -97,12 +104,13 @@ class DetailedRecipeViewController: UIViewController {
     
     @objc func deleteButtonPressed() {
         showDeleteAlert()
+        
     }
             
     //MARK: - Helpers
     
     private func showAlertWithTimer() {
-        alertController = UIAlertController(title: title, message: detailedPresenter.saveMessage, preferredStyle: .alert)
+        alertController = UIAlertController(title: title, message: "Successfully saved", preferredStyle: .alert)
         alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
         self.present(alertController!, animated: true, completion: nil)
     }
@@ -125,6 +133,7 @@ class DetailedRecipeViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "Yes", style: .default,
                                         handler: {(_) in
                                             self.detailedPresenter.deleteFromFavourites()
+                                            self.navigationController?.popViewController(animated: true)
         }))
         alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)

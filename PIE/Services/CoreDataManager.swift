@@ -16,11 +16,10 @@ class CoreDataManager {
     //MARK: Init with dependency
     init(container: NSPersistentContainer) {
         self.persistentContainer = container
-        //        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     convenience init() {
-        //Use the default container for production environment
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError("AppDelegate unavailable")
         }
@@ -68,7 +67,7 @@ class CoreDataManager {
         favRecipe.image = recipe.image
         favRecipe.ingredientLines = recipe.ingredientLines
         favRecipe.label = recipe.label
-        favRecipe.sourse = recipe.source
+        favRecipe.source = recipe.source
         favRecipe.totalTime = recipe.totalTime
         favRecipe.totalWeight = recipe.totalWeight
         favRecipe.uri = recipe.uri
@@ -104,16 +103,6 @@ class CoreDataManager {
             try viewContext.save()
         } catch {
             print("\(error.localizedDescription)")
-        }
-    }
-    
-    func save() {
-        if backgroundContext.hasChanges {
-            do {
-                try backgroundContext.save()
-            } catch {
-                print("Save error \(error)")
-            }
         }
     }
     

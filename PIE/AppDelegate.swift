@@ -58,10 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                }
            })
            
-//           container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//           container.viewContext.undoManager = nil
-//           container.viewContext.shouldDeleteInaccessibleFaults = true
-           
            container.viewContext.automaticallyMergesChangesFromParent = true
            
            return container

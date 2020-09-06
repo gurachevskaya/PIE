@@ -70,12 +70,12 @@ final class DetailedRecipePresenter {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-    var saveMessage: String {
-        if coreDataManager.isInFavourites(recipe: self.recipe) {
-            return "Already saved"
-        } else {
-            return "Successfully saved"
-        }
-    }
+//    var saveMessage: String {
+//        if coreDataManager.isInFavourites(recipe: self.recipe) {
+//            return "Already saved"
+//        } else {
+//            return "Successfully saved"
+//        }
+//    }
 }
 
