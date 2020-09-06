@@ -76,8 +76,14 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     // MARK: UICollectionViewFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
-        let availableWidth = collectionView.frame.width - 30
+       
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let minimumItemSpacing = layout.minimumInteritemSpacing
+        let sectionInsets = layout.sectionInset
+        
+        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing
+        
+        let availableWidth = collectionView.frame.width - paddingSpace
         let widthPerItem = availableWidth / 2
         let itemSize = CGSize(width: widthPerItem, height: 80)
         return itemSize

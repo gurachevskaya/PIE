@@ -121,14 +121,14 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     func createRecipeWith(recipeEntity: RecipeEntity) -> Recipe {
         let recipe = Recipe(uri: recipeEntity.uri!,
-                            label: recipeEntity.label!,
-                            image: recipeEntity.image!,
-                            source: recipeEntity.source!,
-                            url: recipeEntity.url!,
+                            label: recipeEntity.label ?? "",
+                            image: recipeEntity.image ?? "",
+                            source: recipeEntity.source ?? "",
+                            url: recipeEntity.url ?? "",
                             yield: recipeEntity.yield,
-                            dietLabels: recipeEntity.dietLabels!,
-                            healthLabels: recipeEntity.healthLabels!,
-                            ingredientLines: recipeEntity.ingredientLines!,
+                            dietLabels: recipeEntity.dietLabels ?? [],
+                            healthLabels: recipeEntity.healthLabels ?? [],
+                            ingredientLines: recipeEntity.ingredientLines ?? [],
                             calories: recipeEntity.calories,
                             totalWeight: recipeEntity.totalWeight,
                             totalTime: recipeEntity.totalTime)
