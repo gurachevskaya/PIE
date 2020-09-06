@@ -16,7 +16,7 @@ let filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
                     Filter(name: "high-protein", isSelected: false, label: .diet)
 ]
 
-struct Filter {
+struct Filter: Equatable {
     let name: String
     var isSelected: Bool
     let label: Label

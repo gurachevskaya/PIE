@@ -9,6 +9,35 @@
 import XCTest
 @testable import PIE
 
+class SearchViewMock : NSObject, SimpleSearchView {
+    var reloadDataCalled = false
+    var startLoadingCalled = false
+    var finishLoadingCalled = false
+    
+    func startLoading() {
+        finishLoadingCalled = true
+    }
+    
+    func finishLoading() {
+        startLoadingCalled = true
+    }
+    
+    func reloadData() {
+        reloadDataCalled = true
+    }
+}
+    
+//class UserServiceMock: UserService {
+//    fileprivate let users: [User]
+//    init(users: [User]) {
+//        self.users = users
+//    }
+//    override func getUsers(_ callBack: @escaping ([User]) -> Void) {
+//        callBack(users)
+//    }
+//
+//}
+
 class SearchPresenterTests: XCTestCase {
     
     var sut: SearchPresenter!
@@ -53,6 +82,37 @@ class SearchPresenterTests: XCTestCase {
         XCTAssertEqual(try sut.validateIngredientsSearchInput(input: input), "egg+milk")
     }
     
+    func test_is_valid_simple_search_input() throws {
+        let input = "plov"
+        XCTAssertNoThrow(try sut.validateSimpleSearchInput(input: input))
+       }
+    
+    func test_is_valid_simple_search_empty_input() throws {
+           let input = ""
+           XCTAssertNoThrow(try sut.validateSimpleSearchInput(input: input))
+          }
+    
+    func test_simple_search_empty_input() {
+        let input = ""
+        for (index, _) in sut.model.enumerated() {
+            sut.model[index].toggleSelected()
+        }
+        let expectedError = AppError.noSearchParameters
+        var error: AppError?
+                
+        XCTAssertThrowsError(try sut.validateSimpleSearchInput(input: input)) { thrownError in
+            error = thrownError as? AppError
+        }
+        XCTAssertEqual(error, expectedError)
+    }
+    
+    func test_output_validate_simple_search_input() throws {
+           let input = "cookie"
+           XCTAssertEqual(try sut.validateSimpleSearchInput(input: input), "cookie")
+       }
+    
+    
+    
     func test_diet_string_from_model() {
         let expectedString = "&diet=low-fat&diet=low-carb&diet=high-protein"
         XCTAssertEqual(expectedString, sut.dietsString)
@@ -66,6 +126,55 @@ class SearchPresenterTests: XCTestCase {
     func test_number_of_filters() {
            XCTAssertEqual(6, sut.numberOfFilters)
        }
+    
+    func test_subscript() {
+        let expectedFilter = Filter(name: "vegan", isSelected: true, label: .health)
+        let filter = sut[0]
+        XCTAssertEqual(expectedFilter, filter)
+    }
+    
+    func test_subscript2() {
+           let expectedFilter = Filter(name: "vegan", isSelected: false, label: .health)
+           let filter = sut[0]
+           XCTAssertNotEqual(expectedFilter, filter)
+       }
+    
+    func test_more_is_nil_when_reset() {
+        sut.more = false
+        sut.resetPaginationParameters()
+        XCTAssertNil(sut.more)
+    }
+    
+    func test_current_page_0_when_reset() {
+        sut.currentPage = 5
+        sut.resetPaginationParameters()
+           XCTAssertEqual(0, sut.currentPage)
+       }
+    
+    func test_should_reload_view () {
+        //given
+        let searchViewMock = SearchViewMock()
+        sut.view = searchViewMock
+        //when
+        sut.toggleSelectedFor(item: 0)
+        //verify
+        XCTAssertTrue(searchViewMock.reloadDataCalled)
+    }
+    
+    func test_toggle() {
+        //when
+        sut.toggleSelectedFor(item: 0)
+        //verify
+        XCTAssertEqual(sut.model[0].isSelected, false)
+        
+    }
+    
+    
+    
+    
+    
+
+    
     
  
 

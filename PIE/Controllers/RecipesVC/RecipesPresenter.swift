@@ -21,7 +21,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         let fetchRequest: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.sharedManager.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataManager.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
             fetchedResultsController.delegate = self
         
@@ -31,8 +31,15 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     var recipes: [Recipe] = []
     weak var view: RecipeView?
-
+    var networkManager: NetworkManager
+    var coreDataManager: CoreDataManager
+    
     var searchQuery = ""
+    
+    init(networkManager: NetworkManager = NetworkManager(), coreDataManager: CoreDataManager = CoreDataManager()) {
+        self.networkManager = networkManager
+        self.coreDataManager = coreDataManager
+    }
     
     var numberOfRecipes: Int {
         return recipes.count
@@ -41,7 +48,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     //MARK: - Core Data
     
     var isEmpty: Bool {
-        return RecipeEntity.fetchRecipes().count == 0 ? true : false
+        return coreDataManager.fetchRecipes().count == 0 ? true : false
     }
     
     func loadFavouriteRecipes() {
@@ -60,7 +67,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     
     func removeAllRecipes() {
-        RecipeEntity.deleteAllRecipes()
+        coreDataManager.deleteAllRecipes()
         do {
         try fetchedResultsController.performFetch()
         } catch let error {
@@ -73,25 +80,25 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
      //MARK: - Networking
     
     func loadImageForUrl(urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
-           if let image = imageCache.object(forKey: urlString as NSString) {
-               completion(.success(image))
-           } else {
-               let url = URL(string: urlString)!
-               let request = URLRequest(url: url)
-               
-               NetworkManager.sharedManager.performDataTask(with: request) { (result) in
-                   switch result {
-                   case .failure(let appError):
-                       completion(.failure(appError))
-                       
-                   case .success(let data):
-                       let image = UIImage(data: data)
-                       imageCache.setObject(image!, forKey: urlString as NSString)
-                       completion(.success(image!))
-                   }
-               }
-           }
-       }
+        if let image = imageCache.object(forKey: urlString as NSString) {
+            completion(.success(image))
+        } else {
+            let url = URL(string: urlString)!
+            let request = URLRequest(url: url)
+            
+            networkManager.performDataTask(with: request) { (result) in
+                switch result {
+                case .failure(let appError):
+                    completion(.failure(appError))
+                    
+                case .success(let data):
+                    let image = UIImage(data: data)
+                    imageCache.setObject(image!, forKey: urlString as NSString)
+                    completion(.success(image!))
+                }
+            }
+        }
+    }
     
     //MARK: - NSFetchedResultsControllerDelegate
     

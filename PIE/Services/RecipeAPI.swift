@@ -11,23 +11,15 @@ import Foundation
 
 struct RecipeAPI {
     
-    private init() {}
-   
-    static func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
-        
-        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-       
-        let fromTo = "from=\(page * 20)&to=\(page * 20 + 20)"
-        
-        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&\(fromTo)"
-        
-        if dietLabels.count != 0 {
-            recipeURL = recipeURL + dietLabels
-        }
+    private var networkManager: NetworkManager
+    
+    init(networkManager: NetworkManager = NetworkManager()) {
+        self.networkManager = networkManager
+    }
 
-        if healthLabels.count != 0 {
-            recipeURL = recipeURL + healthLabels
-        }
+    func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
+        
+        let recipeURL = createSearchRecipeString(searchQuery: searchQuery, page: page, dietLabels: dietLabels, healthLabels: healthLabels)
         
         guard let url = URL(string: recipeURL) else {
             completion(.failure(.badURL(recipeURL)))
@@ -36,7 +28,7 @@ struct RecipeAPI {
         
         let request = URLRequest(url: url)
         
-        NetworkManager.sharedManager.performDataTask(with: request) { (result) in
+        networkManager.performDataTask(with: request) { (result) in
             switch result {
             case .failure(let appError):
                 if case .tooManyRequests = (appError as AppError) {
@@ -63,5 +55,25 @@ struct RecipeAPI {
                 }
             }
         }
+    }
+    
+    
+    func createSearchRecipeString(searchQuery: String, page: Int, dietLabels: String, healthLabels: String) -> String {
+        
+        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        
+        let fromTo = "from=\(page * 20)&to=\(page * 20 + 20)"
+        
+        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&\(fromTo)"
+        
+        if dietLabels.count != 0 {
+            recipeURL = recipeURL + dietLabels
+        }
+        
+        if healthLabels.count != 0 {
+            recipeURL = recipeURL + healthLabels
+        }
+        
+        return recipeURL
     }
 }

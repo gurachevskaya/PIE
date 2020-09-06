@@ -18,12 +18,14 @@ protocol SimpleSearchView: class {
 final class SearchPresenter {
         
     weak var view: SimpleSearchView?
-    private var model: [Filter]
+    var model: [Filter]
+    var recipeAPI: RecipeAPI
     
     var more: Bool!
     var currentPage = 0
     
-    init(model: [Filter]) {
+    init(model: [Filter], recipeAPI: RecipeAPI = RecipeAPI()) {
+        self.recipeAPI = recipeAPI
         self.model = model
     }
         
@@ -70,7 +72,7 @@ final class SearchPresenter {
     }
     
     
-    func  resetPaginationParameters() {
+    func resetPaginationParameters() {
         currentPage = 0
         more = nil
     }
@@ -78,7 +80,7 @@ final class SearchPresenter {
     
     func getRecipes(searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
         self.view?.startLoading()
-        RecipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
+        recipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):
@@ -95,9 +97,8 @@ final class SearchPresenter {
     func validateSimpleSearchInput(input: String) throws -> String {
         if input.isEmpty && dietsString.isEmpty && healthString.isEmpty {
             throw AppError.noSearchParameters
-        } else {
-            return input
         }
+        return input
     }
     
     

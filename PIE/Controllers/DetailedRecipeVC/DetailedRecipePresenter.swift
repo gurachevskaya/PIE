@@ -11,9 +11,11 @@ import UIKit
 final class DetailedRecipePresenter {
     
     var recipe: Recipe
+    let coreDataManager: CoreDataManager
     
-    init(recipe: Recipe) {
+    init(recipe: Recipe, coreDataManager: CoreDataManager = CoreDataManager()) {
         self.recipe = recipe
+        self.coreDataManager = coreDataManager
     }
     
     var label: String {
@@ -52,15 +54,15 @@ final class DetailedRecipePresenter {
     }
     
     var isInFavourites: Bool {
-        return RecipeEntity.isInFavourites(recipe: recipe)
+        return coreDataManager.isInFavourites(recipe: recipe)
     }
     
     func addInFavourites() {
-        RecipeEntity.addRecipe(recipe: recipe)
+        coreDataManager.addRecipe(recipe: recipe)
     }
     
     func deleteFromFavourites() {
-        RecipeEntity.deleteRecipe(recipe: recipe)
+        coreDataManager.deleteRecipe(recipe: recipe)
     }
     
     func openUrl() {
@@ -69,7 +71,7 @@ final class DetailedRecipePresenter {
     }
     
     var saveMessage: String {
-        if RecipeEntity.isInFavourites(recipe: self.recipe) {
+        if coreDataManager.isInFavourites(recipe: self.recipe) {
             return "Already saved"
         } else {
             return "Successfully saved"

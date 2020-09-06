@@ -9,15 +9,27 @@
 import UIKit
 
 
+protocol NetworkManagerProtocol: class {
+   
+}
+
+
 class NetworkManager {
     
-    static let sharedManager = NetworkManager()
-    private init() {}
+    private let session: URLSession
     
-    lazy private var session: URLSession = {
-        return URLSession(configuration: .default)
-    }()
-
+//    static let sharedManager = NetworkManager()
+//    private init() {}
+    
+    
+    init(session: URLSession = .init(configuration: .default)) {
+        self.session = session
+    }
+    
+//    lazy private var session: URLSession = {
+//        return URLSession(configuration: .default)
+//    }()
+    
     
     func performDataTask(with request: URLRequest,
                          completion: @escaping (Result<Data, AppError>) -> ()) {
