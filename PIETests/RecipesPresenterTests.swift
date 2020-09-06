@@ -18,31 +18,6 @@ class RecipeViewMock: NSObject, RecipeView {
     }
 }
 
-
-class CoreDataManagerMock: CoreDataManager {
-    
-    fileprivate var recipes: [RecipeEntity]
-    var deleteAllRecipesCalled = false
-    
-    init(recipes: [RecipeEntity]) {
-        self.recipes = recipes
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                   fatalError("AppDelegate unavailable")
-               }
-        super.init(container: appDelegate.persistentContainer)
-    }
-    
-    override func fetchRecipes() -> [RecipeEntity] {
-        return recipes
-    }
-    
-    override func deleteAllRecipes() {
-        deleteAllRecipesCalled = true
-    }
-    
-}
-
-
 class NetworkManagerMock: NetworkManager {
     
     
@@ -102,19 +77,20 @@ class RecipePresenterTests: XCTestCase {
         let recipeEntity = RecipeEntityStub()
         
         let recipe = sut.createRecipeWith(recipeEntity: recipeEntity)
-    
-        XCTAssertTrue(recipe.label == recipeEntity.label)
-        XCTAssertTrue(recipe.source == recipeEntity.source)
-        XCTAssertTrue(recipe.image == recipeEntity.image)
+        
+        XCTAssertTrue(recipe.label == "cookie")
+        XCTAssertTrue(recipe.source == "Edamam")
+        XCTAssertTrue(recipe.image == "image")
+   
     }
     
-//    func test_objectFromCache() {
-//        imageCache.setObject(UIImage.init(), forKey: "image")
-//        sut = RecipesPresenter()
-//        
-//        sut.loadImageForUrl(urlString: <#T##String#>, completion: <#T##(Result<UIImage, AppError>) -> ()#>)
-//        
-//    }
-    
-    
+    func test_createRecipe_whenEmptyEntity() {
+        sut = RecipesPresenter()
+        let recipeEntity = RecipeEntityEmptyStub()
+        
+         let recipe = sut.createRecipeWith(recipeEntity: recipeEntity)
+        XCTAssertEqual(recipe.label, "")
+        XCTAssertEqual(recipe.source, "")
+    }
+
 }

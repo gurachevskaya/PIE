@@ -120,7 +120,7 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
      //MARK: - Helpers
     
     func createRecipeWith(recipeEntity: RecipeEntity) -> Recipe {
-        let recipe = Recipe(uri: recipeEntity.uri!,
+        let recipe = Recipe(uri: recipeEntity.uri ?? "",
                             label: recipeEntity.label ?? "",
                             image: recipeEntity.image ?? "",
                             source: recipeEntity.source ?? "",

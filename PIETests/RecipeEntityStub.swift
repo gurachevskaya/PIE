@@ -20,13 +20,13 @@ class RecipeEntityStub: RecipeEntity {
     override var image: String? {
         set {}
         get {
-            return ""
+            return "image"
         }
     }
     override var source: String? {
         set {}
         get {
-            return ""
+            return "Edamam"
         }
     }
     override var date: Date? {
@@ -54,11 +54,11 @@ class RecipeEntityStub: RecipeEntity {
         }
     }
     override var calories: Double{
-           set {}
-           get {
+        set {}
+        get {
             return 1.0
-           }
-       }
+        }
+    }
     override var totalTime: Double {
         set {}
         get {
@@ -90,4 +90,80 @@ class RecipeEntityStub: RecipeEntity {
         }
     }
     
+}
+
+class RecipeEntityEmptyStub: RecipeEntity {
+    override var label: String? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var image: String? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var source: String? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    
+    override var dietLabels: [String]? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var healthLabels: [String]? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var ingredientLines: [String]? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var calories: Double{
+        set {}
+        get {
+            return 1.0
+        }
+    }
+    override var totalTime: Double {
+        set {}
+        get {
+            return 1.0
+        }
+    }
+    override var totalWeight: Double {
+        set {}
+        get {
+            return 1.0
+        }
+    }
+    override var uri: String? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var url: String? {
+        set {}
+        get {
+            return nil
+        }
+    }
+    override var yield: Double {
+        set {}
+        get {
+            return 1.0
+        }
+    }
 }

@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Lvt-AH-67A">
-                    <rect key="frame" x="0.0" y="110" width="414" height="651"/>
+                    <rect key="frame" x="0.0" y="110" width="414" height="671"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="tcP-rp-9NR">
                         <size key="itemSize" width="150" height="80"/>
@@ -82,7 +82,7 @@
                 <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RNY-Ch-5eW"/>
                 <constraint firstItem="Oqy-dY-jhp" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="fYj-Nn-nWF"/>
                 <constraint firstItem="Oo4-Bk-Ub2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m7p-RV-AZH"/>
-                <constraint firstItem="SL9-dQ-P3I" firstAttribute="top" secondItem="Lvt-AH-67A" secondAttribute="bottom" constant="25" id="uyl-Rp-dRK"/>
+                <constraint firstItem="SL9-dQ-P3I" firstAttribute="top" secondItem="Lvt-AH-67A" secondAttribute="bottom" constant="5" id="uyl-Rp-dRK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SL9-dQ-P3I" secondAttribute="bottom" constant="20" id="yCX-GE-ttV"/>
                 <constraint firstItem="Lvt-AH-67A" firstAttribute="top" secondItem="Oo4-Bk-Ub2" secondAttribute="bottom" id="yRn-xf-IVw"/>
             </constraints>

@@ -66,16 +66,10 @@ final class DetailedRecipePresenter {
     }
     
     func openUrl() {
-        guard let url = URL(string: recipe.url) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        let opener = URLOpener()
+        opener.openURL(url: recipe.url)
     }
     
-//    var saveMessage: String {
-//        if coreDataManager.isInFavourites(recipe: self.recipe) {
-//            return "Already saved"
-//        } else {
-//            return "Successfully saved"
-//        }
-//    }
+
 }
 

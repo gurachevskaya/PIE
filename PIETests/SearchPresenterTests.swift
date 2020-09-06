@@ -26,16 +26,15 @@ class SearchViewMock : NSObject, SimpleSearchView {
         reloadDataCalled = true
     }
 }
-    
-//class UserServiceMock: UserService {
-//    fileprivate let users: [User]
-//    init(users: [User]) {
-//        self.users = users
+//    
+//class recipeApiMock: RecipeAPI {
+//    fileprivate let recipes: [Recipe]
+//    init(recipes: [Recipe]) {
+//        self.recipes = recipes
 //    }
-//    override func getUsers(_ callBack: @escaping ([User]) -> Void) {
-//        callBack(users)
+//    override func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
+//        <#code#>
 //    }
-//
 //}
 
 class SearchPresenterTests: XCTestCase {

@@ -93,7 +93,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
                 DispatchQueue.main.async {
                     if cell.label.text == recipe.label {
                         cell.recipeImageView.image = image
-                    } 
+                    }
                 }
             }
         }
@@ -153,10 +153,4 @@ extension RecipesCollectionViewController: RecipeView {
     }
 }
 
-        
-//            let recipe = recipesPresenter.recipes[indexPath.item]
-//            let size = CGSize(width: widthPerItem, height: widthPerItem)
-//
-//            let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!]
-            
-//            let estimatedFrame = NSString(string: recipe.label).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+

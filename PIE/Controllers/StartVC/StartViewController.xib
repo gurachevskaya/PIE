@@ -19,11 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-W9-DBE">
-                    <rect key="frame" x="15" y="303" width="384" height="300"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="80" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="WDq-W9-DBE">
+                    <rect key="frame" x="15" y="328" width="384" height="250"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="qvI-rg-pDc"/>
+                        <constraint firstAttribute="height" constant="250" id="qvI-rg-pDc"/>
                     </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="SfN-Ei-GqC"/>
