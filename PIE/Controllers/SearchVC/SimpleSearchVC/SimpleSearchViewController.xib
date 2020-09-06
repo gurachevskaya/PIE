@@ -24,7 +24,7 @@
             <subviews>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search recipe" translatesAutoresizingMaskIntoConstraints="NO" id="Oo4-Bk-Ub2">
                     <rect key="frame" x="0.0" y="54" width="414" height="56"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Hws-q1-b74"/>
                     </connections>
