@@ -15,21 +15,21 @@ class AllRecipesCollectionViewController: RecipesCollectionViewController {
       override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
           if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
               if searchPresenter.more {
-                searchPresenter.getRecipes(searchQuery: recipesPresenter.searchQuery) {(result) in
+                searchPresenter.getRecipes(searchQuery: recipesPresenter.searchQuery) { [weak self] (result) in
                       switch result {
                       case .failure(let appError):
                           if case .noRecipes = (appError as AppError) {
-                              self.showAlertWithMessage(message: "You have seen all recipes with this search parameters\n p.s.this API plan allows only 100 recipes in one search")
+                              self?.showAlertWithMessage(message: "You have seen all recipes with this search parameters\n p.s.this API plan allows only 100 recipes in one search")
                           } else if case .tooManyRequests = (appError as AppError) {
-                               self.showAlertWithMessage(message: "Your API plan allows 5 requests/min. Wait a little")
+                               self?.showAlertWithMessage(message: "Your API plan allows 5 requests/min. Wait a little")
                           } else {
-                              self.showAlertWithMessage(message: "\(appError)")
+                              self?.showAlertWithMessage(message: "\(appError)")
                           }
 
                       case .success(let recipes):
                           DispatchQueue.main.async {
-                              self.recipesPresenter.recipes.append(contentsOf: recipes)
-                              self.reloadData()
+                              self?.recipesPresenter.recipes.append(contentsOf: recipes)
+                              self?.reloadData()
                           }
                       }
                   }

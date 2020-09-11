@@ -17,9 +17,9 @@ class RecipeAPI {
         self.networkManager = networkManager
     }
 
-    func fetchRecipe(for searchQuery: String, page: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
+    func fetchRecipe(for searchQuery: String, from: Int, to: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
         
-        let recipeURL = createSearchRecipeString(searchQuery: searchQuery, page: page, dietLabels: dietLabels, healthLabels: healthLabels)
+        let recipeURL = createSearchRecipeString(searchQuery: searchQuery, from: from, to: to, dietLabels: dietLabels, healthLabels: healthLabels)
         
         guard let url = URL(string: recipeURL) else {
             completion(.failure(.badURL(recipeURL)))
@@ -58,11 +58,11 @@ class RecipeAPI {
     }
     
     
-    func createSearchRecipeString(searchQuery: String, page: Int, dietLabels: String, healthLabels: String) -> String {
+    func createSearchRecipeString(searchQuery: String, from: Int, to: Int, dietLabels: String, healthLabels: String) -> String {
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         
-        let fromTo = "from=\(page * 20)&to=\(page * 20 + 20)"
+        let fromTo = "from=\(from)&to=\(to)"
         
         var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&\(fromTo)"
         

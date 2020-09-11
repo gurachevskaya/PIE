@@ -136,9 +136,11 @@ class SearchPresenterTests: XCTestCase {
     }
     
     func test_current_page_0_when_reset() {
-        sut.currentPage = 5
+        sut.from = 20
+        sut.to = 40
         sut.resetPaginationParameters()
-           XCTAssertEqual(0, sut.currentPage)
+        XCTAssertEqual(0, sut.from)
+        XCTAssertEqual(20, sut.to)
        }
     
     func test_should_reload_view () {

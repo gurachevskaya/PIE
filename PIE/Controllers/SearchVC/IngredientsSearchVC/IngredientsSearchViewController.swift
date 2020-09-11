@@ -93,7 +93,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     //MARK: - Handlers
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     // MARK: - Actions
@@ -145,8 +145,8 @@ extension IngredientsSearchViewController: SimpleSearchView {
     }
     
     func finishLoading() {
-        DispatchQueue.main.async {
-            self.activityIndicator?.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator?.stopAnimating()
         }
     }
     

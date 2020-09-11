@@ -158,7 +158,6 @@
 				9A71D55C24EFFC0C007E8BE5 /* PIE */,
 				9A71D57624EFFC12007E8BE5 /* PIETests */,
 				9A71D55B24EFFC0C007E8BE5 /* Products */,
-				A66D463CC2FEB424AC1DA3A0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -320,8 +319,8 @@
 		9AF46F2C24F56E53006F7F65 /* SimpleSearchVC */ = {
 			isa = PBXGroup;
 			children = (
-				9A71D5D224F066FE007E8BE5 /* SimpleSearchViewController.swift */,
 				9A71D5D324F066FE007E8BE5 /* SimpleSearchViewController.xib */,
+				9A71D5D224F066FE007E8BE5 /* SimpleSearchViewController.swift */,
 			);
 			path = SimpleSearchVC;
 			sourceTree = "<group>";
@@ -364,13 +363,6 @@
 				9A93676324FE4F1900A8D3A1 /* UIViewController+Alert.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A66D463CC2FEB424AC1DA3A0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

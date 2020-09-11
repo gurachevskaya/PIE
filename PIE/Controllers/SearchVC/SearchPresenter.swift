@@ -22,7 +22,10 @@ final class SearchPresenter {
     var recipeAPI: RecipeAPI
     
     var more: Bool!
-    var currentPage = 0
+    let recipesInOneRequest = 20
+    var from = 0
+    var to = 20
+   
     
     init(model: [Filter], recipeAPI: RecipeAPI = RecipeAPI()) {
         self.recipeAPI = recipeAPI
@@ -73,21 +76,24 @@ final class SearchPresenter {
     
     
     func resetPaginationParameters() {
-        currentPage = 0
+        from = 0
+        to = 20
         more = nil
     }
     
     
     func getRecipes(searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
-        self.view?.startLoading()
-        recipeAPI.fetchRecipe(for: searchQuery, page: currentPage, dietLabels: dietsString, healthLabels: healthString) { result in
+        view?.startLoading()
+        recipeAPI.fetchRecipe(for: searchQuery, from: from, to: to, dietLabels: dietsString, healthLabels: healthString) { [weak self] result in
+            guard let self = self else { return }
             self.view?.finishLoading()
             switch result {
             case .failure(let appError):
                 completion(.failure(appError))
             case .success(let (recipes, more)):
                 self.more = more
-                self.currentPage += 1
+                self.from = self.to + 1
+                self.to = self.from + 20
                 completion(.success(recipes))
             }
         }

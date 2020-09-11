@@ -49,11 +49,11 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))]
         
-        self.collectionView.register(RecipeCollectionViewCell.nib,
+        collectionView.register(RecipeCollectionViewCell.nib,
                                      forCellWithReuseIdentifier: reuseIdentifier)
     }
     
-     //MARK: - UI Setup
+    //MARK: - UI Setup
     
     private func updatePresentationStyle() {
         navigationItem.rightBarButtonItem?.image = selectedStyle.buttonImage
@@ -86,8 +86,8 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         recipesPresenter.loadImageForUrl(urlString: recipe.image) { (result) in
             switch result {
             case .failure(let appError):
-                DispatchQueue.main.async {
-                    self.showAlertWithMessage(message: "\(appError)")
+                DispatchQueue.main.async { [weak self] in
+                    self?.showAlertWithMessage(message: "\(appError)")
                 }
             case .success(let image):
                 DispatchQueue.main.async {
@@ -101,14 +101,14 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     // MARK: - UICollectionViewDelegate
-       
-       override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
-           DispatchQueue.main.async {
-               self.navigationController?.pushViewController(detailedVC, animated: true)
-           }
-       }
- 
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailedVC = DetailedRecipeViewController(recipePresenter: RecipesPresenter(), detailedPresenter: DetailedRecipePresenter(recipe: recipesPresenter.recipes[indexPath.item]))
+        DispatchQueue.main.async { [weak self] in
+            self?.navigationController?.pushViewController(detailedVC, animated: true)
+        }
+    }
+    
     // MARK: - UICollectionViewFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -145,7 +145,7 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
     }
     
 }
-    
+
 
 extension RecipesCollectionViewController: RecipeView {
     func reloadData() {

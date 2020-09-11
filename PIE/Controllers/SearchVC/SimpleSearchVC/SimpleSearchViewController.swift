@@ -131,8 +131,8 @@ extension SimpleSearchViewController: SimpleSearchView {
     }
     
     func finishLoading() {
-        DispatchQueue.main.async {
-            self.activityIndicator?.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator?.stopAnimating()
         }
     }
     

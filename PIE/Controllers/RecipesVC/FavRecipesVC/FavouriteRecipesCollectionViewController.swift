@@ -36,7 +36,8 @@ class FavouriteRecipesCollectionViewController: RecipesCollectionViewController 
             let alertVC = UIAlertController(title: nil, message: "Are you sure to delete all favourite recipes?", preferredStyle: .alert)
             
             alertVC.addAction(UIAlertAction(title: "Yes", style: .default,
-                                            handler: {(_) in
+                                            handler: { [weak self] (_) in
+                                                guard let self = self else { return }
                                                 self.recipesPresenter.removeAllRecipes()
             }))
             alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))

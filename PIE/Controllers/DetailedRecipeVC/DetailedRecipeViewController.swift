@@ -61,7 +61,8 @@ class DetailedRecipeViewController: UIViewController {
         ingredients.text = detailedPresenter.ingredients
         dietsLabel.text = detailedPresenter.dietsAndHealth
         
-        recipePresenter.loadImageForUrl(urlString: detailedPresenter.recipe.image) { (result) in
+        recipePresenter.loadImageForUrl(urlString: detailedPresenter.recipe.image) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case .failure(let appError):
                 DispatchQueue.main.async {
@@ -93,7 +94,7 @@ class DetailedRecipeViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [])
         activityViewController.popoverPresentationController?.sourceView = (sender as! UIButton)
         activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
-        self.present(activityViewController, animated: true, completion: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
     
     
@@ -112,7 +113,7 @@ class DetailedRecipeViewController: UIViewController {
     private func showAlertWithTimer() {
         alertController = UIAlertController(title: title, message: "Successfully saved", preferredStyle: .alert)
         alertTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
-        self.present(alertController!, animated: true, completion: nil)
+        present(alertController!, animated: true, completion: nil)
     }
     
     
@@ -121,8 +122,8 @@ class DetailedRecipeViewController: UIViewController {
         if (remainingTime < 0) {
             alertTimer?.invalidate()
             alertTimer = nil
-            alertController!.dismiss(animated: true, completion: {
-                self.alertController = nil
+            alertController!.dismiss(animated: true, completion: { [weak self] in
+                self?.alertController = nil
             })
         }
     }
@@ -136,7 +137,7 @@ class DetailedRecipeViewController: UIViewController {
                                             self.navigationController?.popViewController(animated: true)
         }))
         alertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        self.present(alertVC, animated: true, completion: nil)
+        present(alertVC, animated: true, completion: nil)
     }
    
 }
