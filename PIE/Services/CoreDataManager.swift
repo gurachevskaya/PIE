@@ -39,8 +39,8 @@ class CoreDataManager {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         request.includesPropertyValues = false
-        guard let favoritesRecipes = try? viewContext.fetch(request) else { return [] }
-        return favoritesRecipes
+        guard let favouritesRecipes = try? viewContext.fetch(request) else { return [] }
+        return favouritesRecipes
     }
     
     func deleteAllRecipes() {

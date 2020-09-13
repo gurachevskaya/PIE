@@ -45,7 +45,6 @@ class RecipesCollectionViewController: UICollectionViewController, UICollectionV
         super.viewDidLoad()
         
         updatePresentationStyle()
-        recipesPresenter.view = self
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(image: selectedStyle.buttonImage, style: .plain, target: self, action: #selector(changeContentLayout))]
         

@@ -51,11 +51,11 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            navigationController?.pushViewController(SimpleSearchViewController(searchPresenter: SearchPresenter(model: filtersModel)), animated: true)
+            navigationController?.pushViewController(SimpleSearchBuilder().build(), animated: true)
         }
         
         if indexPath.section == 1 {
-            navigationController?.pushViewController(IngredientsSearchViewController(searchPresenter: SearchPresenter(model: filtersModel)), animated: true)
+            navigationController?.pushViewController(IngredientsSearchBuilder().build(), animated: true)
         }
     }
 }

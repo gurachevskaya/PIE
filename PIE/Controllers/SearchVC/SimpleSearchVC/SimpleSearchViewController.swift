@@ -1,4 +1,3 @@
-//
 //  SimpleSearchViewController.swift
 //  PIE
 //
@@ -31,7 +30,6 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        simpleSearchPresenter.view = self
         self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
     }
     
@@ -93,7 +91,7 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
                     
                 case .success(let recipes):
                     DispatchQueue.main.async {
-                        let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
+                        let vc = RecipesViewControllerFactory().makeRecipeViewController(type: .allRecipes)
                         vc.recipesPresenter.recipes.append(contentsOf: recipes)
                         vc.recipesPresenter.searchQuery = searchQuery
                         vc.searchPresenter = self?.simpleSearchPresenter
@@ -107,6 +105,8 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
 }
+
+
 
 extension SimpleSearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -140,6 +140,3 @@ extension SimpleSearchViewController: SimpleSearchView {
         collectionView.reloadData()
     }
 }
-
-
-

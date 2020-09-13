@@ -8,15 +8,18 @@
 
 import Foundation
 
-struct RecipesViewControllerFactory {
+enum ControllerType {
+    case allRecipes, favouriteRecipes
+}
+
+class RecipesViewControllerFactory {
     
-    func makeAllRecipesViewController() -> RecipesCollectionViewController {
-        let presenter = RecipesPresenter()
-        return (AllRecipesCollectionViewController(recipesPresenter: presenter))
-    }
-    
-    func makeFavouriteRecipesViewController() -> RecipesCollectionViewController {
-        let presenter = RecipesPresenter()
-        return (FavouriteRecipesCollectionViewController(recipesPresenter: presenter))
+    func makeRecipeViewController(type: ControllerType) -> RecipesCollectionViewController {
+        switch type {
+        case .allRecipes:
+            return AllRecipesBuilder().build() as! RecipesCollectionViewController
+        case .favouriteRecipes:
+            return FavouriteRecipesBuilder().build() as! RecipesCollectionViewController
+        }
     }
 }

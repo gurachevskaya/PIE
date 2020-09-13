@@ -36,9 +36,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchPresenter.view = self
-        
+                
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
         tapGesture.cancelsTouchesInView = false
@@ -123,7 +121,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                     
                 case .success(let recipes):
                     DispatchQueue.main.async {
-                        let vc = RecipesViewControllerFactory().makeAllRecipesViewController()
+                        let vc = RecipesViewControllerFactory().makeRecipeViewController(type: .allRecipes)
                         vc.recipesPresenter.recipes = recipes
                         vc.recipesPresenter.searchQuery = searchQuery
                         vc.searchPresenter = self?.searchPresenter
