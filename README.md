@@ -22,7 +22,7 @@ PIE is an iOS application designed to help people find recipes attuned to the in
 - No meat? No problem, choose your diet preferences, so you can look for vegan meal or something high-protein.
 - Ability to save recipes in «favorite» section that you can return to.
 
-### API
+### API:
 This app utilizes an API from Edamam called Search Recipe API.
 Edamam API is a Recipe Search API.
 - Search over 1.5 million recipes.
@@ -31,6 +31,15 @@ Edamam API is a Recipe Search API.
 - The recipes in our database are normalized and can be filtered in the search by calorie and diet preferences.
 
 #### Restrictions for developer API plan:
-Results per call - up to 100
-Throttling calls - 5/minute
+- Results per call - up to 100
+- Throttling calls - 5/minute
 
+### Architecture:
+**MVP pattern.** Decouple the ViewController from the Presenter, and then again the presenter from the services. The ViewController instance the services and the Presenter, and inject the service into the presenter. 3 presenters in the app: SearchPresenter, RecipesPresenter and DetailedRecipePresenter.	
+
+### Unit tests:
+- SearchPresenterTests - tests searching logic
+- RecipesPresenterTests 
+- DetailedRecipePresenterTests
+- CoreDataManagerTests - test for CoreData
+- Double+FormattedTests, FiltersModelTests, RecipeApiTests, URLOpenerTests
