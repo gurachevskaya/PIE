@@ -113,5 +113,4 @@ final class SearchPresenter {
         let searchQuery = input.joined(separator: "+")
         return searchQuery
     }
-
 }

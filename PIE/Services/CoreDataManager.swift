@@ -13,19 +13,6 @@ class CoreDataManager {
     
     let persistentContainer: NSPersistentContainer!
     
-    //MARK: Init with dependency
-    init(container: NSPersistentContainer) {
-        self.persistentContainer = container
-        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-    }
-    
-    convenience init() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("AppDelegate unavailable")
-        }
-        self.init(container: appDelegate.persistentContainer)
-    }
-    
     lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
@@ -35,6 +22,20 @@ class CoreDataManager {
     }()
     
     
+    init(container: NSPersistentContainer) {
+        self.persistentContainer = container
+        self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+    }
+    
+    
+    convenience init() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("AppDelegate unavailable")
+        }
+        self.init(container: appDelegate.persistentContainer)
+    }
+    
+    
     func fetchRecipes() -> [RecipeEntity] {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
@@ -42,6 +43,7 @@ class CoreDataManager {
         guard let favouritesRecipes = try? viewContext.fetch(request) else { return [] }
         return favouritesRecipes
     }
+    
     
     func deleteAllRecipes() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeEntity")
@@ -54,8 +56,8 @@ class CoreDataManager {
         }
     }
     
+    
     func addRecipe(recipe: Recipe) {
-        
         guard !isInFavourites(recipe: recipe) else {return}
         
         let favRecipe = RecipeEntity(context: viewContext)
@@ -81,6 +83,7 @@ class CoreDataManager {
         }
     }
     
+    
     func isInFavourites(recipe: Recipe) -> Bool {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
         request.predicate = NSPredicate(format: "uri = %@", recipe.uri)
@@ -91,6 +94,7 @@ class CoreDataManager {
             return true
         }
     }
+    
     
     func deleteRecipe(recipe: Recipe) {
         let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
@@ -105,6 +109,4 @@ class CoreDataManager {
             print("\(error.localizedDescription)")
         }
     }
-    
-    
 }

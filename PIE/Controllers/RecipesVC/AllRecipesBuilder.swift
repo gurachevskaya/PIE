@@ -9,6 +9,7 @@
 import UIKit
 
 class AllRecipesBuilder: ModuleBuilder {
+    
     func build() -> UIViewController {
         let presenter = RecipesPresenter()
         let controller = (AllRecipesCollectionViewController(recipesPresenter: presenter))

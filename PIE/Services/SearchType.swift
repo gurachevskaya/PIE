@@ -29,5 +29,4 @@ enum SearchType {
             return UIImage(named: "list")!
         }
     }
-    
 }

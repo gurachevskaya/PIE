@@ -8,27 +8,32 @@
 
 import UIKit
 
-
 protocol URLOpenerProtocol {
+    
     func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any], completionHandler completion: ((Bool) -> Void)?)
 }
-
-extension UIApplication: URLOpenerProtocol { }
 
 struct URLOpener {
     
     var application: URLOpenerProtocol
     
+    
     init(application: URLOpenerProtocol) {
         self.application = application
     }
     
+    
     init() {
         self.init(application: UIApplication.shared)
     }
+    
     
     func openURL(url: String) {
         guard let url = URL(string: url) else { return }
         application.open(url, options: [:], completionHandler: nil)
     }
 }
+
+
+extension UIApplication: URLOpenerProtocol { }
+

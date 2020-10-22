@@ -17,10 +17,12 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
     let cellIdentifier = "FilterCollectionViewCell"
     let simpleSearchPresenter: SearchPresenter
     
+    
     init(searchPresenter: SearchPresenter) {
         self.simpleSearchPresenter = searchPresenter
         super.init(nibName: "SimpleSearchViewController", bundle: nil)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -109,15 +111,18 @@ class SimpleSearchViewController: UIViewController, UICollectionViewDelegate, UI
 
 
 extension SimpleSearchViewController: UISearchBarDelegate {
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
+    
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
@@ -126,15 +131,18 @@ extension SimpleSearchViewController: UISearchBarDelegate {
 
 
 extension SimpleSearchViewController: SimpleSearchView {
+    
     func startLoading() {
         activityIndicator?.startAnimating()
     }
+    
     
     func finishLoading() {
         DispatchQueue.main.async { [weak self] in
             self?.activityIndicator?.stopAnimating()
         }
     }
+    
     
     func reloadData() {
         collectionView.reloadData()

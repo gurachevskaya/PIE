@@ -8,14 +8,15 @@
 
 import UIKit
 
-
 class NetworkManager {
     
     private let session: URLSession
     
+    
     init(session: URLSession = .init(configuration: .default)) {
         self.session = session
     }
+    
 
     func performDataTask(with request: URLRequest,
                          completion: @escaping (Result<Data, AppError>) -> ()) {
@@ -49,6 +50,7 @@ class NetworkManager {
             
             completion(.success(data))
         }
+        
         dataTask.resume()
     } 
 }

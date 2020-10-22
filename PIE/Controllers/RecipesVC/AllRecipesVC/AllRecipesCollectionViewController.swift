@@ -34,9 +34,9 @@ class AllRecipesCollectionViewController: RecipesCollectionViewController {
                       }
                   }
               } else {
+                
                   showAlertWithMessage(message: "That's all recipes with this search parameters")
               }
           }
       }
-
 }

@@ -13,11 +13,6 @@ final class DetailedRecipePresenter {
     var recipe: Recipe
     let coreDataManager: CoreDataManager
     
-    init(recipe: Recipe, coreDataManager: CoreDataManager = CoreDataManager()) {
-        self.recipe = recipe
-        self.coreDataManager = coreDataManager
-    }
-    
     var label: String {
         return recipe.label
     }
@@ -57,19 +52,26 @@ final class DetailedRecipePresenter {
         return coreDataManager.isInFavourites(recipe: recipe)
     }
     
+    
+    init(recipe: Recipe, coreDataManager: CoreDataManager = CoreDataManager()) {
+        self.recipe = recipe
+        self.coreDataManager = coreDataManager
+    }
+    
+    
     func addInFavourites() {
         coreDataManager.addRecipe(recipe: recipe)
     }
+    
     
     func deleteFromFavourites() {
         coreDataManager.deleteRecipe(recipe: recipe)
     }
     
+    
     func openUrl() {
         let opener = URLOpener()
         opener.openURL(url: recipe.url)
     }
-    
-
 }
 

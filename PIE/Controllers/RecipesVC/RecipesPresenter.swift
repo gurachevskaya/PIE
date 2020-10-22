@@ -28,7 +28,6 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
         return fetchedResultsController
     }()
 
-    
     var recipes: [Recipe] = []
     weak var view: RecipeView?
     var networkManager: NetworkManager
@@ -36,21 +35,22 @@ final class RecipesPresenter: NSObject, NSFetchedResultsControllerDelegate {
     
     var searchQuery = ""
     
-    init(networkManager: NetworkManager = NetworkManager(session: URLSession.init(configuration: .default)), coreDataManager: CoreDataManager = CoreDataManager()) {
-        self.networkManager = networkManager
-        self.coreDataManager = coreDataManager
-    }
-    
     var numberOfRecipes: Int {
         return recipes.count
     }
-      
-    //MARK: - Core Data
     
     var isEmpty: Bool {
         return coreDataManager.fetchRecipes().count == 0 ? true : false
     }
     
+    
+    init(networkManager: NetworkManager = NetworkManager(session: URLSession.init(configuration: .default)), coreDataManager: CoreDataManager = CoreDataManager()) {
+        self.networkManager = networkManager
+        self.coreDataManager = coreDataManager
+    }
+      
+    //MARK: - Core Data
+   
     func loadFavouriteRecipes() {
         do {
             try fetchedResultsController.performFetch()

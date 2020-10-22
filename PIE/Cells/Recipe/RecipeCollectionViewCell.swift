@@ -15,16 +15,13 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var recipeStackView: UIStackView!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
         updateContentStyle()
     }
+    
     
     private func updateContentStyle() {
         let isHorizontalStyle = bounds.width > 2 * bounds.height
@@ -36,5 +33,4 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         recipeStackView.spacing = isHorizontalStyle ? 10 : 0
         label.textAlignment = isHorizontalStyle ? .left : .center
     }
-    
 }

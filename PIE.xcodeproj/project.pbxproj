@@ -35,8 +35,6 @@
 		9A757FB72504F7A40076ED17 /* RecipesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FB62504F7A40076ED17 /* RecipesPresenterTests.swift */; };
 		9A757FBB250516780076ED17 /* RecipeEntityStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FBA250516780076ED17 /* RecipeEntityStub.swift */; };
 		9A757FBD25051DBC0076ED17 /* apiRecipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A757FBC25051DBC0076ED17 /* apiRecipes.json */; };
-		9A757FBF25051F910076ED17 /* ResponseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FBE25051F910076ED17 /* ResponseStub.swift */; };
-		9A757FC1250521D60076ED17 /* SessionStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FC0250521D60076ED17 /* SessionStub.swift */; };
 		9A757FC5250555EC0076ED17 /* DetailedRecipePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FC4250555EC0076ED17 /* DetailedRecipePresenterTests.swift */; };
 		9A757FC7250556BD0076ED17 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A757FC6250556BD0076ED17 /* CoreDataManagerMock.swift */; };
 		9A7AD23C250E12AF00643524 /* SimpleSearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7AD23B250E12AF00643524 /* SimpleSearchBuilder.swift */; };
@@ -107,8 +105,6 @@
 		9A757FB62504F7A40076ED17 /* RecipesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesPresenterTests.swift; sourceTree = "<group>"; };
 		9A757FBA250516780076ED17 /* RecipeEntityStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEntityStub.swift; sourceTree = "<group>"; };
 		9A757FBC25051DBC0076ED17 /* apiRecipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = apiRecipes.json; sourceTree = "<group>"; };
-		9A757FBE25051F910076ED17 /* ResponseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStub.swift; sourceTree = "<group>"; };
-		9A757FC0250521D60076ED17 /* SessionStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStub.swift; sourceTree = "<group>"; };
 		9A757FC4250555EC0076ED17 /* DetailedRecipePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRecipePresenterTests.swift; sourceTree = "<group>"; };
 		9A757FC6250556BD0076ED17 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
 		9A7AD23B250E12AF00643524 /* SimpleSearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSearchBuilder.swift; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 				9A1B435B25056350009DE3C8 /* URLOpenerTests.swift */,
 				9A1B435D250573BE009DE3C8 /* RecipeApiTests.swift */,
 				9A757FBC25051DBC0076ED17 /* apiRecipes.json */,
-				9A757FBE25051F910076ED17 /* ResponseStub.swift */,
-				9A757FC0250521D60076ED17 /* SessionStub.swift */,
 				9A71D57924EFFC12007E8BE5 /* Info.plist */,
 			);
 			path = PIETests;
@@ -533,12 +527,10 @@
 				9A757FC5250555EC0076ED17 /* DetailedRecipePresenterTests.swift in Sources */,
 				9A757FBB250516780076ED17 /* RecipeEntityStub.swift in Sources */,
 				9A757FB72504F7A40076ED17 /* RecipesPresenterTests.swift in Sources */,
-				9A757FBF25051F910076ED17 /* ResponseStub.swift in Sources */,
 				9A1B435C25056350009DE3C8 /* URLOpenerTests.swift in Sources */,
 				9AA4BB04250392A000C0A74B /* Double+FormattedTests.swift in Sources */,
 				9A757FC7250556BD0076ED17 /* CoreDataManagerMock.swift in Sources */,
 				9A757F8225042C6E0076ED17 /* CoreDataManagerTests.swift in Sources */,
-				9A757FC1250521D60076ED17 /* SessionStub.swift in Sources */,
 				9AA4BB0A2503D77800C0A74B /* FiltersModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

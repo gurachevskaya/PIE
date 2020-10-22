@@ -13,9 +13,11 @@ class RecipeAPI {
     
     private var networkManager: NetworkManager
     
+    
     init(networkManager: NetworkManager = NetworkManager(session: URLSession.init(configuration: .default))) {
         self.networkManager = networkManager
     }
+    
 
     func fetchRecipe(for searchQuery: String, from: Int, to: Int, dietLabels: String, healthLabels: String, completion: @escaping (Result<([Recipe], Bool), AppError>) -> ()) {
         

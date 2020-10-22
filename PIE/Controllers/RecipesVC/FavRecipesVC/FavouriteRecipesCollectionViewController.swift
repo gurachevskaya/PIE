@@ -31,6 +31,7 @@ class FavouriteRecipesCollectionViewController: RecipesCollectionViewController 
         showDeleteAlert()
     }
     
+    
     func showDeleteAlert() {
         if recipesPresenter.isEmpty == false {
             let alertVC = UIAlertController(title: nil, message: "Are you sure to delete all favourite recipes?", preferredStyle: .alert)

@@ -9,6 +9,7 @@
 import Foundation
 
 extension Double {
+    
     func removeZerosFromEnd() -> String {
         let formatter = NumberFormatter()
         let number = NSNumber(value: self)

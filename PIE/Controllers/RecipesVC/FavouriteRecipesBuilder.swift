@@ -8,6 +8,7 @@
 import UIKit
 
 class FavouriteRecipesBuilder: ModuleBuilder {
+    
     func build() -> UIViewController {
         let presenter = RecipesPresenter()
         let controller = (FavouriteRecipesCollectionViewController(recipesPresenter: presenter))

@@ -15,23 +15,18 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var searchImageView: UIImageView!
     @IBOutlet weak var searchTextLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
     func configureWith(type: SearchType) {
         searchImageView.image = type.image
         searchTextLabel.text = type.text
     }
     
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
-           super.setSelected(selected, animated: animated)
+        super.setSelected(selected, animated: animated)
         let backgroundView = UIView()
         self.selectedBackgroundView = backgroundView
         self.selectedBackgroundView?.layer.cornerRadius = 5.0
         selectedBackgroundView?.backgroundColor = .lightGray
-       }
-
-    
+    }
 }

@@ -23,10 +23,12 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     let searchPresenter: SearchPresenter
     let cellIdentifier = "FilterCollectionViewCell"
     
+    
     init(searchPresenter: SearchPresenter) {
         self.searchPresenter = searchPresenter
         super.init(nibName: "IngredientsSearchViewController", bundle: nil)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,6 +46,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
         self.collectionView.register(FilterCollectionViewCell.nib, forCellWithReuseIdentifier: cellIdentifier)
     }
     
+    
     override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
@@ -54,6 +57,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return searchPresenter.numberOfFilters
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! FilterCollectionViewCell
@@ -106,7 +110,7 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
                 ingredients.append(field.text!)
             }
         }
-                
+        
         do {
             let searchQuery = try searchPresenter.validateIngredientsSearchInput(input: ingredients)
             
@@ -138,9 +142,11 @@ class IngredientsSearchViewController: UIViewController, UICollectionViewDelegat
 }
 
 extension IngredientsSearchViewController: SimpleSearchView {
+    
     func startLoading() {
         activityIndicator?.startAnimating()
     }
+    
     
     func finishLoading() {
         DispatchQueue.main.async { [weak self] in
@@ -152,7 +158,6 @@ extension IngredientsSearchViewController: SimpleSearchView {
     func reloadData() {
         collectionView.reloadData()
     }
-    
 }
 
 extension IngredientsSearchViewController: UITextFieldDelegate {
@@ -161,5 +166,4 @@ extension IngredientsSearchViewController: UITextFieldDelegate {
         textField.endEditing(true)
         return true
     }
-    
 }

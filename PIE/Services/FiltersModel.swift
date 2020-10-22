@@ -16,15 +16,17 @@ let filtersModel = [Filter(name: "vegan", isSelected: false, label: .health),
                     Filter(name: "high-protein", isSelected: false, label: .diet)
 ]
 
+
 struct Filter: Equatable {
+    enum Label: String {
+        case diet
+        case health
+    }
+    
     let name: String
     var isSelected: Bool
     let label: Label
     
-    enum Label: String {
-        case diet
-        case health 
-    }
     
     mutating func toggleSelected() {
         isSelected = !isSelected

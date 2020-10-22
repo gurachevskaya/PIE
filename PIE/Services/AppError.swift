@@ -9,17 +9,17 @@
 import Foundation
 
 enum AppError: Error {
-   
-    case badURL(String) // associated value
+    case badURL(String)
     case noResponse
-    case networkError(Error) // no internet connection
+    case networkError(Error) 
     case noData
     case decodingError(Error)
-    case badStatusCode(Int) // 401, 404, 500
+    case badStatusCode(Int)
     case noSearchParameters
     case noRecipes
-    case tooManyRequests // 429
+    case tooManyRequests
 }
+
 
 extension AppError: Equatable {
     static func == (lhs: AppError, rhs: AppError) -> Bool {
