@@ -1,5 +1,5 @@
 //
-//  Keys.swift
+//  AppKey.swift
 //  PIE
 //
 //  Created by Karina on 8/21/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SecretKey {
+struct AppKey {
     static let appId = "ad437c15"
     static let appkey = "b272d442e2c75e71bd46e0b1093484df"
 }

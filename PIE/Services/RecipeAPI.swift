@@ -66,7 +66,7 @@ class RecipeAPI {
         
         let fromTo = "from=\(from)&to=\(to)"
         
-        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appId)&app_key=\(SecretKey.appkey)&\(fromTo)"
+        var recipeURL =  "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(AppKey.appId)&app_key=\(AppKey.appkey)&\(fromTo)"
         
         if dietLabels.count != 0 {
             recipeURL = recipeURL + dietLabels
